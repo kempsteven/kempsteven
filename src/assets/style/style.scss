@@ -1,0 +1,276 @@
+*{
+  box-sizing: border-box;
+}
+
+/////////// COLUMNS //////////
+.gl-flex{
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.gl-flex-vhcenter{
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: center;
+}
+
+.gl-col-1{
+	width: 100%;
+}
+
+.gl-col-2{
+	width: 49.6%;
+}
+
+.gl-col-3{
+	width: 33%;
+}
+///////////////////////////////
+
+
+////////// ADJUSTING CENTER DIVS ///////////
+.gl-vcenter-item{
+	align-items: center;
+}
+
+.gl-hcenter-item{
+	justify-content: center;
+}
+
+.gl-vhcenter-item{
+	align-items: center;
+	justify-content: center;
+}
+////////////////////////////////////////////
+
+
+//////// ADJUSTING SPACE BETWEEN DIVS //////////
+.gl-btwn-item{
+	justify-content: space-between;
+}
+
+.gl-around-item{
+	justify-content: space-around;
+}
+
+.gl-center-btwn-item{
+	align-items: center;
+	justify-content: space-between;
+}
+
+.gl-center-around-item{
+	align-items: center;
+	justify-content: space-around;
+}
+////////////////////////////////////////////////
+
+
+////////// COLORS //////////
+$background: #ededed;
+$blue: #8aace2;
+$white: #ffffff;
+$dark-white: #d3d3d3;
+///////////////////////////
+
+////////// FONT SIZES //////////
+$header: 3vw;
+$big: 1.5vw;
+////////////////////////////////
+
+
+/////////// ANIMATION //////////
+
+////appear animation
+/* Safari 4.0 - 8.0 */
+@-webkit-keyframes appear {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+/* Standard syntax */
+@keyframes appear {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+////end of appear
+
+////floating animation
+/* Safari 4.0 - 8.0 */
+@-webkit-keyframes floating {
+  0% {bottom: -7%;}
+  10%{bottom: -6.8%;}
+  20%{bottom: -6.65%;}
+  30%{bottom: -6.5%;}
+  40%{bottom: -6.75%;}
+  50%{bottom: -7%;}
+  60%{bottom: -7.25%;}
+  70%{bottom: -7.5%;}
+  80%{bottom: -7.35%;}
+  90%{bottom: -7.2%;}
+  100%{bottom: -7%;}
+}
+
+/* Standard syntax */
+@keyframes floating {
+  0% {bottom: -7%;}
+  10%{bottom: -6.8%;}
+  20%{bottom: -6.65%;}
+  30%{bottom: -6.5%;}
+  40%{bottom: -6.75%;}
+  50%{bottom: -7%;}
+  60%{bottom: -7.25%;}
+  70%{bottom: -7.5%;}
+  80%{bottom: -7.35%;}
+  90%{bottom: -7.2%;}
+  100%{bottom: -7%;}
+}
+////end of floating animation
+
+////on page leave animation
+@keyframes pageLeave {
+	0% {left: 0%;}
+	100% {left: 100%;}
+}
+////end of on page leave animation
+
+
+////spin animation
+@keyframes spin {
+    0% {transform: rotate(0deg);}
+	100% {transform: rotate(360deg);}
+}
+////end ofspin animation
+
+////Pages Transition Animation
+// .router-anim-enter-active {
+//   animation: coming 4s;
+// }
+
+// .router-anim-leave-active {
+//   animation: going 4s;
+// }
+
+// @keyframes going {
+//   from {
+//   	overflow: hidden;
+//     transform: translateX(0%);
+//   }
+//   to {
+//   	overflow: hidden;
+//     transform: translateX(-100%);
+//   }
+// }
+
+// @keyframes coming {
+//   from {
+//   	overflow: hidden;
+//     transform: translateX(100%);
+//   }
+//   to {
+//   	overflow: hidden;
+//     transform: translateX(0%);
+//   }
+// }
+
+
+.router-anim-enter-active {
+  animation: coming 1.3s;
+  animation-timing-function:ease-in-out;
+  // transform: translateX(100%);
+}
+
+.router-anim-leave-active {
+  animation: going 1.3s;
+  animation-timing-function:ease-in-out;
+  // transform: translateX(0%);
+}
+
+@keyframes going {
+  from {
+    overflow: hidden;
+    transform: translateX(0%);
+  }
+  to {
+    overflow: hidden;
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes coming {
+  from {
+    overflow: hidden;
+    transform: translateX(100%);
+  }
+  to {
+    overflow: hidden;
+    transform: translateX(0%);
+  }
+}
+
+////////////////////////////////////////////
+
+.return-router-anim-enter-active {
+  animation: return_coming 1.3s;
+  // animation-timing-function:ease-in-out;
+  transform: translateX(100%);
+}
+
+.return-router-anim-leave-active {
+  animation: return_going 1.3s;
+  // animation-timing-function:ease-in-out;
+  transform: translateX(0%);
+}
+
+@keyframes return_going {
+  from {
+    overflow: hidden;
+    transform: translateX(0%);
+  }
+  to {
+    overflow: hidden;
+    transform: translateX(100%);
+  }
+}
+
+@keyframes return_coming {
+  from {
+    overflow: hidden;
+    transform: translateX(-100%);
+  }
+  to {
+    overflow: hidden;
+    transform: translateX(0%);
+  }
+}
+
+
+
+////End of Pages Transition Animation
+
+
+////////////////////////////////
+
+
+////////// BUTTONS //////////
+.gl-button{
+	border: 0.2vw solid white;
+	color: white;
+	padding: 0.75vw 3vw;
+	transition: 0.5s;
+	border-radius: 1px;
+	background: none;
+	cursor: pointer;
+	outline: none;
+
+	&.full-wdth{
+		width: 100%;
+	}
+
+	&:hover{
+		border: 0.2vw solid #8aace2;
+		background: #8aace2;
+		color: white;
+	}
+}
+/////////////////////////////
+
