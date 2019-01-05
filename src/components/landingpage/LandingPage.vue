@@ -2,10 +2,13 @@
   <div id="landing-container" class="landing-container gl-flex-vhcenter">
       <div class="video-container gl-col-1">
         <div class="video-filter"></div>
-        <video autoplay loop muted playsinline oncontextmenu="return false;" class='video' id="video">
+        <video loop muted playsinline oncontextmenu="return false;" @canplaythrough="videoHasBuffered()" class='video' id="video">
           <source :src="require('@/assets/video/coding.mp4')" type="video/mp4" />
           <source :src="require('@/assets/video/coding.webm')" type="video/webm" />
         </video>
+        <div class="video-fallback" v-if="!isVideoLoaded">
+          <img :src="require('@/assets/img/coding.jpg')">
+        </div>
       </div>
 
       <div class="intro-text-container gl-flex-vhcenter">
@@ -20,25 +23,17 @@
         </div>
         <div class="hr"></div>
         <div class="section desc gl-flex-vhcenter">
-          An awesome Web Developer that will surely get things done! 
+          An awesome Front end Web Developer that will surely get things done! 
         </div>
 
         <div class="section desc gl-flex-vhcenter">
-         I am open to freelance projects, just contact me!
+         Hit me up if you want to start a project!
         </div>
 
         <button id="btn" class="btn gl-button full-wdth" @click="start()">
           Let's get started!
         </button>
       </div>
-
-      <audio id="whistle" hidden>
-        <source :src="require('@/assets/audio/whistle.wav')" type="audio/wav">
-      </audio>
-
-      <audio id="kickball" hidden>
-        <source :src="require('@/assets/audio/kickball.wav')" type="audio/wav">
-      </audio>
   </div>
 </template>
 
@@ -55,21 +50,31 @@ export default {
   data () {
     return {
       defaultOptions: {animationData: animationData.default},
-      animationSpeed: 1
+      isVideoLoaded: false
     }
   },
 
   activated(){
-    this.setBtnAnimation()
+    this.playVideo()
   },
 
   methods:{
+    playVideo(){
+      var video = document.getElementById('video')
+      video.play();
+    },
+
     start(){
-      this.$router.push({path: '/home'})
+      this.$router.push({path: '/profile'})
+    },
+
+    videoHasBuffered(){
+      this.isVideoLoaded = true
     },
 
     handleAnimation(anim) {
       this.anim = anim;
+      this.anim.setSpeed(1.2)    
     },
   }
 }
@@ -125,17 +130,19 @@ export default {
     .intro-text-container{
       animation-name: appear;
       animation-duration: 0.75s;
-      width: 50%;
+      width: 55%;
       z-index: 3;
       color: $white;
       font-size: $header;
       font-weight: 600;
       text-align: center;
       position: relative;
+      animation-name: textFromTop;
+      animation-duration: 1.5s;
 
       .hr{
         width: 80%;
-        height: 0.08vw;
+        height: 0.1vw;
         background: $white;
         margin: 0.75vw;
       }
@@ -149,9 +156,6 @@ export default {
       }
 
       .btn{
-        // animation-name: floating;
-        // animation-iteration-count:infinite;
-        // animation-timing-function: linear;
         animation-duration: 1s;
         bottom: -40%;
         position: absolute;

@@ -1,20 +1,22 @@
 <template>
   <div id="app">
-    <!-- <header-div/> -->
-    <keep-alive>
+    <header-div/>
       <transition :name="routerAnim">
-        <router-view/>
+        <keep-alive>
+          <router-view/>
+        </keep-alive>
       </transition>
-    </keep-alive>
-
-    <img id="ball" :src="require('@/assets/img/ballball.png')">
   </div>
 </template>
 
 <script>
-// import headerDiv from '@/components/global/Header'
+import headerDiv from '@/components/global/Header'
 export default {
   name: 'app',
+
+  components: {
+    'header-div': headerDiv
+  },
 
   data () {
     return {
@@ -40,10 +42,6 @@ export default {
         this.routerAnim = 'router-anim'
       }
     }
-  },
-
-  components: {
-    // 'header-div': headerDiv
   }
 }
 </script>

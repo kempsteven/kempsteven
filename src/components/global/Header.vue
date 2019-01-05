@@ -2,21 +2,11 @@
   <div class="header-container">
     <ul class="list-container">
       <li class="list-item">
-        <router-link to="/home">
-          Home          
-        </router-link>
-      </li>
-      
-      <li class="list-item">
-        <router-link to="/about">
-          About Me        
-        </router-link>
-      </li>
-
-      <li class="list-item">
-        <router-link to="/contact">
-          Contact Me       
-        </router-link>
+        <div class="btn">
+          <router-link to="/contact" :class="{ 'black' : this.$route.name != 'landingpage'}">
+            Contact Me !       
+          </router-link>
+        </div>
       </li>
     </ul>
   </div>
@@ -24,17 +14,14 @@
 
 <script>
 export default {
-  name: 'home',
-  components: {
-  }
+  name: 'header-nav'
 }
 </script>
 
 <style lang="scss" scoped>
   .header-container{
     width: 100%;
-    height: 5vw;
-    padding: 4vw 1vw;
+    height: 6vw;
     z-index: 10;
     position: fixed;
 
@@ -53,19 +40,35 @@ export default {
         align-items: center;
         justify-content: center;
         margin-right: 2vw;
+        font-size: 1vw;
+        .btn{
+          animation: shake 2s ease-in-out;
+          height: 55%;
+          width: 100%;
+          padding: 0 1vw;
+          transition: 0.7s;
+          border-radius: 2px;
+          &:hover{
+            background: #517cc1;
+          }
+        }
+
+        .black{
+          color: $black;
+          &:hover{
+            color: white;
+          }
+        }
+
         a{
           text-decoration: none;
-          color: $dark-white;
+          color: $white;
           display: flex;
           height: 100%;
           width: 100%;
           align-items: center;
           transition: 0.7s;
-
-          &:hover{
-            text-shadow: 1px 2px 5px rgb(255, 255, 255);
-            color: $white;
-          }
+          font-weight: 600;
         }
       }
     }

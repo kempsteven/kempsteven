@@ -67,10 +67,11 @@
 
 
 ////////// COLORS //////////
-$background: #ededed;
+$background: #f4f4f4;
 $blue: #8aace2;
 $white: #ffffff;
 $dark-white: #d3d3d3;
+$black: #383838;
 ///////////////////////////
 
 ////////// FONT SIZES //////////
@@ -94,93 +95,27 @@ $big: 1.5vw;
 }
 ////end of appear
 
-////floating animation
-/* Safari 4.0 - 8.0 */
-@-webkit-keyframes floating {
-  0% {bottom: -7%;}
-  10%{bottom: -6.8%;}
-  20%{bottom: -6.65%;}
-  30%{bottom: -6.5%;}
-  40%{bottom: -6.75%;}
-  50%{bottom: -7%;}
-  60%{bottom: -7.25%;}
-  70%{bottom: -7.5%;}
-  80%{bottom: -7.35%;}
-  90%{bottom: -7.2%;}
-  100%{bottom: -7%;}
+////text animation
+@keyframes textFromTop {
+  from {
+    transform: translateY(-20%);
+    opacity:  0;
+  }
+  to {
+    transform: translateY(0%);
+    opacity:  1;
+  }
 }
-
-/* Standard syntax */
-@keyframes floating {
-  0% {bottom: -7%;}
-  10%{bottom: -6.8%;}
-  20%{bottom: -6.65%;}
-  30%{bottom: -6.5%;}
-  40%{bottom: -6.75%;}
-  50%{bottom: -7%;}
-  60%{bottom: -7.25%;}
-  70%{bottom: -7.5%;}
-  80%{bottom: -7.35%;}
-  90%{bottom: -7.2%;}
-  100%{bottom: -7%;}
-}
-////end of floating animation
-
-////on page leave animation
-@keyframes pageLeave {
-	0% {left: 0%;}
-	100% {left: 100%;}
-}
-////end of on page leave animation
-
-
-////spin animation
-@keyframes spin {
-    0% {transform: rotate(0deg);}
-	100% {transform: rotate(360deg);}
-}
-////end ofspin animation
-
-////Pages Transition Animation
-// .router-anim-enter-active {
-//   animation: coming 4s;
-// }
-
-// .router-anim-leave-active {
-//   animation: going 4s;
-// }
-
-// @keyframes going {
-//   from {
-//   	overflow: hidden;
-//     transform: translateX(0%);
-//   }
-//   to {
-//   	overflow: hidden;
-//     transform: translateX(-100%);
-//   }
-// }
-
-// @keyframes coming {
-//   from {
-//   	overflow: hidden;
-//     transform: translateX(100%);
-//   }
-//   to {
-//   	overflow: hidden;
-//     transform: translateX(0%);
-//   }
-// }
-
+////end oftext animation
 
 .router-anim-enter-active {
-  animation: coming 1.3s;
+  animation: coming 0.7s;
   animation-timing-function:ease-in-out;
   // transform: translateX(100%);
 }
 
 .router-anim-leave-active {
-  animation: going 1.3s;
+  animation: going 0.7s;
   animation-timing-function:ease-in-out;
   // transform: translateX(0%);
 }
@@ -247,6 +182,28 @@ $big: 1.5vw;
 
 ////End of Pages Transition Animation
 
+////shake animation////
+
+@keyframes shake {
+  10%, 90% {
+    transform: translate3d(-1px, 0, 0);
+  }
+  
+  20%, 80% {
+    transform: translate3d(2px, 0, 0);
+  }
+
+  30%, 50%, 70% {
+    transform: translate3d(-4px, 0, 0);
+  }
+
+  40%, 60% {
+    transform: translate3d(4px, 0, 0);
+  }
+}
+
+////shake animation////
+
 
 ////////////////////////////////
 
@@ -256,7 +213,7 @@ $big: 1.5vw;
 	border: 0.2vw solid white;
 	color: white;
 	padding: 0.75vw 3vw;
-	transition: 0.5s;
+	transition: 0.4s;
 	border-radius: 1px;
 	background: none;
 	cursor: pointer;
