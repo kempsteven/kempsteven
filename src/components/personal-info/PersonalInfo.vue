@@ -3,7 +3,7 @@
     <div class="info-container gl-flex-vhcenter">
       <div class="left">
         <div class="image-container gl-flex-vhcenter appear">
-          <img id="picture" :src="require('@/assets/img/picture.png')" alt="profile picture" v-show="imgHasloaded">
+          <img id="picture" :src="require('@/assets/img/picture.png')" alt="profile picture" :class="{ 'img-appear' : imgHasloaded}" v-shoe="imgHasloaded">
 
           <div class="lottie-container" v-if="!imgHasloaded">
             <lottie class="lottie" :options="defaultOptions" @animCreated="handleAnimation" />
@@ -91,6 +91,7 @@ export default {
         // background: #f2f2f2;
         opacity: 0;
         img{
+          opacity: 0;
           width: auto;
           height: 100%;
         }
@@ -138,14 +139,19 @@ export default {
       background: #f2f2f2;
       padding: 3vw;
       opacity: 0;
-      animation: appear 0.75s ease-in-out 1s;
+      animation: appear 0.75s ease-in-out 0.5s;
       animation-fill-mode: forwards; 
     }
 
     
 
     .text-from-top{ 
-      animation: textFromTop 1s ease-in-out 1s;
+      animation: textFromTop 0.75s ease-in-out 0.5s;
+      animation-fill-mode: forwards; 
+    }
+
+    .img-appear{
+      animation: appear 0.75s ease-in-out 0.5s;
       animation-fill-mode: forwards; 
     }
 

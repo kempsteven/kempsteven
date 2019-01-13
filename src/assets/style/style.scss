@@ -75,8 +75,9 @@ $black: #383838;
 ///////////////////////////
 
 ////////// FONT SIZES //////////
-$header: 3vw;
-$big: 1.5vw;
+$header: 2.5vw;
+$big: 1.3vw;
+$medium: 1vw;
 ////////////////////////////////
 
 
@@ -94,6 +95,16 @@ $big: 1.5vw;
   to {opacity: 1;}
 }
 ////end of appear
+
+/* Standard syntax */
+@keyframes disappear {
+  from {opacity: 1;}
+  to {
+    opacity: 0;
+   pointer-events: none;
+  }
+}
+////end of disappear
 
 ////text animation
 @keyframes textFromTop {

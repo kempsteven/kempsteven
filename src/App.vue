@@ -20,23 +20,29 @@ export default {
 
   data () {
     return {
-      prevRoutes: {
-        to: '',
-        from: ''
-      },
+      onCreatedRoute: '',
+      prevRoute: '',
+      routerAnim: 'router-anim',
+      prevRouteofCurrent:{
+        landingpage: '',
+        'personal-info': 'landingpage'
+      }
+    }
+  },
 
-      routerAnim: 'router-anim'
+  created(){
+    if(this.$route.name == 'personal-info'){
+      this.prevRoute = 'landingpage'
     }
   },
 
   watch: {
     '$route' (to, from) {
-      if(!this.prevRoutes.to || !this.prevRoutes.from){
-        this.prevRoutes.to = to.name
-        this.prevRoutes.from = from.name
+      if(!this.prevRoute){
+        this.prevRoute = from.name
       }
       
-      if(to.name == this.prevRoutes.from) {
+      if(to.name == this.prevRoute) {
         this.routerAnim = 'return-router-anim'
       } else {
         this.routerAnim = 'router-anim'
@@ -57,19 +63,7 @@ export default {
   width: 100%;
   height: 100%;
   overflow: hidden;
-}
-
-#ball{
-  position: fixed;
-  z-index: 10;
-  bottom: 0%;
-  left: -6%;
-  width: 5vw;
-  animation-name: spin;
-  animation-duration: 3s;
-  animation-timing-function: linear;
-  animation-delay: 0;
-  animation-iteration-count:infinite;
+  background: $black;
 }
 
 html,body{

@@ -5,6 +5,11 @@ import LandingPage from '@/components/landingpage/LandingPage'
 import Profile from '@/components/profile/Profile'
 import PersonalInfo from '@/components/personal-info/PersonalInfo'
 
+//lazyload
+// const LandingPage = () => import('@/components/landingpage/LandingPage')
+// const Profile = () => import('@/components/profile/Profile')
+// const PersonalInfo = () => import('@/components/personal-info/PersonalInfo')
+
 Vue.use(Router)
 
 export default new Router({

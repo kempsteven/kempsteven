@@ -31,7 +31,7 @@
         </div>
 
         <button id="btn" class="btn gl-button full-wdth" @click="start()">
-          Let's get started!
+          Get to know me!
         </button>
       </div>
   </div>
@@ -86,9 +86,9 @@ export default {
     height: 100vh;
     position: fixed;
     overflow: hidden;
-        flex-direction: column;
+    flex-direction: column;
     .video-filter{
-      background: rgba(0,0,0,0.5);
+      background: rgba(0,0,0,0.1);
       position: absolute;
       width: 100%;
       height: 100%;
@@ -99,8 +99,8 @@ export default {
       z-index: 1;
       overflow: hidden;
       border-radius: 50%;
-      height: 20vw;
-      width: 20vw;
+      height: 17vw;
+      width: 17vw;
       padding-right: 0.45vw;
       position: absolute;
       top: -130%;
@@ -130,7 +130,7 @@ export default {
     .intro-text-container{
       animation-name: appear;
       animation-duration: 0.75s;
-      width: 55%;
+      width: 50%;
       z-index: 3;
       color: $white;
       font-size: $header;
