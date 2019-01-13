@@ -68,7 +68,7 @@
 
 ////////// COLORS //////////
 $background: #f4f4f4;
-$blue: #8aace2;
+$blue: #759bd8;
 $white: #ffffff;
 $dark-white: #d3d3d3;
 $black: #383838;
@@ -114,6 +114,19 @@ $medium: 1vw;
   }
   to {
     transform: translateY(0%);
+    opacity:  1;
+  }
+}
+////end oftext animation
+
+////text animation
+@keyframes fromRight {
+  from {
+    transform: translateX(50%);
+    opacity:  0;
+  }
+  to {
+    transform: translateX(0%);
     opacity:  1;
   }
 }

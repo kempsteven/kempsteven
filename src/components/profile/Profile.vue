@@ -24,22 +24,22 @@
     </div>
 
     <div class="navigation-wrapper" :class="{ 'disappear' : isInteracting}">
-      <div class="circle-btn gl-flex-vhcenter active" :class="{ 'active' : $route.path == '/profile'}" 
+      <div class="circle-btn gl-flex-vhcenter" :class="{ 'active' : $route.path == '/profile'}" 
            @click="$router.push('/profile')">
         <button/>
       </div>
 
-      <div class="circle-btn gl-flex-vhcenter active" :class="{ 'active' : $route.path == '/profile'}" 
+      <div class="circle-btn gl-flex-vhcenter" :class="{ 'active' : $route.path == 'aasd'}" 
            @click="$router.push('/profile')">
         <button/>
       </div>
 
-      <div class="circle-btn gl-flex-vhcenter active" :class="{ 'active' : $route.path == '/profile'}" 
+      <div class="circle-btn gl-flex-vhcenter" :class="{ 'active' : $route.path == '/asda'}" 
            @click="$router.push('/profile')">
         <button/>
       </div>
 
-      <div class="circle-btn gl-flex-vhcenter active" :class="{ 'active' : $route.path == '/profile'}" 
+      <div class="circle-btn gl-flex-vhcenter" :class="{ 'active' : $route.path == '/proasadsfile'}" 
            @click="$router.push('/profile')">
         <button/>
       </div>
@@ -118,7 +118,7 @@ export default {
     display: flex;
     flex-direction: column;
     opacity: 0;
-    animation: textFromTop 0.75s ease-in-out 1s;
+    animation: fromRight 0.75s ease-in-out 0.5s;
     animation-fill-mode: forwards; 
     .circle-btn{
       padding: 0.3vw;
@@ -127,6 +127,8 @@ export default {
       outline: none;
       margin-bottom: 0.75vw;
       cursor: pointer;
+      box-shadow: 2px 2px 10px #888888;
+      transition: 0.3s;
       button{
         pointer-events:none;
         padding: 0.5vw;
@@ -134,12 +136,22 @@ export default {
         border-radius: 50%;
         background: none;
         opacity: 0;
+        transition: 0.5s;
       }
 
       &.active{
+        box-shadow: none;
         button{
           animation: appear 0.75s ease-in-out 1s;
           animation-fill-mode: forwards; 
+          background: $black;
+        }
+      }
+
+      &:hover{
+        box-shadow: none;
+        button{
+          opacity: 1; 
           background: $black;
         }
       }
@@ -148,14 +160,14 @@ export default {
 
   .next-wrapper{
     position: absolute;
-    bottom: 3vw;
+    bottom: 5%;
     padding: 1.3vw 0.83vw 0.3vw 0.83vw;
     cursor: pointer;
     z-index: 2;
     border: 1px solid $black;
     border-radius: 50%;
     opacity: 0;
-    animation: textFromTop 0.75s ease-in-out 1s;
+    animation: textFromTop 0.75s ease-in-out 0.5s;
     animation-fill-mode: forwards; 
     box-shadow: 2px 2px 10px #888888;
     transition: 0.3s;
@@ -186,7 +198,7 @@ export default {
     bottom: 6%;
     right: 3%;
     opacity: 0;
-    animation: textFromTop 0.75s ease-in-out 1s;
+    animation: textFromTop 0.75s ease-in-out 0.5s;
     animation-fill-mode: forwards;
     button{
       width: 100%;

@@ -24,7 +24,7 @@ export default {
     height: 6vw;
     z-index: 10;
     position: fixed;
-
+    pointer-events: none;
     .list-container{
       display: flex;
       justify-content: flex-end;
@@ -56,7 +56,7 @@ export default {
             height: auto;
           }
           &:hover{
-            background: #517cc1;
+            background: $blue;
             box-shadow: none;
           }
         }
@@ -84,7 +84,6 @@ export default {
           width: 100%;
           align-items: center;
           transition: 0.3s;
-          font-weight: 600;
         }
       }
     }

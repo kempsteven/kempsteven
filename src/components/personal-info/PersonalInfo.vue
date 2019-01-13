@@ -3,7 +3,7 @@
     <div class="info-container gl-flex-vhcenter">
       <div class="left">
         <div class="image-container gl-flex-vhcenter appear">
-          <img id="picture" :src="require('@/assets/img/picture.png')" alt="profile picture" :class="{ 'img-appear' : imgHasloaded}" v-shoe="imgHasloaded">
+          <img id="picture" :src="require('@/assets/img/picture.png')" alt="profile picture" :class="{ 'img-appear' : imgHasloaded}" v-show="imgHasloaded">
 
           <div class="lottie-container" v-if="!imgHasloaded">
             <lottie class="lottie" :options="defaultOptions" @animCreated="handleAnimation" />
@@ -88,7 +88,7 @@ export default {
         overflow: hidden;
         border: 1px solid $black;
         border-radius: 50%;
-        // background: #f2f2f2;
+        box-shadow: 2px 2px 10px #888888;
         opacity: 0;
         img{
           opacity: 0;
@@ -113,7 +113,7 @@ export default {
 
         &.name{
           font-size: 3.5vw;
-          color: #759bd8;
+          color: $blue;
           margin-bottom: 1vw;
         }
 
@@ -126,7 +126,7 @@ export default {
           opacity: 0;
           &.job{
             margin-left: 0.5vw; 
-            color: #759bd8;
+            color: $blue;
             font-size: 2vw;
           }
         }
