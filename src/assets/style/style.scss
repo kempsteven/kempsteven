@@ -1,3 +1,6 @@
+@import "animations";
+@import "variables";
+
 *{
   box-sizing: border-box;
 }
@@ -63,110 +66,29 @@
 	align-items: center;
 	justify-content: space-around;
 }
-////////////////////////////////////////////////
 
-
-////////// COLORS //////////
-$background: #f4f4f4;
-$blue: #759bd8;
-$white: #ffffff;
-$dark-white: #d3d3d3;
-$black: #383838;
-///////////////////////////
-
-////////// FONT SIZES //////////
-$header: 2.5vw;
-$big: 1.3vw;
-$medium: 1vw;
-////////////////////////////////
-
-
-/////////// ANIMATION //////////
-
-////appear animation
-/* Safari 4.0 - 8.0 */
-@-webkit-keyframes appear {
-  from {opacity: 0;}
-  to {opacity: 1;}
-}
-/* Standard syntax */
-@keyframes appear {
-  from {opacity: 0;}
-  to {opacity: 1;}
-}
-////end of appear
-
-/* Standard syntax */
-@keyframes disappear {
-  from {opacity: 1;}
-  to {
-    opacity: 0;
-   pointer-events: none;
-  }
-}
-////end of disappear
-
-////text animation
-@keyframes textFromTop {
-  from {
-    transform: translateY(-20%);
-    opacity:  0;
-  }
-  to {
-    transform: translateY(0%);
-    opacity:  1;
-  }
-}
-////end oftext animation
-
-////text animation
-@keyframes fromRight {
-  from {
-    transform: translateX(50%);
-    opacity:  0;
-  }
-  to {
-    transform: translateX(0%);
-    opacity:  1;
-  }
-}
-////end oftext animation
-
+////////// ROUTER ANIMATION //////////
 .router-anim-enter-active {
-  animation: coming 0.7s;
+  animation: appear 0.7s;
   animation-timing-function:ease-in-out;
-  // transform: translateX(100%);
 }
 
 .router-anim-leave-active {
-  animation: going 0.7s;
+  animation: disappear 0.7s;
   animation-timing-function:ease-in-out;
-  // transform: translateX(0%);
 }
 
-@keyframes going {
-  from {
-    overflow: hidden;
-    transform: translateX(0%);
-  }
-  to {
-    overflow: hidden;
-    transform: translateX(-100%);
-  }
+.next-router-anim-enter-active {
+  animation: coming 1.3s;
+  // animation-timing-function:ease-in-out;
+  transform: translateX(100%);
 }
 
-@keyframes coming {
-  from {
-    overflow: hidden;
-    transform: translateX(100%);
-  }
-  to {
-    overflow: hidden;
-    transform: translateX(0%);
-  }
+.next-router-anim-leave-active {
+  animation: going 1.3s;
+  // animation-timing-function:ease-in-out;
+  transform: translateX(0%);
 }
-
-////////////////////////////////////////////
 
 .return-router-anim-enter-active {
   animation: return_coming 1.3s;
@@ -179,58 +101,6 @@ $medium: 1vw;
   // animation-timing-function:ease-in-out;
   transform: translateX(0%);
 }
-
-@keyframes return_going {
-  from {
-    overflow: hidden;
-    transform: translateX(0%);
-  }
-  to {
-    overflow: hidden;
-    transform: translateX(100%);
-  }
-}
-
-@keyframes return_coming {
-  from {
-    overflow: hidden;
-    transform: translateX(-100%);
-  }
-  to {
-    overflow: hidden;
-    transform: translateX(0%);
-  }
-}
-
-
-
-////End of Pages Transition Animation
-
-////shake animation////
-
-@keyframes shake {
-  10%, 90% {
-    transform: translate3d(-1px, 0, 0);
-  }
-  
-  20%, 80% {
-    transform: translate3d(2px, 0, 0);
-  }
-
-  30%, 50%, 70% {
-    transform: translate3d(-4px, 0, 0);
-  }
-
-  40%, 60% {
-    transform: translate3d(4px, 0, 0);
-  }
-}
-
-////shake animation////
-
-
-////////////////////////////////
-
 
 ////////// BUTTONS //////////
 .gl-button{
@@ -253,5 +123,4 @@ $medium: 1vw;
 		color: white;
 	}
 }
-/////////////////////////////
 

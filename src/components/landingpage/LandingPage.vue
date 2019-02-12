@@ -41,7 +41,7 @@
 import Lottie from 'vue-lottie';
 import * as animationData from '@/assets/animation/profile.json';
 export default {
-  name: 'landingpage',
+  name: 'LandingPage',
 
   components: {
     'lottie': Lottie
@@ -65,6 +65,7 @@ export default {
     },
 
     start(){
+      this.$store.commit('changeRouteAnim', 'next')
       this.$router.push({path: '/profile'})
     },
 

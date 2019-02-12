@@ -11,6 +11,7 @@
 
 <script>
 import headerDiv from '@/components/global/Header'
+import { mapGetters } from 'vuex'
 export default {
   name: 'app',
 
@@ -18,36 +19,20 @@ export default {
     'header-div': headerDiv
   },
 
+  computed: {
+    ...mapGetters({
+      routerAnim: 'getRouteAnim'
+    })
+  },
+
   data () {
     return {
-      onCreatedRoute: '',
-      prevRoute: '',
-      routerAnim: 'router-anim',
-      prevRouteofCurrent:{
-        landingpage: '',
-        'personal-info': 'landingpage'
-      }
+  
     }
   },
 
-  created(){
-    if(this.$route.name == 'personal-info'){
-      this.prevRoute = 'landingpage'
-    }
-  },
-
-  watch: {
-    '$route' (to, from) {
-      if(!this.prevRoute){
-        this.prevRoute = from.name
-      }
-      
-      if(to.name == this.prevRoute) {
-        this.routerAnim = 'return-router-anim'
-      } else {
-        this.routerAnim = 'router-anim'
-      }
-    }
+  method: {
+    
   }
 }
 </script>

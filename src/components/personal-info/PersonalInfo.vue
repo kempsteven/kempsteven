@@ -35,7 +35,7 @@
 import Lottie from 'vue-lottie';
 import * as animationData from '@/assets/animation/loading.json';
 export default {
-
+  name: 'PersonalInfo',
   components: {
     'lottie': Lottie
   },

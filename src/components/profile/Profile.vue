@@ -19,6 +19,10 @@
         clickMode="repulse"
     />
 
+    <div class="back-wrapper" :class="{ 'disappear' : isInteracting}" @click="returnToMain()">
+      <div class="arrow"></div>
+    </div>
+
     <div class="profile-wrapper" :class="isInteracting ? 'disappear' : 'appear'">
       <router-view/>
     </div>
@@ -45,7 +49,7 @@
       </div>
     </div>
 
-    <div class="next-wrapper" :class="{ 'disappear' : isInteracting}">
+    <div class="next-wrapper" @click="nextRoute()" :class="{ 'disappear' : isInteracting}">
       <div class="arrow"></div>
     </div>
 
@@ -60,6 +64,7 @@
 
 <script>
 export default {
+  name: 'Profile',
   data () {
     return {
       isInteracting: false,
@@ -67,15 +72,18 @@ export default {
     }
   },
 
-  created(){
-  },
-
-  activated(){
-  },
-
   methods:{
     removeDetails(){
       this.isInteracting = !this.isInteracting
+    },
+
+    returnToMain(){
+      this.$store.commit('changeRouteAnim', 'prev')
+      this.$router.push({ path: '/' })
+    },
+
+    nextRoute(){
+      this.$store.commit('changeRouteAnim', 'next')
     }
   }
 }
@@ -103,6 +111,42 @@ export default {
     height: 100%;
   }
 
+  .back-wrapper{
+    position: absolute;
+    left: 1%;
+    padding: 0.83vw 1.3vw 0.83vw 0.3vw;
+    cursor: pointer;
+    z-index: 2;
+    border: 1px solid $black;
+    border-radius: 50%;
+    opacity: 0;
+    animation: textFromLeft 0.75s ease-in-out 0.5s;
+    animation-fill-mode: forwards; 
+    box-shadow: 2px 2px 10px #888888;
+    transition: 0.3s;
+    user-select: none;
+
+    .arrow{
+      transition: 0.5s;
+      border-top: 0.75vw solid transparent;
+      border-left: 0.75vw solid transparent; 
+      border-bottom: 0.75vw solid transparent;
+      border-right: 0.75vw solid $black;
+    }
+
+    &:hover{
+      box-shadow: none;
+      background: $blue;
+
+      .arrow{
+        border-top: 0.75vw solid transparent;
+        border-left: 0.75vw solid transparent; 
+        border-bottom: 0.75vw solid transparent;
+        border-right: 0.75vw solid white;
+      }
+    }
+  }
+
   .profile-wrapper{
     width: 65%;
     height: 100%;
@@ -120,6 +164,7 @@ export default {
     opacity: 0;
     animation: fromRight 0.75s ease-in-out 0.5s;
     animation-fill-mode: forwards; 
+
     .circle-btn{
       padding: 0.3vw;
       border: 1px solid $black;
@@ -129,6 +174,7 @@ export default {
       cursor: pointer;
       box-shadow: 2px 2px 10px #888888;
       transition: 0.3s;
+
       button{
         pointer-events:none;
         padding: 0.5vw;
@@ -141,6 +187,7 @@ export default {
 
       &.active{
         box-shadow: none;
+
         button{
           animation: appear 0.75s ease-in-out 1s;
           animation-fill-mode: forwards; 
@@ -150,6 +197,7 @@ export default {
 
       &:hover{
         box-shadow: none;
+
         button{
           opacity: 1; 
           background: $black;
@@ -172,6 +220,7 @@ export default {
     box-shadow: 2px 2px 10px #888888;
     transition: 0.3s;
     user-select: none;
+
     .arrow{
       transition: 0.5s;
       border-top: 0.75vw solid $black;
@@ -183,6 +232,7 @@ export default {
     &:hover{
       box-shadow: none;
       background: $blue;
+
       .arrow{
         border-top: 0.75vw solid white;
         border-left: 0.75vw solid transparent; 
@@ -221,10 +271,12 @@ export default {
   .appear{
     animation: appear 0.5s ease-in-out;
     animation-fill-mode: forwards; 
+    pointer-events: none;
   }
 
   .disappear{
     opacity: 1;
+    pointer-events: none;
     animation: disappear 0.5s ease-in-out;
     animation-fill-mode: forwards;
   }
