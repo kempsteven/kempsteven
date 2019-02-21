@@ -6,8 +6,10 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
 	state:{
-		routeAnim: 'router-anim'
+		routeAnim: 'router-anim',
+		isInteracting: false
 	},
+
 	mutations: {
 		changeRouteAnim(state, payload){
 			switch(payload){
@@ -17,17 +19,25 @@ export default new Vuex.Store({
 				case 'prev':
 					state.routeAnim = 'return-router-anim'
 					break;
+				case 'profile-next':
+					state.routeAnim = 'profile-next-router-anim'
+					break;
+				case 'profile-prev':
+					state.routeAnim = 'profile-return-router-anim'
+					break;
 				default: 
 					state.routeAnim = 'router-anim'
 					break;
 			}
+		},
+
+		toggleIsInteracting(state, payload) {
+			state.isInteracting = !state.isInteracting
 		}
     },
-
-	actions: {
-	},
-
+    
 	getters: {
 		getRouteAnim: state => state.routeAnim,
+		getIsInteracting: state => state.isInteracting
 	},
 })

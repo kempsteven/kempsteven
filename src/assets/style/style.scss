@@ -1,5 +1,6 @@
 @import "animations";
 @import "variables";
+@import "router-animations";
 
 *{
   box-sizing: border-box;
@@ -67,41 +68,6 @@
 	justify-content: space-around;
 }
 
-////////// ROUTER ANIMATION //////////
-.router-anim-enter-active {
-  animation: appear 0.7s;
-  animation-timing-function:ease-in-out;
-}
-
-.router-anim-leave-active {
-  animation: disappear 0.7s;
-  animation-timing-function:ease-in-out;
-}
-
-.next-router-anim-enter-active {
-  animation: coming 1.3s;
-  // animation-timing-function:ease-in-out;
-  transform: translateX(100%);
-}
-
-.next-router-anim-leave-active {
-  animation: going 1.3s;
-  // animation-timing-function:ease-in-out;
-  transform: translateX(0%);
-}
-
-.return-router-anim-enter-active {
-  animation: return_coming 1.3s;
-  // animation-timing-function:ease-in-out;
-  transform: translateX(100%);
-}
-
-.return-router-anim-leave-active {
-  animation: return_going 1.3s;
-  // animation-timing-function:ease-in-out;
-  transform: translateX(0%);
-}
-
 ////////// BUTTONS //////////
 .gl-button{
 	border: 0.2vw solid white;
@@ -113,7 +79,7 @@
 	cursor: pointer;
 	outline: none;
 
-	&.full-wdth{
+	&.full-width{
 		width: 100%;
 	}
 
@@ -121,6 +87,62 @@
 		border: 0.2vw solid #8aace2;
 		background: #8aace2;
 		color: white;
+	}
+}
+
+.gl-nav-button {
+	cursor: pointer;
+	z-index: 2;
+	border: 1px solid $black;
+	border-radius: 50%;
+	opacity: 0;
+	animation: textFromTop 0.75s ease-in-out 0.5s;
+	animation-fill-mode: forwards; 
+	box-shadow: 2px 2px 10px #888888;
+	transition: 0.3s;
+	user-select: none;
+
+	.arrow{
+		width: 3.6vw;
+    	height: 3.6vw;
+    	position: relative;
+
+		&::before {
+			content: '';
+			width: 0vw;
+			height: 0vw;
+			transition: 0.3s;
+			border-top: 0.75vw solid $black;
+			border-left: 0.75vw solid transparent; 
+			border-bottom: 0.6vw solid transparent;
+			border-right: 0.75vw solid transparent;
+			position: absolute;
+    		top: 1.6vw;
+    		left: 1.1vw;
+		}
+	}
+
+	&:hover{
+		box-shadow: none;
+		background: $blue;
+		
+		.arrow{
+			&::before {
+				border-top: 0.75vw solid white;
+			}
+		}
+	}
+
+	&.left-nav {
+		.arrow {
+			transform: rotate(90deg)
+		}
+	}
+
+	&.top-nav {
+		.arrow {
+			transform: rotate(180deg)
+		}
 	}
 }
 

@@ -1,0 +1,49 @@
+.router-anim-enter-active {
+  animation: appear 0.7s;
+  animation-timing-function:ease-in-out;
+}
+
+.router-anim-leave-active {
+  animation: disappear 0.7s;
+  animation-timing-function:ease-in-out;
+}
+
+.next-router-anim-enter-active {
+  animation: coming 1.3s;
+  transform: translateX(100%);
+}
+
+.next-router-anim-leave-active {
+  animation: going 1.3s;
+  transform: translateX(0%);
+}
+
+.return-router-anim-enter-active {
+  animation: return_coming 1.3s;
+  transform: translateX(100%);
+}
+
+.return-router-anim-leave-active {
+  animation: return_going 1.3s;
+  transform: translateX(0%);
+}
+
+.profile-next-router-anim-enter-active {
+  animation: profile_coming 1.3s;
+  transform: translateX(100%);
+}
+
+.profile-next-router-anim-leave-active {
+  animation: profile_going 1.3s;
+  transform: translateX(0%);
+}
+
+.profile-return-router-anim-enter-active {
+  animation: profile_return_coming 1.3s;
+  transform: translateX(100%);
+}
+
+.profile-return-router-anim-leave-active {
+  animation: profile_return_going 1.3s;
+  transform: translateX(0%);
+}

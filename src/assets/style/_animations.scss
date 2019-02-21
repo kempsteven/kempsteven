@@ -1,3 +1,91 @@
+@keyframes going {
+  from {
+    overflow: hidden;
+    transform: translateX(0%);
+  }
+  to {
+    overflow: hidden;
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes coming {
+  from {
+    overflow: hidden;
+    transform: translateX(100%);
+  }
+  to {
+    overflow: hidden;
+    transform: translateX(0%);
+  }
+}
+
+@keyframes return_going {
+  from {
+    overflow: hidden;
+    transform: translateX(0%);
+  }
+  to {
+    overflow: hidden;
+    transform: translateX(100%);
+  }
+}
+
+@keyframes return_coming {
+  from {
+    overflow: hidden;
+    transform: translateX(-100%);
+  }
+  to {
+    overflow: hidden;
+    transform: translateX(0%);
+  }
+}
+
+@keyframes profile_going {
+  from {
+    overflow: hidden;
+    transform: translateY(0%);
+  }
+  to {
+    overflow: hidden;
+    transform: translateY(-100%);
+  }
+}
+
+@keyframes profile_coming {
+  from {
+    overflow: hidden;
+    transform: translateY(100%);
+  }
+  to {
+    overflow: hidden;
+    transform: translateY(0%);
+  }
+}
+
+@keyframes profile_return_going {
+  from {
+    overflow: hidden;
+    transform: translateY(0%);
+  }
+  to {
+    overflow: hidden;
+    transform: translateY(100%);
+  }
+}
+
+@keyframes profile_return_coming {
+  from {
+    overflow: hidden;
+    transform: translateY(-100%);
+  }
+  to {
+    overflow: hidden;
+    transform: translateY(0%);
+  }
+}
+
 ////appear animation
 /* Safari 4.0 - 8.0 */
 @-webkit-keyframes appear {
@@ -61,49 +149,6 @@
 ////end oftext animation
 
 
-@keyframes going {
-  from {
-    overflow: hidden;
-    transform: translateX(0%);
-  }
-  to {
-    overflow: hidden;
-    transform: translateX(-100%);
-  }
-}
-
-@keyframes coming {
-  from {
-    overflow: hidden;
-    transform: translateX(100%);
-  }
-  to {
-    overflow: hidden;
-    transform: translateX(0%);
-  }
-}
-
-@keyframes return_going {
-  from {
-    overflow: hidden;
-    transform: translateX(0%);
-  }
-  to {
-    overflow: hidden;
-    transform: translateX(100%);
-  }
-}
-
-@keyframes return_coming {
-  from {
-    overflow: hidden;
-    transform: translateX(-100%);
-  }
-  to {
-    overflow: hidden;
-    transform: translateX(0%);
-  }
-}
 
 @keyframes shake {
   10%, 90% {

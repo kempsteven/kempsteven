@@ -56,7 +56,6 @@ export default {
       var image = document.getElementById('picture')
 
       image.onload = () => {
-        // this.anim.stop();
         this.imgHasloaded = true
       }
     },
@@ -73,6 +72,7 @@ export default {
   .personal-container{
     width: 100%;
     height: 100%;
+    position: absolute;
   }
 
   .info-container{

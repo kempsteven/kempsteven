@@ -4,7 +4,7 @@
     <vue-particles
         color="#282828"
         :particleOpacity="0.7"
-        :particlesNumber="80"
+        :particlesNumber="110"
         shapeType="circle"
         :particleSize="0"
         linesColor="#282828"
@@ -24,7 +24,11 @@
     </div>
 
     <div class="profile-wrapper" :class="isInteracting ? 'disappear' : 'appear'">
-      <router-view/>
+      <transition :name="routerAnim">
+        <keep-alive>
+          <router-view/>
+        </keep-alive>
+      </transition>
     </div>
 
     <div class="navigation-wrapper" :class="{ 'disappear' : isInteracting}">
@@ -33,8 +37,8 @@
         <button/>
       </div>
 
-      <div class="circle-btn gl-flex-vhcenter" :class="{ 'active' : $route.path == 'aasd'}" 
-           @click="$router.push('/profile')">
+      <div class="circle-btn gl-flex-vhcenter" :class="{ 'active' : $route.path == '/education'}" 
+           @click="$router.push('/education')">
         <button/>
       </div>
 
@@ -63,6 +67,8 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+import ProfileNavigation from '@/components/profile/ProfileNavigation'
 export default {
   name: 'Profile',
   data () {
@@ -70,6 +76,16 @@ export default {
       isInteracting: false,
       isAnimating: false
     }
+  },
+
+  components: {
+    ProfileNavigation
+  },
+
+  computed: {
+    ...mapGetters({
+      routerAnim: 'getRouteAnim'
+    })
   },
 
   methods:{
@@ -83,7 +99,8 @@ export default {
     },
 
     nextRoute(){
-      this.$store.commit('changeRouteAnim', 'next')
+      this.$store.commit('changeRouteAnim', 'profile-next')
+      this.$router.push({ path: '/education' })
     }
   }
 }
@@ -189,8 +206,7 @@ export default {
         box-shadow: none;
 
         button{
-          animation: appear 0.75s ease-in-out 1s;
-          animation-fill-mode: forwards; 
+          opacity: 1; 
           background: $black;
         }
       }

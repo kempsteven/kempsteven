@@ -6,22 +6,24 @@
           <source :src="require('@/assets/video/coding.mp4')" type="video/mp4" />
           <source :src="require('@/assets/video/coding.webm')" type="video/webm" />
         </video>
+
         <div class="video-fallback" v-if="!isVideoLoaded">
           <img :src="require('@/assets/img/coding.jpg')">
         </div>
+        
       </div>
 
       <div class="intro-text-container gl-flex-vhcenter">
         <div class="lottie-container">
           <lottie :options="defaultOptions" @animCreated="handleAnimation"/>
         </div>
-        <div class="section gl-flex-vhcenter">
-          Hello, Internet!
-        </div>
-        <div class="section gl-flex-vhcenter">
-          My name is Kemp.
-        </div>
+
+        <div class="section gl-flex-vhcenter">Hello, Internet!</div>
+
+        <div class="section gl-flex-vhcenter">My name is Kemp.</div>
+
         <div class="hr"></div>
+
         <div class="section desc gl-flex-vhcenter">
           An awesome Front end Web Developer that will surely get things done! 
         </div>
@@ -30,7 +32,7 @@
          Hit me up if you want to start a project!
         </div>
 
-        <button id="btn" class="btn gl-button full-wdth" @click="start()">
+        <button id="btn" class="btn gl-button full-width" @click="start()">
           Get to know me!
         </button>
       </div>
@@ -88,6 +90,7 @@ export default {
     position: fixed;
     overflow: hidden;
     flex-direction: column;
+    
     .video-filter{
       background: rgba(0,0,0,0.1);
       position: absolute;
