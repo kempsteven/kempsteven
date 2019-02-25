@@ -1,150 +1,164 @@
 @keyframes going {
-  from {
-    overflow: hidden;
-    transform: translateX(0%);
-  }
-  to {
-    overflow: hidden;
-    transform: translateX(-100%);
-  }
+    from {
+        overflow: hidden;
+        transform: translateX(0%);
+    }
+
+    to {
+        overflow: hidden;
+        transform: translateX(-100%);
+    }
 }
 
 @keyframes coming {
-  from {
-    overflow: hidden;
-    transform: translateX(100%);
-  }
-  to {
-    overflow: hidden;
-    transform: translateX(0%);
-  }
+    from {
+        overflow: hidden;
+        transform: translateX(100%);
+    }
+
+    to {
+        overflow: hidden;
+        transform: translateX(0%);
+    }
 }
 
 @keyframes return_going {
-  from {
-    overflow: hidden;
-    transform: translateX(0%);
-  }
-  to {
-    overflow: hidden;
-    transform: translateX(100%);
-  }
+    from {
+        overflow: hidden;
+        transform: translateX(0%);
+    }
+
+    to {
+        overflow: hidden;
+        transform: translateX(100%);
+    }
 }
 
 @keyframes return_coming {
-  from {
-    overflow: hidden;
-    transform: translateX(-100%);
-  }
-  to {
-    overflow: hidden;
-    transform: translateX(0%);
-  }
+    from {
+        overflow: hidden;
+        transform: translateX(-100%);
+    }
+
+    to {
+        overflow: hidden;
+        transform: translateX(0%);
+    }
 }
 
 @keyframes profile_going {
-  from {
-    overflow: hidden;
-    transform: translateY(0%);
-  }
-  to {
-    overflow: hidden;
-    transform: translateY(-100%);
-  }
+    from {
+        overflow: hidden;
+        transform: translateY(0%);
+    }
+
+    to {
+        overflow: hidden;
+        transform: translateY(-100%);
+    }
 }
 
 @keyframes profile_coming {
-  from {
-    overflow: hidden;
-    transform: translateY(100%);
-  }
-  to {
-    overflow: hidden;
-    transform: translateY(0%);
-  }
+    from {
+        overflow: hidden;
+        transform: translateY(100%);
+    }
+
+    to {
+        overflow: hidden;
+        transform: translateY(0%);
+    }
 }
 
 @keyframes profile_return_going {
-  from {
-    overflow: hidden;
-    transform: translateY(0%);
-  }
-  to {
-    overflow: hidden;
-    transform: translateY(100%);
-  }
+    from {
+        overflow: hidden;
+        transform: translateY(0%);
+    }
+
+    to {
+        overflow: hidden;
+        transform: translateY(100%);
+    }
 }
 
 @keyframes profile_return_coming {
-  from {
-    overflow: hidden;
-    transform: translateY(-100%);
-  }
-  to {
-    overflow: hidden;
-    transform: translateY(0%);
-  }
+    from {
+        overflow: hidden;
+        transform: translateY(-100%);
+    }
+
+    to {
+        overflow: hidden;
+        transform: translateY(0%);
+    }
 }
 
 ////appear animation
 /* Safari 4.0 - 8.0 */
 @-webkit-keyframes appear {
-  from {opacity: 0;}
-  to {opacity: 1;}
+    from {opacity: 0;}
+    to {opacity: 1;}
 }
 /* Standard syntax */
 @keyframes appear {
-  from {opacity: 0;}
-  to {opacity: 1;}
+    from {opacity: 0;}
+    to {opacity: 1;}
 }
 ////end of appear
 
 /* Standard syntax */
 @keyframes disappear {
-  from {opacity: 1;}
-  to {
-    opacity: 0;
-   pointer-events: none;
-  }
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+        pointer-events: none;
+    }
 }
 ////end of disappear
 
 ////text animation
 @keyframes textFromTop {
-  from {
-    transform: translateY(-20%);
-    opacity:  0;
-  }
-  to {
-    transform: translateY(0%);
-    opacity:  1;
-  }
+    from {
+        transform: translateY(-20%);
+        opacity:  0;
+    }
+
+    to {
+        transform: translateY(0%);
+        opacity:  1;
+    }
 }
 ////end oftext animation
 
 ////text animation
 @keyframes textFromLeft {
-  from {
-    transform: translateX(-20%);
-    opacity:  0;
-  }
-  to {
-    transform: translateY(0%);
-    opacity:  1;
-  }
+    from {
+        transform: translateX(-20%);
+        opacity:  0;
+    }
+
+    to {
+        transform: translateY(0%);
+        opacity:  1;
+    }
 }
 ////end oftext animation
 
 ////text animation
 @keyframes fromRight {
-  from {
-    transform: translateX(50%);
-    opacity:  0;
-  }
-  to {
-    transform: translateX(0%);
-    opacity:  1;
-  }
+    from {
+        transform: translateX(50%);
+        opacity:  0;
+    }
+
+    to {
+        transform: translateX(0%);
+        opacity:  1;
+    }
 }
 ////end oftext animation
 

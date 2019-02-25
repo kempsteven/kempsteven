@@ -3,18 +3,18 @@ import Router from 'vue-router'
 const LandingPage = () => import('@/pages/landingpage/LandingPage')
 const Profile = () => import('@/pages/profile/Profile')
 const PersonalInfo = () => import('@/pages/personal-info/PersonalInfo')
-const EducationInfo = () => import('@/pages/education-info/EducationInfo')
+const SkillsInfo = () => import('@/pages/skills-info/SkillsInfo')
 
 Vue.use(Router)
 
 export default new Router({
   routes: [
-    {path: '/', name: 'landingpage', component: LandingPage},
+    {path: '/', name: 'landing-page', component: LandingPage},
     {
-		path: '/profile', component: Profile,
+		path: '', component: Profile, redirect: '/profile',
 		children: [
-			{ path: '', name: 'personal-info', component: PersonalInfo },
-			{ path: '/education', name: 'education-info', component: EducationInfo }
+			{ path: '/profile', name: 'personal-info', component: PersonalInfo },
+			{ path: '/skills', name: 'skills-info', component: SkillsInfo }
 		]
 	},
   ],

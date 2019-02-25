@@ -33,6 +33,7 @@ export default new Vuex.Store({
 
 		toggleIsInteracting(state, payload) {
 			state.isInteracting = !state.isInteracting
+			console.log(state.isInteracting)
 		}
     },
     

@@ -1,49 +1,41 @@
 .router-anim-enter-active {
-  animation: appear 0.7s;
-  animation-timing-function:ease-in-out;
+    animation: appear 0.7s;
+    animation-timing-function:ease-in-out;
 }
 
 .router-anim-leave-active {
-  animation: disappear 0.7s;
-  animation-timing-function:ease-in-out;
+    animation: disappear 0.7s;
+    animation-timing-function:ease-in-out;
 }
 
 .next-router-anim-enter-active {
-  animation: coming 1.3s;
-  transform: translateX(100%);
+    animation: coming 1.3s;
 }
 
 .next-router-anim-leave-active {
-  animation: going 1.3s;
-  transform: translateX(0%);
+    animation: going 1.3s;
 }
 
 .return-router-anim-enter-active {
-  animation: return_coming 1.3s;
-  transform: translateX(100%);
+    animation: return_coming 1.3s;
 }
 
 .return-router-anim-leave-active {
-  animation: return_going 1.3s;
-  transform: translateX(0%);
+    animation: return_going 1.3s;
 }
 
 .profile-next-router-anim-enter-active {
-  animation: profile_coming 1.3s;
-  transform: translateX(100%);
+    animation: profile_coming 1.3s;
 }
 
 .profile-next-router-anim-leave-active {
-  animation: profile_going 1.3s;
-  transform: translateX(0%);
+    animation: profile_going 1.3s;
 }
 
 .profile-return-router-anim-enter-active {
-  animation: profile_return_coming 1.3s;
-  transform: translateX(100%);
+    animation: profile_return_coming 1.3s;
 }
 
 .profile-return-router-anim-leave-active {
-  animation: profile_return_going 1.3s;
-  transform: translateX(0%);
+    animation: profile_return_going 1.3s;
 }
