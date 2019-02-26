@@ -47,8 +47,6 @@ export default {
 	},
 	methods: {
 		returnToMain(){
-			this.changeRoute('personal-info')
-			this.$store.commit('changeRouteAnim', 'prev')
 			this.changeRoute('landing-page')
 		},
 
@@ -77,12 +75,17 @@ export default {
 			}
 
 			this.$store.commit('changeRouteAnim', routeAnim)
-		}
+		},
+
+		removeDetails(){
+            this.$store.commit('toggleIsInteracting')
+        }
 	}
 }	
 </script>
 <style lang="scss" scoped>
 .profile-navigation {
+
 	.landing-back-wrapper{
 		position: absolute;
 		left: 1%;
@@ -150,6 +153,7 @@ export default {
 	.next-wrapper{
 		position: absolute;
 		bottom: 5%;
+		left: 48%;
 	}
 }
 

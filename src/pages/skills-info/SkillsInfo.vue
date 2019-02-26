@@ -1,40 +1,130 @@
 <template>
 	<div class="skills-info">
 		<div class="info-wrapper">
-			<span>My Skills Set!</span>
+			<span>My Skills Set</span>
 
-			<div class="skill-item">
-				<div class="img-container">
-					<label class="skill-label">HTML</label>
-					<img :src="require('@/assets/img/skills/html.png')" alt="Skill Item">
+			<div class="skill-container gl-flex gl-around-item">
+				<div class="skill-item">
+					<div class="img-container">
+						<label class="skill-label">HTML</label>
+						<img :src="require('@/assets/img/skills/html.png')" alt="Skill Item">
+					</div>
+	
+					<div class="stars-container gl-flex gl-vcenter-item">
+						<font-awesome-icon icon="star" />
+						<font-awesome-icon icon="star" />
+						<font-awesome-icon icon="star" />
+						<font-awesome-icon icon="star" />
+						<font-awesome-icon icon="star" />
+					</div>
+				</div>
+				
+				<div class="skill-item">
+					<div class="img-container">
+						<label class="skill-label">CSS</label>
+						<img :src="require('@/assets/img/skills/css.png')" alt="Skill Item">
+					</div>
+	
+					<div class="stars-container gl-flex gl-vcenter-item">
+						<font-awesome-icon icon="star" />
+						<font-awesome-icon icon="star" />
+						<font-awesome-icon icon="star" />
+						<font-awesome-icon icon="star" />
+						<font-awesome-icon icon="star" />
+					</div>
 				</div>
 
-				<div class="stars-container gl-vcenter-item">
-					<div class="star"></div>
+				<div class="skill-item">
+					<div class="img-container">
+						<label class="skill-label">Sass</label>
+						<img :src="require('@/assets/img/skills/sass.png')" alt="Skill Item">
+					</div>
+	
+					<div class="stars-container gl-flex gl-vcenter-item">
+						<font-awesome-icon icon="star" />
+						<font-awesome-icon icon="star" />
+						<font-awesome-icon icon="star" />
+						<font-awesome-icon icon="star" />
+						<font-awesome-icon icon="star" />
+					</div>
+				</div>
+
+				<div class="skill-item">
+					<div class="img-container">
+						<label class="skill-label">Javascript</label>
+						<img :src="require('@/assets/img/skills/js.png')" alt="Skill Item">
+					</div>
+	
+					<div class="stars-container gl-flex gl-vcenter-item">
+						<font-awesome-icon icon="star" />
+						<font-awesome-icon icon="star" />
+						<font-awesome-icon icon="star" />
+						<font-awesome-icon icon="star" />
+						<font-awesome-icon icon="star" />
+					</div>
+				</div>
+
+				<div class="skill-item">
+					<div class="img-container">
+						<label class="skill-label">Vue.js</label>
+						<img :src="require('@/assets/img/skills/vue.png')" alt="Skill Item">
+					</div>
+	
+					<div class="stars-container gl-flex gl-vcenter-item">
+						<font-awesome-icon icon="star" />
+						<font-awesome-icon icon="star" />
+						<font-awesome-icon icon="star" />
+						<font-awesome-icon icon="star" />
+						<font-awesome-icon icon="star" />
+					</div>
+				</div>
+
+				<div class="skill-item">
+					<div class="img-container">
+						<label class="skill-label">Node js</label>
+						<img :src="require('@/assets/img/skills/nodejs.png')" alt="Skill Item">
+					</div>
+	
+					<div class="stars-container gl-flex gl-vcenter-item">
+						<font-awesome-icon icon="star" />
+						<font-awesome-icon icon="star" />
+						<font-awesome-icon icon="star" />
+						<font-awesome-icon icon="star" />
+						<font-awesome-icon icon="star" />
+					</div>
+				</div>
+
+				<div class="skill-item">
+					<div class="img-container">
+						<label class="skill-label">PHP</label>
+						<img :src="require('@/assets/img/skills/php.png')" alt="Skill Item">
+					</div>
+	
+					<div class="stars-container gl-flex gl-vcenter-item">
+						<font-awesome-icon icon="star" />
+						<font-awesome-icon icon="star" />
+						<font-awesome-icon icon="star" />
+						<font-awesome-icon icon="star" />
+						<font-awesome-icon icon="star" />
+					</div>
+				</div>
+
+				<div class="skill-item">
+					<div class="img-container">
+						<label class="skill-label">MySQL</label>
+						<img :src="require('@/assets/img/skills/mysql.png')" alt="Skill Item">
+					</div>
+	
+					<div class="stars-container gl-flex gl-vcenter-item">
+						<font-awesome-icon icon="star" />
+						<font-awesome-icon icon="star" />
+						<font-awesome-icon icon="star" />
+						<font-awesome-icon icon="star" />
+						<font-awesome-icon icon="star" />
+					</div>
 				</div>
 			</div>
 
-			<div class="skill-item">
-				<div class="img-container">
-					<label class="skill-label">CSS</label>
-					<img :src="require('@/assets/img/skills/css.png')" alt="Skill Item">
-				</div>
-
-				<div class="stars-container">
-					
-				</div>
-			</div>
-
-			<div class="skill-item">
-				<div class="img-container">
-					<label class="skill-label">Javascript</label>
-					<img :src="require('@/assets/img/skills/js.png')" alt="Skill Item">
-				</div>
-
-				<div class="stars-container">
-					
-				</div>
-			</div>
 		</div>
 	</div>
 </template>
@@ -48,91 +138,62 @@ export default {
 	width: 100%;
     height: 100%;
     position: absolute;
-	display: flex;
-	justify-content: center;
-	align-items: center;
 
 	.info-wrapper {
 		width: 100%;
+		margin-top: 3vw;
 
 		span {
 			text-align: center;
-			font-size: 3vw;
-			border: 1px solid #2c3e50;
+			font-size: 2vw;
 			margin: 0 auto;
 			padding: 1vw 3vw;
-			border-radius: 2px;
-			margin-bottom: 5vw;
 			display: block;
 			width: 30vw;
-			color: $blue;
+			color: $black;
 			font-weight: 600;
 		}
 
-		.skill-item {
-			border: 1px solid black;
-			padding: 1vw;
-			width: 30vw;
-			margin: 0 auto;
+		.skill-container {
 
-			label {
-				font-weight: 600;
-			}
+			.skill-item {
+				padding: 1vw;
+				width: 26vw;
+				display: flex;
 
-			.img-container {
-				width: 5vw;
-				height: 100%;
-
-
-				img {
-					width: 100%;
+				label {
+					font-weight: 600;
 				}
-			}
 
-			.stars-container {
+				.img-container {
+					min-width: 6vw;
+					height: 100%;
+					display: flex;
+					flex-direction: column;
 
-				.star{
-					margin: 50px 0;
-					position: relative;
-					display: block;
-					color: red;
-					width: 0px;
-					height: 0px;
-					border-right: 100px solid transparent;
-					border-bottom: 70px solid red;
-					border-left: 100px solid transparent;
-					transform: rotate(35deg);
-
-					&::after {
-						content: '';
-						margin: 50px 0;
-						position: absolute;
-						display: block;
-						color: red;
-						width: 0px;
-						height: 0px;
-						border-right: 100px solid transparent;
-						border-bottom: 70px solid red;
-						border-left: 100px solid transparent;
-						transform: rotate(-35deg);
-					    top: -55px;
-    					left: -122px;
+					.skill-label {
+						text-align: center;
+						margin-bottom: 0.5vw;
+						font-size: 0.95vw;
 					}
 
-					&::before {
-						content: '';
-						margin: 50px 0;
-						position: absolute;
-						display: block;
-						color: red;
-						width: 0px;
-						height: 0px;
-						border-right: 100px solid transparent;
-						border-bottom: 70px solid red;
-						border-left: 100px solid transparent;
-						top: -39px;
-    					left: -116px;
-						transform: rotate(-70deg);
+					img {
+						width: 3vw;
+						margin: 0 auto;
+					}
+				}
+
+				.stars-container {
+					flex: 1;
+					padding-left: 2vw;
+
+					svg {
+						font-size: 1.75vw;
+						color: #f4d866;
+
+						&:not(:last-child) {
+							margin-right: 0.75vw;
+						}
 					}
 				}
 			}

@@ -22,7 +22,7 @@
         <ProfileNavigation />
 
         <div class="profile-wrapper" :class="isInteracting ? 'disappear' : 'appear'">
-            <transition :name="routerAnim">
+            <transition :name="routerAnim === 'next-router-anim' ? 'no-anim' : routerAnim ">
                 <keep-alive>
                     <router-view/>
                 </keep-alive>
@@ -46,12 +46,6 @@ export default {
             routerAnim: 'getRouteAnim',
             isInteracting: 'getIsInteracting'
         })
-    },
-
-    methods:{
-        removeDetails(){
-            this.$store.commit('toggleIsInteracting')
-        }
     }
 }
 </script>

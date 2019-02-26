@@ -3,10 +3,8 @@
 
         <ul class="list-container">
             <li class="list-item">
-                <div class="btn gl-flex-vhcenter" :class="{ 'black' : this.$route.name != 'landing-page'}">
-                    <router-link to="/contact">
-                      Contact Me !       
-                    </router-link>
+                <div class="btn gl-flex-vhcenter" :class="{ 'black' : this.$route.name != 'landing-page'}" @click="goToContactUs()">
+                    Contact Me !  
                 </div>
             </li>
         </ul>
@@ -16,7 +14,14 @@
 
 <script>
 export default {
-    name: 'header-nav'
+    name: 'header-nav',
+
+    methods: {
+        goToContactUs() {
+            this.$store.commit('changeRouteAnim', 'default')
+            this.$router.push({name: 'contact-us'})
+        }
+    }
 }
 </script>
 
@@ -43,7 +48,7 @@ export default {
             align-items: center;
             justify-content: center;
             margin-right: 2vw;
-            font-size: 1.5vw;
+            font-size: 1.2vw;
             pointer-events: all;
 
             .btn{
@@ -55,13 +60,11 @@ export default {
                 border-radius: 2px;
                 border: 2px solid white;
                 box-shadow: none;
-
-                a{
-                    display: block;
-                    height: auto;
-                }
+                background: none;
+                color: $white;
 
                 &:hover{
+                    border: 2px solid $blue;
                     background: $blue;
                     box-shadow: none;
                 }
@@ -72,26 +75,11 @@ export default {
             border: 1px solid $black;
             box-shadow: 2px 2px 10px #888888;
             transition: 0.3s;
-
-            a{
-                color: $black;
-            }
+            color: $black;
 
             &:hover{
-                a{
-                    color: white;
-                }
+                color: white;
             }
-        }
-
-        a{
-            text-decoration: none;
-            color: $white;
-            display: flex;
-            height: 100%;
-            width: 100%;
-            align-items: center;
-            transition: 0.3s;
         }
       }
     }

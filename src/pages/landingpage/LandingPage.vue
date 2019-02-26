@@ -30,7 +30,7 @@
             </div>
 
             <div class="section desc gl-flex-vhcenter">
-                Hit me up if you want to start a project!
+                <button class="section-btn" @click="goToContactUs()">Hit me up</button> if you want to start a project!
             </div>
 
             <button id="btn" class="btn gl-button full-width" @click="start()">
@@ -47,18 +47,18 @@ export default {
     name: 'LandingPage',
 
     components: {
-      'lottie': Lottie
+        'lottie': Lottie
     },
 
     data () {
-      return {
-        defaultOptions: {animationData: animationData.default},
-        isVideoLoaded: false
-      }
+        return {
+            defaultOptions: {animationData: animationData.default},
+            isVideoLoaded: false
+        }
     },
 
     activated(){
-      this.playVideo()
+        this.playVideo()
     },
 
     methods:{
@@ -80,6 +80,11 @@ export default {
             this.anim = anim;
             this.anim.setSpeed(1.2)    
         },
+
+        goToContactUs() {
+            this.$store.commit('changeRouteAnim', 'default')
+            this.$router.push({name: 'contact-us'})
+        }
     }
 }
 </script>
@@ -156,6 +161,23 @@ export default {
         .section{
             height: 17%;
             width: 100%;
+
+            .section-btn {
+                padding: 0.2vw 0.5vw;
+                border-radius: 2px;
+                border: 1px solid $white;
+                color: $white;
+                margin-right: 0.5vw;
+                background: none;
+                transition: 0.3s;
+                cursor: pointer;
+                outline: none;
+
+                &:hover {
+                    border: 1px solid $blue;
+                    background: $blue;
+                }
+            }
 
             &.desc{
                 font-size: $big;

@@ -25,15 +25,14 @@ export default new Vuex.Store({
 				case 'profile-prev':
 					state.routeAnim = 'profile-return-router-anim'
 					break;
-				default: 
+				case 'default': 
 					state.routeAnim = 'router-anim'
 					break;
 			}
 		},
 
-		toggleIsInteracting(state, payload) {
+		toggleIsInteracting(state) {
 			state.isInteracting = !state.isInteracting
-			console.log(state.isInteracting)
 		}
     },
     
