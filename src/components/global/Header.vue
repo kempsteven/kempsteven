@@ -3,7 +3,11 @@
 
         <ul class="list-container">
             <li class="list-item">
-                <div class="btn gl-flex-vhcenter" :class="{ 'black' : this.$route.name != 'landing-page'}" @click="goToContactUs()">
+                <div 
+                    class="btn gl-flex-vhcenter" 
+                    :class="{ 'black' : this.$route.name != 'landing-page'}" 
+                    @click="goToContactUs()"
+                >
                     Contact Me !  
                 </div>
             </li>
