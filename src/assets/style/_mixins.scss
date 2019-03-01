@@ -1,0 +1,49 @@
+@import 'animations';
+
+@mixin fadein($duration, $delay){ 
+    animation-name: appear;
+    animation-duration: $duration;
+    animation-delay: $delay;
+    animation-fill-mode: forwards;
+    animation-timing-function: ease-in-out;
+}
+
+@mixin fadeout($duration, $delay){ 
+    animation-name: disappear;
+    animation-duration: $duration;
+    animation-delay: $delay;
+    animation-fill-mode: forwards;
+    animation-timing-function: ease-in-out;
+}
+
+@mixin fadeinfromtop($duration, $delay){ 
+    animation-name: fadeInFromTop;
+    animation-duration: $duration;
+    animation-delay: $delay;
+    animation-fill-mode: forwards;
+    animation-timing-function: ease-in-out;
+}
+
+@mixin fadeinfromleft($duration, $delay){ 
+    animation-name: fadeInFromLeft;
+    animation-duration: $duration;
+    animation-delay: $delay;
+    animation-fill-mode: forwards;
+    animation-timing-function: ease-in-out;
+}
+
+@mixin fadeinfromright($duration, $delay){ 
+    animation-name: fadeInfromRight;
+    animation-duration: $duration;
+    animation-delay: $delay;
+    animation-fill-mode: forwards;
+    animation-timing-function: ease-in-out;
+}
+
+@mixin fadeinfrombottom($duration, $delay){ 
+    animation-name: fadeInfromBottom;
+    animation-duration: $duration;
+    animation-delay: $delay;
+    animation-fill-mode: forwards;
+    animation-timing-function: ease-in-out;
+}

@@ -4,7 +4,7 @@
 
             <div class="left">
                 <div class="image-container gl-flex-vhcenter appear">
-                    <img id="picture" :src="require('@/assets/img/picture.png')" alt="profile picture" :class="{ 'img-appear' :imgHasloaded}" v-show="imgHasloaded">
+                    <img id="picture" :src="require('@/assets/img/picture.png')" alt="profile picture" :class="{ 'appear' :imgHasloaded}" v-show="imgHasloaded">
 
                     <div class="lottie-container" v-if="!imgHasloaded">
                       <lottie class="lottie" :options="defaultOptions" @animCreated="handleAnimation" />
@@ -16,16 +16,16 @@
             <div class="right gl-flex">
                 <div class="section appear">Hello, I am </div>
 
-                <div class="section name text-from-top">Kemp Sayson!</div>
+                <div class="section name">Kemp Sayson!</div>
 
                 <div class="section has-child gl-flex">
                     <div class="label appear gl-flex-vhcenter">A</div>
-                    <div class="label gl-flex-vhcenter job text-from-top">Front End Developer,</div>
+                    <div class="label gl-flex-vhcenter job">Front End Developer,</div>
                 </div>
 
                 <div class="section has-child gl-flex">
                     <div class="label appear gl-flex-vhcenter">Based on</div>
-                    <div class="label gl-flex-vhcenter job text-from-top">Manila, Philippines</div>
+                    <div class="label gl-flex-vhcenter job">Manila, Philippines</div>
                 </div>
             </div>
         </div>
@@ -120,6 +120,7 @@ export default {
                 font-size: 3.5vw;
                 color: $blue;
                 margin-bottom: 1vw;
+                @include fadeinfromtop(0.75s, 0.8s)
             }
     
             &.has-child{
@@ -134,6 +135,7 @@ export default {
                     margin-left: 0.5vw; 
                     color: $blue;
                     font-size: 2vw;
+                    @include fadeinfromtop(0.75s, 0.8s)
                 }
             }
         }
@@ -145,25 +147,11 @@ export default {
         background: #f2f2f2;
         padding: 3vw;
         opacity: 0;
-        animation: appear 0.75s ease-in-out 0.5s;
-        animation-fill-mode: forwards; 
-    }
-
-    
-
-    .text-from-top{ 
-        animation: textFromTop 0.75s ease-in-out 0.5s;
-        animation-fill-mode: forwards; 
-    }
-
-    .img-appear{
-        animation: appear 0.75s ease-in-out 0.5s;
-        animation-fill-mode: forwards; 
+        @include fadein(0.75s, 0.8s);
     }
 
     .appear{
-        animation: appear 0.75s ease-in-out 0.5s;
-        animation-fill-mode: forwards; 
+        @include fadein(0.75s, 0.8s); 
     }
 }
 

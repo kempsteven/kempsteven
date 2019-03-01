@@ -90,6 +90,8 @@ export default {
 		position: absolute;
 		left: 1%;
 		top: 47vh;
+		opacity: 0;
+		@include fadeinfromleft(0.75s, 0.5s);
 	}
 
 	.navigation-wrapper{
@@ -100,8 +102,7 @@ export default {
 		display: flex;
 		flex-direction: column;
 		opacity: 0;
-		animation: fromRight 0.75s ease-in-out 0.5s;
-		animation-fill-mode: forwards; 
+		@include fadeinfromright(0.75s, 0.5s);
 
 		.circle-btn{
 			padding: 0.3vw;
@@ -154,6 +155,8 @@ export default {
 		position: absolute;
 		bottom: 5%;
 		left: 48%;
+		opacity: 0;
+		@include fadeinfrombottom(0.75s, 0.5s);
 	}
 }
 
@@ -162,6 +165,7 @@ export default {
 	pointer-events: none;
 	animation: disappear 0.5s ease-in-out;
 	animation-fill-mode: forwards;
+	@include fadeout(0.5s, 0s);
 }
 
 .remove-wrapper{
@@ -170,8 +174,7 @@ export default {
 	bottom: 6%;
 	right: 3%;
 	opacity: 0;
-	animation: textFromTop 0.75s ease-in-out 0.5s;
-	animation-fill-mode: forwards;
+	@include fadeinfrombottom(0.75s, 0.5s);
 
 	button{
 		width: 100%;

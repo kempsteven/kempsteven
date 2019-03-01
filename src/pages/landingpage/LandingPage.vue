@@ -117,14 +117,14 @@ export default {
     }
 
     .video-container{
-        animation-name: appear;
-        animation-duration: 0.75s;
         position: absolute;
         top: -50%;
         left: -50%;
         width: 200%;
         height: 200%;
         z-index: 1;
+        opacity: 0;
+        @include fadein(0.3s, 0);
 
         .video{
             position: absolute;
@@ -139,8 +139,6 @@ export default {
     }
 
     .intro-text-container{
-        animation-name: appear;
-        animation-duration: 0.75s;
         width: 50%;
         z-index: 3;
         color: $white;
@@ -148,8 +146,8 @@ export default {
         font-weight: 600;
         text-align: center;
         position: relative;
-        animation-name: textFromTop;
-        animation-duration: 1.5s;
+        opacity: 0;
+        @include fadeinfromtop(1s, 0);
 
         .hr{
             width: 80%;
@@ -172,6 +170,7 @@ export default {
                 transition: 0.3s;
                 cursor: pointer;
                 outline: none;
+                font-size: $big;
 
                 &:hover {
                     border: 1px solid $blue;

@@ -94,20 +94,13 @@
     }
 }
 
-////appear animation
-/* Safari 4.0 - 8.0 */
-@-webkit-keyframes appear {
-    from {opacity: 0;}
-    to {opacity: 1;}
-}
-/* Standard syntax */
 @keyframes appear {
     from {opacity: 0;}
     to {opacity: 1;}
 }
-////end of appear
 
-/* Standard syntax */
+
+
 @keyframes disappear {
     from {
         opacity: 1;
@@ -118,12 +111,11 @@
         pointer-events: none;
     }
 }
-////end of disappear
 
-////text animation
-@keyframes textFromTop {
+
+@keyframes fadeInFromTop {
     from {
-        transform: translateY(-20%);
+        transform: translateY(-50%);
         opacity:  0;
     }
 
@@ -132,12 +124,10 @@
         opacity:  1;
     }
 }
-////end oftext animation
 
-////text animation
-@keyframes textFromLeft {
+@keyframes fadeInFromLeft {
     from {
-        transform: translateX(-20%);
+        transform: translateX(-50%);
         opacity:  0;
     }
 
@@ -146,10 +136,8 @@
         opacity:  1;
     }
 }
-////end oftext animation
 
-////text animation
-@keyframes fromRight {
+@keyframes fadeInfromRight {
     from {
         transform: translateX(50%);
         opacity:  0;
@@ -160,9 +148,18 @@
         opacity:  1;
     }
 }
-////end oftext animation
 
+@keyframes fadeInfromBottom {
+    from {
+        transform: translateY(50%);
+        opacity:  0;
+    }
 
+    to {
+        transform: translateY(0%);
+        opacity:  1;
+    }
+}
 
 @keyframes shake {
   10%, 90% {

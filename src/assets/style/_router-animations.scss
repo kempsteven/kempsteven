@@ -9,19 +9,23 @@
 }
 
 .next-router-anim-enter-active {
-    animation: coming 1.3s;
+    animation: coming 0.75s;
+    animation-timing-function:ease-in-out;
 }
 
 .next-router-anim-leave-active {
-    animation: going 1.3s;
+    animation: going 0.75s;
+    animation-timing-function:ease-in-out;
 }
 
 .return-router-anim-enter-active {
-    animation: return_coming 1.3s;
+    animation: return_coming 0.75s;
+    animation-timing-function:ease-in-out;
 }
 
 .return-router-anim-leave-active {
-    animation: return_going 1.3s;
+    animation: return_going 0.75s;
+    animation-timing-function:ease-in-out;
 }
 
 .profile-next-router-anim-enter-active {
