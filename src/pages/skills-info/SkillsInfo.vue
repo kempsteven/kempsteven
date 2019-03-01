@@ -20,7 +20,6 @@
 					</div>
 				</div>
 			</div>
-
 		</div>
 	</div>
 </template>
@@ -31,7 +30,7 @@ export default {
 			skills: [
 				{HTML: 4.5}, {CSS: 4.5}, {Sass: 4.5}, {Javascript: 4}, {'Vue.js': 4},
 				{'Node.js': 3}, {PHP: 3}, {MySql: 2.5}
-			]
+			],
 		}
 	},
 

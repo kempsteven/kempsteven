@@ -57,7 +57,6 @@ export default {
 
             .btn{
                 cursor: pointer;
-                animation: shake 2s ease-in-out;
                 width: 100%;
                 padding: 0.75vw 1vw;
                 transition: 0.3s;
@@ -66,6 +65,8 @@ export default {
                 box-shadow: none;
                 background: none;
                 color: $white;
+                opacity: 0;
+                @include smalltobig(0.75s, 0.3s);
 
                 &:hover{
                     border: 2px solid $blue;

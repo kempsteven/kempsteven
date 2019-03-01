@@ -4,7 +4,7 @@
 
             <div class="left">
                 <div class="image-container gl-flex-vhcenter appear">
-                    <img id="picture" :src="require('@/assets/img/picture.png')" alt="profile picture" :class="{ 'appear' :imgHasloaded}" v-show="imgHasloaded">
+                    <img id="picture" :src="require('@/assets/img/picture.webp')" alt="profile picture" :class="{ 'appear' :imgHasloaded}" v-show="imgHasloaded">
 
                     <div class="lottie-container" v-if="!imgHasloaded">
                       <lottie class="lottie" :options="defaultOptions" @animCreated="handleAnimation" />
@@ -16,7 +16,7 @@
             <div class="right gl-flex">
                 <div class="section appear">Hello, I am </div>
 
-                <div class="section name">Kemp Sayson!</div>
+                <div class="section name">Kemp Steven!</div>
 
                 <div class="section has-child gl-flex">
                     <div class="label appear gl-flex-vhcenter">A</div>

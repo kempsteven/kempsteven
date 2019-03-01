@@ -92,6 +92,12 @@ export default {
 		top: 47vh;
 		opacity: 0;
 		@include fadeinfromleft(0.75s, 0.5s);
+
+		&.disappear{
+			opacity: 1;
+			pointer-events: none;
+			@include fadeout(0.5s, 0s);
+		}
 	}
 
 	.navigation-wrapper{
@@ -103,6 +109,12 @@ export default {
 		flex-direction: column;
 		opacity: 0;
 		@include fadeinfromright(0.75s, 0.5s);
+
+		&.disappear{
+			opacity: 1;
+			pointer-events: none;
+			@include fadeout(0.5s, 0s);
+		}
 
 		.circle-btn{
 			padding: 0.3vw;
@@ -142,13 +154,6 @@ export default {
 				}
 			}
 		}
-
-		&.disappear{
-			opacity: 1;
-			pointer-events: none;
-			animation: disappear 0.5s ease-in-out;
-			animation-fill-mode: forwards;
-		}
 	}
 
 	.next-wrapper{
@@ -157,14 +162,18 @@ export default {
 		left: 48%;
 		opacity: 0;
 		@include fadeinfrombottom(0.75s, 0.5s);
+
+		&.disappear{
+			opacity: 1;
+			pointer-events: none;
+			@include fadeout(0.5s, 0s);
+		}
 	}
 }
 
 .disappear{
 	opacity: 1;
 	pointer-events: none;
-	animation: disappear 0.5s ease-in-out;
-	animation-fill-mode: forwards;
 	@include fadeout(0.5s, 0s);
 }
 
