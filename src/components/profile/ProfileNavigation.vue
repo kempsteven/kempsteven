@@ -15,8 +15,8 @@
 				<button/>
 			</div>
 
-			<div class="circle-btn gl-flex-vhcenter" :class="{ 'active' : $route.path == '/asda'}" 
-				@click="changeRoute('personal-info')">
+			<div class="circle-btn gl-flex-vhcenter" :class="{ 'active' : $route.path == '/portfolio'}" 
+				@click="changeRoute('portfolio-info')">
 				<button/>
 			</div>
 
@@ -26,7 +26,20 @@
 			</div>
 		</div>
 
-		<div class="next-wrapper gl-nav-button" @click="nextRoute()" :class="{ 'disappear' : isInteracting}">
+		<div 
+			class="prev-wrapper gl-nav-button top-nav" 
+			@click="changeProfileRoute('prev')" 
+			:class="{ 'disappear' : isInteracting}"
+			v-if="$route.name !== 'personal-info'"
+		>
+			<div class="arrow"></div>
+		</div>
+
+		<div 
+			class="next-wrapper gl-nav-button" 
+			@click="changeProfileRoute('next')" 
+			:class="{ 'disappear' : isInteracting}"
+		>
 			<div class="arrow"></div>
 		</div>
 
@@ -40,6 +53,12 @@
 <script>
 import { mapGetters } from 'vuex'
 export default {
+	data () {
+		return {
+			routeSequence: ['landing-page', 'personal-info', 'skills-info', 'portfolio-info']
+		}
+	},
+
 	computed: {
 		...mapGetters({
 			isInteracting: 'getIsInteracting'
@@ -50,9 +69,20 @@ export default {
 			this.changeRoute('landing-page')
 		},
 
-		nextRoute(){
-			this.$store.commit('changeRouteAnim', 'profile-next')
-			this.changeRoute('skills-info')
+		changeProfileRoute(type){
+			var currentRoutePlacement = this.routeSequence.indexOf(this.$route.name)
+			var changeRouteTo 
+
+			if (type === 'prev') {
+				changeRouteTo = this.routeSequence[currentRoutePlacement - 1]
+				this.$store.commit('changeRouteAnim', 'profile-prev')
+			} else {
+				changeRouteTo = this.routeSequence[currentRoutePlacement + 1]
+				this.$store.commit('changeRouteAnim', 'profile-next')
+			}
+
+
+			this.changeRoute(changeRouteTo)
 		},
 
 		async changeRoute(routeName){
@@ -62,9 +92,8 @@ export default {
 
 		routeAnimHandler(nextRouteName){
 			let routeAnim
-			var routeSequence = ['landing-page', 'personal-info', 'skills-info']
-			var currentRoutePlacement = routeSequence.indexOf(this.$route.name)
-			var nextRoutePlacement = routeSequence.indexOf(nextRouteName)
+			var currentRoutePlacement = this.routeSequence.indexOf(this.$route.name)
+			var nextRoutePlacement = this.routeSequence.indexOf(nextRouteName)
 
 			if (nextRoutePlacement === 0) {
 				routeAnim = 'prev'
@@ -153,6 +182,20 @@ export default {
 					background: $black;
 				}
 			}
+		}
+	}
+ 
+	.prev-wrapper{
+		position: absolute;
+		top: 5%;
+		left: 48%;
+		opacity: 0;
+		@include fadeinfromtop(0.75s, 0.5s);
+
+		&.disappear{
+			opacity: 1;
+			pointer-events: none;
+			@include fadeout(0.5s, 0s);
 		}
 	}
 

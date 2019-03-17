@@ -28,7 +28,7 @@ export default {
 	data () {
 		return {
 			skills: [
-				{HTML: 4.5}, {CSS: 4.5}, {Sass: 4.5}, {Javascript: 4}, {'Vue.js': 4},
+				{HTML: 5}, {CSS: 5}, {Sass: 4.5}, {Javascript: 4}, {'Vue.js': 4},
 				{'Node.js': 3}, {PHP: 3}, {MySql: 2.5}
 			],
 		}
@@ -91,7 +91,7 @@ export default {
 
 	.info-wrapper {
 		width: 100%;
-		margin-top: 3vw;
+		margin-top: 13vh;
 
 		span {
 			text-align: center;
@@ -102,6 +102,8 @@ export default {
 			width: 30vw;
 			color: $black;
 			font-weight: 600;
+			opacity: 0;
+			@include fadein(0.75s, 0.5s); 
 		}
 
 		.skill-container {

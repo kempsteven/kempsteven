@@ -13,6 +13,7 @@ html, body {
 
 *{
   box-sizing: border-box;
+  word-wrap: break-word;
 }
 
 /////////// COLUMNS //////////
@@ -123,7 +124,7 @@ html, body {
 			border-bottom: 0.6vw solid transparent;
 			border-right: 0.75vw solid transparent;
 			position: absolute;
-    		top: 1.6vw;
+    		top: 1.55vw;
     		left: 1.1vw;
 		}
 	}
