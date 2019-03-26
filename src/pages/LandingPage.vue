@@ -3,7 +3,7 @@
         <div class="video-container gl-col-1">
             <div class="video-filter"></div>
 
-            <video loop muted playsinline oncontextmenu="return false;" @canplaythrough="videoHasBuffered()" class='video' id="video">
+            <video loop muted playsinline oncontextmenu="return false;" oncanplaythrough="videoHasBuffered()" class='video' id="video">
                 <source :src="require('@/assets/video/coding.mp4')" type="video/mp4" />
                 <source :src="require('@/assets/video/coding.webm')" type="video/webm" />
             </video>

@@ -1,10 +1,10 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-const LandingPage = () => import('@/pages/landingpage/LandingPage')
-const Profile = () => import('@/pages/profile/Profile')
-const PersonalInfo = () => import('@/pages/personal-info/PersonalInfo')
-const SkillsInfo = () => import('@/pages/skills-info/SkillsInfo')
-const PortfolioInfo = () => import('@/pages/portfolio-info/PortfolioInfo')
+const LandingPage = () => import('@/pages/LandingPage')
+const Profile = () => import('@/pages/Profile')
+const PersonalInfo = () => import('@/pages/PersonalInfo')
+const SkillsInfo = () => import('@/pages/SkillsInfo')
+const PortfolioInfo = () => import('@/pages/PortfolioInfo')
 
 Vue.use(Router)
 

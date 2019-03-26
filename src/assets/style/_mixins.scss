@@ -24,6 +24,14 @@
     animation-timing-function: ease-in-out;
 }
 
+@mixin fadeouttotop($duration, $delay){ 
+    animation-name: fadeOutToTop;
+    animation-duration: $duration;
+    animation-delay: $delay;
+    animation-fill-mode: forwards;
+    animation-timing-function: ease-in-out;
+}
+
 @mixin fadeinfromleft($duration, $delay){ 
     animation-name: fadeInFromLeft;
     animation-duration: $duration;
