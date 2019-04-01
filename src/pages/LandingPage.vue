@@ -3,15 +3,14 @@
         <div class="video-container gl-col-1">
             <div class="video-filter"></div>
 
-            <video loop muted playsinline oncontextmenu="return false;" oncanplaythrough="videoHasBuffered()" class='video' id="video">
+            <div class="video-fallback" v-if="!isVideoLoaded">
+                <img :src="require('@/assets/img/coding.jpg')" alt="Coding Image">
+            </div>
+
+            <video loop muted playsinline oncontextmenu="return false;" @canplaythrough="videoHasBuffered()" class='video' ref="video" v-show="isVideoLoaded">
                 <source :src="require('@/assets/video/coding.mp4')" type="video/mp4" />
                 <source :src="require('@/assets/video/coding.webm')" type="video/webm" />
             </video>
-
-            <div class="video-fallback" v-if="!isVideoLoaded">
-                <img :src="require('@/assets/img/coding.jpg')">
-            </div>
-        
         </div>
 
         <div class="intro-text-container gl-flex-vhcenter">
@@ -63,8 +62,7 @@ export default {
 
     methods:{
         playVideo(){
-            var video = document.getElementById('video')
-            video.play();
+            this.$refs.video.play();
         },
 
         start(){
@@ -74,6 +72,7 @@ export default {
 
         videoHasBuffered(){
             this.isVideoLoaded = true
+            this.$refs.video.play();
         },
 
         handleAnimation(anim) {
@@ -136,6 +135,22 @@ export default {
             margin: auto;
             min-height: 50%;
             min-width: 50%;
+        }
+
+        .video-fallback {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            left: 0;
+            // left: -700px; for mobile pref
+            margin: auto;
+            height: 50%;
+            width: 50%;
+
+            img {
+                width: 100%;
+            }
         }
     }
 

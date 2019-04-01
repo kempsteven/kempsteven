@@ -20,7 +20,7 @@ export default {
 			setTimeout( ()=> {
 				this.isClosingModal = false
 				this.$store.commit('setModal', false)
-			}, 600)
+			}, 800)
 		}
 	}
 }	
@@ -43,11 +43,11 @@ export default {
 
 	&.closing {
 		opacity: 1;
-		@include fadeout(0.3s, 0.3s)
+		@include fadeout(0.4s, 0.4s)
 
 		.modal {
 			opacity: 1;
-			@include fadeouttotop(0.3s, 0)
+			@include fadeouttotop(0.4s, 0)
 		}
 	}
 
