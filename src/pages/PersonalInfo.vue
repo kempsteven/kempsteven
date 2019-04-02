@@ -94,6 +94,7 @@ export default {
             border-radius: 50%;
             box-shadow: 2px 2px 10px #888888;
             opacity: 0;
+            @include fadein(0.75s, 0.8s); 
 
             img{
                 opacity: 0;
@@ -120,7 +121,7 @@ export default {
                 font-size: 3.5vw;
                 color: $blue;
                 margin-bottom: 1vw;
-                @include fadeinfromtop(0.75s, 0.8s)
+                @include fadeinfromtop(0.75s, 0.75s)
             }
     
             &.has-child{
@@ -135,7 +136,7 @@ export default {
                     margin-left: 0.5vw; 
                     color: $blue;
                     font-size: 2vw;
-                    @include fadeinfromtop(0.75s, 0.8s)
+                    @include fadeinfromtop(0.75s, 0.75s)
                 }
             }
         }

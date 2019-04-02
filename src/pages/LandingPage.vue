@@ -62,7 +62,7 @@ export default {
 
     methods:{
         playVideo(){
-            this.$refs.video.play();
+            this.$refs.video.play()
         },
 
         start(){
@@ -72,7 +72,7 @@ export default {
 
         videoHasBuffered(){
             this.isVideoLoaded = true
-            this.$refs.video.play();
+            this.$refs.video.play()
         },
 
         handleAnimation(anim) {

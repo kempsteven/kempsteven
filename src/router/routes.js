@@ -3,6 +3,7 @@ const Profile = () => import('@/pages/Profile')
 const PersonalInfo = () => import('@/pages/PersonalInfo')
 const SkillsInfo = () => import('@/pages/SkillsInfo')
 const PortfolioInfo = () => import('@/pages/PortfolioInfo')
+const EducationInfo = () => import('@/pages/EducationInfo')
 
 export default [
 	{
@@ -71,6 +72,23 @@ export default [
 							name: "description",
 							content:
 							"Get a look at my porfolio, this are projects that were made by me or projects I collaborated with!"
+						}
+					]
+				}
+			},
+
+			{ 
+				path: '/education',
+				name: 'education-info',
+				component: EducationInfo,
+				meta: {
+					title: "Kemp Steven | My Education",
+
+					metaTags: [
+						{
+							name: "description",
+							content:
+							"Get a look at what my degree and various awards is!"
 						}
 					]
 				}

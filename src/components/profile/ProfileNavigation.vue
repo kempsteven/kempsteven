@@ -20,8 +20,8 @@
 				<button/>
 			</div>
 
-			<div class="circle-btn gl-flex-vhcenter" :class="{ 'active' : $route.path == '/proasadsfile'}" 
-				@click="changeRoute('personal-info')">
+			<div class="circle-btn gl-flex-vhcenter" :class="{ 'active' : $route.path == '/education'}" 
+				@click="changeRoute('education-info')">
 				<button/>
 			</div>
 		</div>
@@ -55,7 +55,7 @@ import { mapGetters } from 'vuex'
 export default {
 	data () {
 		return {
-			routeSequence: ['landing-page', 'personal-info', 'skills-info', 'portfolio-info']
+			routeSequence: ['landing-page', 'personal-info', 'skills-info', 'portfolio-info', 'education-info']
 		}
 	},
 

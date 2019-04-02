@@ -29,17 +29,21 @@
 }
 
 .profile-next-router-anim-enter-active {
-    animation: profile_coming 1.3s;
+    animation: profile_coming 1s;
+    animation-timing-function:ease-in-out;
 }
 
 .profile-next-router-anim-leave-active {
-    animation: profile_going 1.3s;
+    animation: profile_going 1s;
+    animation-timing-function:ease-in-out;
 }
 
 .profile-return-router-anim-enter-active {
-    animation: profile_return_coming 1.3s;
+    animation: profile_return_coming 1s;
+    animation-timing-function:ease-in-out;
 }
 
 .profile-return-router-anim-leave-active {
-    animation: profile_return_going 1.3s;
+    animation: profile_return_going 1s;
+    animation-timing-function:ease-in-out;
 }
