@@ -4,6 +4,7 @@ const PersonalInfo = () => import('@/pages/PersonalInfo')
 const SkillsInfo = () => import('@/pages/SkillsInfo')
 const PortfolioInfo = () => import('@/pages/PortfolioInfo')
 const EducationInfo = () => import('@/pages/EducationInfo')
+const ContactUs = () => import('@/pages/ContactUs')
 
 export default [
 	{
@@ -92,7 +93,24 @@ export default [
 						}
 					]
 				}
+			},
+
+			{
+				path: '/contact',
+				name: 'contact-us',
+				component: ContactUs,
+				meta: {
+					title: "Kemp Steven | Contact Us",
+
+					metaTags: [
+						{
+							name: "description",
+							content:
+							"You have a question for me? Ask it here in the Contact us!"
+						}
+					]
+				}
 			}
 		]
-	},
+	}
  ]

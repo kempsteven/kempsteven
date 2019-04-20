@@ -250,6 +250,7 @@ export default {
 			background: #212121;
 			right: 3vw;
 			bottom: -5vw;
+			min-height: 95px;
 
 			img {
 				width: 100%;

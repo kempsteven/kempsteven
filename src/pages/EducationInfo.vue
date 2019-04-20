@@ -61,44 +61,54 @@ export default {
 			this.anim.setSpeed(0.8)
 		},
 
-		recurseString () {
-			var random = (max) => {
+		async recurseString () {
+			let random = (max) => {
 				return Math.ceil(Math.random() * Math.floor(max));
 			}
 
-			document.querySelectorAll('.education-item').forEach( item => {
+			document.querySelectorAll('.education-item').forEach( async (item) => {
 				let innerText = item.innerText
 				item.innerText = ''
 
 				for (let x = 0; x <= innerText.length - 1; x++) {
-					setTimeout( ()=>{
+					new Promise( (resolve) => {
+						setTimeout( ()=>{
 
-						if (innerText[x] === ' ') {
-							item.innerText = item.innerText + '_'
-						} else {
-
-							if (random(3) === 3) {
-								item.innerText = item.innerText.concat(0)
-								setTimeout( ()=>{
-									item.innerText = item.innerText.replace(/0/g, innerText[x])
-								}, 50)
-							} else if (random(3) === 2) {
-								item.innerText = item.innerText.concat(1)
-								setTimeout( ()=>{
-									item.innerText = item.innerText.replace(/1/g, innerText[x])
-								}, 50)
+							if (innerText[x] === ' ') {
+								item.innerText = item.innerText + '_'
 							} else {
-								item.innerText = item.innerText.concat(innerText[x])
+
+								if (random(3) === 3) {
+									new Promise( (res) => {
+										item.innerText = item.innerText.concat(0)
+
+										setTimeout( () => {
+											item.innerText = item.innerText.replace(/0/g, innerText[x])
+											res()
+										}, 10)
+									})
+								} else if (random(3) === 2) {
+									new Promise( (res) => {
+										item.innerText = item.innerText.concat(1)
+
+										setTimeout( () => {
+											item.innerText = item.innerText.replace(/1/g, innerText[x])
+											res()
+										}, 10)
+									})
+								} else {
+									item.innerText = item.innerText.concat(innerText[x])
+								}
+
 							}
 
-						}
-
-						if (x === innerText.length - 1) {
-							let temp = item.innerText.replace(/_/g, ' ')
-							item.innerText = temp
-						}
-						
-					}, x * 100)
+							if (x === innerText.length - 1) {
+								let temp = item.innerText.replace(/_/g, ' ')
+								item.innerText = temp
+							}
+							resolve()
+						}, x * 100)
+					})
 				}
 			})
 		}

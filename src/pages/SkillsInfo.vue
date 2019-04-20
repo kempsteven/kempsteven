@@ -77,7 +77,7 @@ export default {
 				setTimeout( ()=>{
 					stars[count].classList.add('appear')
 					count++
-				}, star * 100);
+				}, star * 100)
 			}
 		}
 	}

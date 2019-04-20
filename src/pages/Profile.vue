@@ -1,6 +1,6 @@
 <template>
-    <div id="profile-container" class="profile-container gl-flex-vhcenter">
-        <div class="video-filter" :class="{ 'disappear' : isInteracting}"/>
+    <div id="profile-container" class="profile-container gl-flex-vhcenter" :class="{ 'contact-us' : $route.name === 'contact-us'}">
+        <div class="video-filter" :class="{ 'disappear' : isInteracting}" v-show="$route.name !== 'contact-us'"/>
         <vue-particles
             color="#282828"
             :particleOpacity="0.7"
@@ -19,7 +19,7 @@
             clickMode="repulse"
         />
 
-        <ProfileNavigation />
+        <ProfileNavigation v-show="$route.name !== 'contact-us'"/>
 
         <div class="profile-wrapper" :class="isInteracting ? 'disappear' : 'appear'">
             <transition :name="routerAnim === 'next-router-anim' ? 'no-anim' : routerAnim ">
@@ -58,6 +58,11 @@ export default {
         position: fixed;
         overflow: hidden;
         flex-direction: column;
+        transition: 0.3s;
+
+        &.contact-us {
+            background: #232741;
+        }
     }
 
     .video-filter{

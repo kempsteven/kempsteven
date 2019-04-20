@@ -5,10 +5,10 @@
             <li class="list-item">
                 <div 
                     class="btn gl-flex-vhcenter" 
-                    :class="{ 'black' : this.$route.name != 'landing-page'}" 
-                    @click="goToContactUs()"
+                    :class="{ 'black' : this.$route.name !== 'landing-page' && this.$route.name !== 'contact-us'}" 
+                    @click="changeRoute()"
                 >
-                    Contact Me !  
+                    {{ this.$route.name === 'contact-us' ? 'Home' : 'Contact Me!'  }}
                 </div>
             </li>
         </ul>
@@ -21,9 +21,14 @@ export default {
     name: 'header-nav',
 
     methods: {
-        goToContactUs() {
+        changeRoute() {
             this.$store.commit('changeRouteAnim', 'default')
-            this.$router.push({name: 'contact-us'})
+
+            if (this.$route.name !== 'contact-us') {
+                this.$router.push({name: 'contact-us'})
+            } else {
+                this.$router.push({name: 'personal-info'})
+            }
         }
     }
 }
