@@ -3,7 +3,7 @@
 		<div class="info-wrapper">
 			<span>My Skills Set</span>
 
-			<div class="skill-container gl-flex gl-around-item" ref="skillContainer">
+			<div class="skill-container gl-flex gl-around-item scroll" :class="{ 'no-pointer' : isInteracting}" ref="skillContainer">
 				<div class="skill-item" v-for="(skill, key) in skills" :key="key">
 					<div class="img-container">
 						<label class="skill-label">{{ Object.keys(skill)[0] }}</label>
@@ -24,6 +24,7 @@
 	</div>
 </template>
 <script>
+import { mapGetters } from 'vuex'
 export default {
 	data () {
 		return {
@@ -32,6 +33,12 @@ export default {
 				{'Node.js': 3}, {PHP: 3}, {MySql: 2.5}
 			],
 		}
+	},
+
+	computed: {
+		...mapGetters({
+			isInteracting: 'getIsInteracting'
+		})
 	},
 
 	activated(){
@@ -104,14 +111,39 @@ export default {
 			font-weight: 600;
 			opacity: 0;
 			@include fadein(0.75s, 0.5s); 
+
+			@include mobile {
+				font-size: 18px;
+				width: 150px;
+				margin-bottom: 15px;
+			}
 		}
 
 		.skill-container {
+			margin: 0 auto;
+			height: 29vw;
+			overflow: auto;
+			pointer-events: all;
+			border-radius: 2px;
+
+			&.no-pointer {
+				pointer-events: none;
+			}
+
+			@include mobile {
+				height: 430px;
+				width: 65%;
+			}
 
 			.skill-item {
 				padding: 1vw;
 				width: 26vw;
 				display: flex;
+
+				@include mobile {
+					width: 100%;
+					padding: 5px;
+				}
 
 				label {
 					font-weight: 600;
@@ -125,15 +157,28 @@ export default {
 					flex-direction: column;
 					@include fadeinfromtop(0.75s, 0.5s)
 
+					@include mobile {
+						width: 75px;
+					}
+
 					.skill-label {
 						text-align: center;
 						margin-bottom: 0.5vw;
 						font-size: 0.95vw;
+
+						@include mobile {
+							font-size: 12px;
+							margin-bottom: 10px;
+						}
 					}
 
 					img {
 						width: 3vw;
 						margin: 0 auto;
+
+						@include mobile {
+							width: 20px;
+						}
 					}
 				}
 
@@ -141,12 +186,20 @@ export default {
 					flex: 1;
 					padding-left: 2vw;
 					opacity: 0;
-					@include fadeinfromtop(0.75s, 0.6s)
+					@include fadeinfromtop(0.75s, 0.6s);
+
+					@include mobile {
+						padding-left: 5px;
+					}
 
 					svg {
 						font-size: 1.75vw;
 						color: #f4d866;
 						opacity: 0;
+
+						@include mobile {
+							font-size: 18px;
+						}
 
 						&.appear {
 							@include fadeinfromright(0.2s, 0.3s)

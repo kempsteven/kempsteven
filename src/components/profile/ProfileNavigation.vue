@@ -1,10 +1,15 @@
 <template>
 	<div class="profile-navigation">
-		<div class="landing-back-wrapper gl-nav-button left-nav" :class="{ 'disappear' : isInteracting}" @click="returnToMain()">
+		<div
+			class="landing-back-wrapper gl-nav-button left-nav"
+			:class="{ 'disappear' : isInteracting}"
+			@click="returnToMain()"
+			v-show="$route.name !== 'contact-us'"
+		>
 			<div class="arrow"></div>
 		</div>
 
-		<div class="navigation-wrapper" :class="{ 'disappear' : isInteracting}">
+		<div class="navigation-wrapper" :class="{ 'disappear' : isInteracting}" v-show="$route.name !== 'contact-us'">
 			<div class="circle-btn gl-flex-vhcenter" :class="{ 'active' : $route.path == '/profile'}" 
 				@click="changeRoute('personal-info')">
 				<button/>
@@ -31,6 +36,7 @@
 			@click="changeProfileRoute('prev')" 
 			:class="{ 'disappear' : isInteracting}"
 			v-if="$route.name !== 'personal-info'"
+			v-show="$route.name !== 'contact-us'"
 		>
 			<div class="arrow"></div>
 		</div>
@@ -39,12 +45,13 @@
 			class="next-wrapper gl-nav-button" 
 			@click="changeProfileRoute('next')" 
 			:class="{ 'disappear' : isInteracting}"
+			v-show="$route.name !== 'contact-us'"
 		>
 			<div class="arrow"></div>
 		</div>
 
 		<div class="remove-wrapper">
-			<button @click="removeDetails()">
+			<button :class="{ 'white' : $route.name === 'contact-us'}" @click="removeDetails()">
 				{{isInteracting ? 'Go Back' : 'Interact With Background'}}
 			</button>
 		</div>
@@ -155,6 +162,11 @@ export default {
 			box-shadow: 2px 2px 10px #888888;
 			transition: 0.3s;
 
+			@include mobile {
+				padding: 5px;
+				margin-bottom: 10px;
+			}
+
 			button{
 				pointer-events:none;
 				padding: 0.5vw;
@@ -163,6 +175,10 @@ export default {
 				background: none;
 				opacity: 0;
 				transition: 0.5s;
+
+				@include mobile {
+					padding: 10px;
+				}
 			}
 
 			&.active{
@@ -228,6 +244,11 @@ export default {
 	opacity: 0;
 	@include fadeinfrombottom(0.75s, 0.5s);
 
+	@include mobile {
+		right: 3%;
+		bottom: 2%;
+	}
+
 	button{
 		width: 100%;
 		height: 100%;
@@ -243,6 +264,30 @@ export default {
 
 		&:hover{
 			box-shadow: none;
+		}
+
+		&.white {
+            border: 2px solid white;
+            box-shadow: none;
+            background: none;
+            color: $white;
+
+            @include mobile {
+                padding: 10px 10px;
+            }
+
+            &:hover {
+                border: 2px solid $blue;
+                background: $blue;
+                box-shadow: none;
+            }
+		}
+
+
+		@include mobile {
+			width: 90px;
+			padding: 10px;
+			font-size: 12px;
 		}
 	}
 }

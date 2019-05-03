@@ -16,6 +16,24 @@ html, body {
   word-wrap: break-word;
 }
 
+.scroll {
+	&::-webkit-scrollbar-track { 
+        background: transparent;
+    }
+
+    &::-webkit-scrollbar {  
+        width: 5px;
+        height: 5px;
+        background-color: #979CAC;
+        background: transparent;
+    }
+
+    &::-webkit-scrollbar-thumb { 
+        border-radius: 10px;
+        background-color: #979CAC;
+    }
+}
+
 /////////// COLUMNS //////////
 .gl-flex{
 	display: flex;
@@ -124,8 +142,22 @@ html, body {
 			border-bottom: 0.6vw solid transparent;
 			border-right: 0.75vw solid transparent;
 			position: absolute;
-    		top: 1.55vw;
-    		left: 1.1vw;
+			top: 1.55vw;
+			left: 1.1vw;
+		}
+
+		@include mobile {
+			width: 40px;
+			height: 40px;
+
+			&::before {
+				border-top: 10px solid $black;
+				border-left: 10px solid transparent; 
+				border-bottom: 	8px solid transparent;
+				border-right: 10px solid transparent;
+				top: 17px;
+				left: 10px;
+			}
 		}
 	}
 
@@ -135,7 +167,7 @@ html, body {
 		
 		.arrow{
 			&::before {
-				border-top: 0.75vw solid white;
+				border-top: 10px solid white;
 			}
 		}
 	}

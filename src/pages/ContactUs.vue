@@ -1,6 +1,6 @@
 <template>
 	<div class="contact">
-		<!-- <vue-particles
+<!-- 		<vue-particles
 			ref="particle"
             color="#ffffff"
             :particleOpacity="1"
@@ -19,7 +19,7 @@
             clickMode="repulse"
         /> -->
 
-        <form class="contact-form">
+        <form class="contact-form" :class="{ 'no-pointer' : isInteracting}">
         	<h2 class="form-header">Contact Us</h2>
 
         	<section class="form-section gl-flex">
@@ -47,17 +47,28 @@
 	</div>
 </template>
 <script>
-	export default {
+import { mapGetters } from 'vuex'
+export default {
+	computed: {
+		...mapGetters({
+			isInteracting: 'getIsInteracting'
+		})
+	},
+
+	activated () {
+		this.$store.commit('toggleParticle', 'contact')
 	}
+}
 </script>
 <style lang="scss" scoped>
 	.contact {
 		width: 100%;
 		height: 100%;
+		pointer-events: none;
 		
 		.contact-form {
 			background: #fff;
-			padding: 15px;
+			padding: 1.3vw;
 			border-radius: 5px;
 			position: absolute;
 			top: 4vw;
@@ -68,9 +79,24 @@
 			z-index: 999;
 			pointer-events: all;
 
+			&.no-pointer {
+				pointer-events: none;
+			}
+
+			@include mobile {
+				width: 90%;
+				padding: 15px;
+				top: 60px;
+			}
+
 			.form-header {
-				margin: 0.5vw 0 1vw 0;
+				margin: 0.5vw 0 1.5vw 0;
 				font-size: $big;
+
+				@include mobile {
+					margin: 5px 0 15px 0;
+					font-size: 18px;
+				}
 			}
 
 			.form-section {
@@ -78,10 +104,19 @@
 				align-items: flex-start;
 				margin-bottom: 0.85vw;
 
+				@include mobile {
+					margin-bottom: 15px;
+				}
+
 				.input-label {
 					display: block;
 					margin-bottom: 0.75vw;
 					font-size: $medium;
+
+					@include mobile {
+						font-size: 15px;
+						margin-bottom: 10px;
+					}
 				}
 
 				.input, .textarea {
@@ -91,15 +126,25 @@
 					outline: none;
 					width: 100%;
 					font-size: $medium;
+
+					@include mobile {
+						font-size: 14px;
+						padding: 5px 10px;
+					}
 				}
 
 				.textarea {
 					resize: none;
 					height: 6vw;
+
+					@include mobile {
+						height: 130px;
+					}
 				}
 			}
 
 			.submit-btn {
+				margin-top: 1vw;
 				padding: 0.5vw 0.65vw;
 				border-radius: 2px;
 				border: 0.05vw solid #2c3e50;
@@ -113,6 +158,12 @@
 					background: #2c3e50;
 					color: #fff;
 					cursor: pointer;
+				}
+
+				@include mobile {
+					padding: 7px 15px;
+					font-size: 14px;
+					border: 1px solid #2c3e50;
 				}
 			}
 		}

@@ -1,7 +1,7 @@
 <template>
     <div class="header-container">
 
-        <ul class="list-container">
+        <ul class="list-container" v-if="!isInteracting">
             <li class="list-item">
                 <div 
                     class="btn gl-flex-vhcenter" 
@@ -17,8 +17,15 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 export default {
     name: 'header-nav',
+
+    computed: {
+        ...mapGetters({
+            isInteracting: 'getIsInteracting'
+        })
+    },
 
     methods: {
         changeRoute() {
@@ -35,24 +42,27 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.header-container{
+.header-container {
     width: 100%;
     height: 6vw;
     z-index: 10;
     position: fixed;
     pointer-events: none;
 
-        .list-container{
-            display: flex;
-            justify-content: flex-end;
-            list-style: none;
-            font-size: 1.4vw;
-            font-weight: 500;
-            margin: 0;
-            height: 100%;
-            pointer-events: none;
+    @include mobile {
+        height: auto;
+    }
 
-        .list-item{
+    .list-container {
+        display: flex;
+        justify-content: flex-end;
+        list-style: none;
+        font-weight: 500;
+        margin: 0;
+        height: 100%;
+        pointer-events: none;
+
+        .list-item {
             display: flex;
             align-items: center;
             justify-content: center;
@@ -60,7 +70,13 @@ export default {
             font-size: 1.2vw;
             pointer-events: all;
 
-            .btn{
+            @include mobile {
+                font-size: 14px;
+                margin-right: 7px;
+                margin-top: 7px;
+            }
+
+            .btn {
                 cursor: pointer;
                 width: 100%;
                 padding: 0.75vw 1vw;
@@ -73,25 +89,29 @@ export default {
                 opacity: 0;
                 @include smalltobig(0.75s, 0.3s);
 
-                &:hover{
+                @include mobile {
+                    padding: 10px 10px;
+                }
+
+                &:hover {
                     border: 2px solid $blue;
                     background: $blue;
                     box-shadow: none;
                 }
             }
 
-        .black{
-            color: $black;
-            border: 1px solid $black;
-            box-shadow: 2px 2px 10px #888888;
-            transition: 0.3s;
-            color: $black;
+            .black {
+                color: $black;
+                border: 1px solid $black;
+                box-shadow: 2px 2px 10px #888888;
+                transition: 0.3s;
+                color: $black;
 
-            &:hover{
-                color: white;
+                &:hover {
+                    color: white;
+                }
             }
         }
-      }
     }
-  }
+}
 </style>

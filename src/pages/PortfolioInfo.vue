@@ -50,6 +50,78 @@
 					</div>
 				</div>
 			</div>
+
+			<div class="column">
+				<div 
+					class="portfolio-item" 
+					@click="viewPortfolio(
+						{
+							title: 'Accursed Website', 
+							desc: `A website that contains information about a Horror Game, the Horror game was made by me and my thesis group for our requirements in our bachelor's degree, this website is tested in Chrome, Mozilla and Mobile view.`, 
+							tech: ['HTML', 'CSS', 'JavaScript', 'PHP'],
+							img: [
+									require('@/assets/img/portfolio/accursed/desktop.webp'), 
+									require('@/assets/img/portfolio/accursed/mobile.webp')
+								],
+							link: 'https://accursed.ga/'
+						}
+					)"
+				>
+					<img :src="require('@/assets/img/portfolio/accursed/desktop.webp')" alt="Portfolio Image">
+
+					<div class="item-details">
+						<span>Accursed Website</span>
+					</div>
+				</div>
+			</div>
+
+			<div class="column">
+				<div 
+					class="portfolio-item" 
+					@click="viewPortfolio(
+						{
+							title: 'Accursed Website', 
+							desc: `A website that contains information about a Horror Game, the Horror game was made by me and my thesis group for our requirements in our bachelor's degree, this website is tested in Chrome, Mozilla and Mobile view.`, 
+							tech: ['HTML', 'CSS', 'JavaScript', 'PHP'],
+							img: [
+									require('@/assets/img/portfolio/accursed/desktop.webp'), 
+									require('@/assets/img/portfolio/accursed/mobile.webp')
+								],
+							link: 'https://accursed.ga/'
+						}
+					)"
+				>
+					<img :src="require('@/assets/img/portfolio/accursed/desktop.webp')" alt="Portfolio Image">
+
+					<div class="item-details">
+						<span>Accursed Website</span>
+					</div>
+				</div>
+			</div>
+
+			<div class="column">
+				<div 
+					class="portfolio-item" 
+					@click="viewPortfolio(
+						{
+							title: 'Accursed Website', 
+							desc: `A website that contains information about a Horror Game, the Horror game was made by me and my thesis group for our requirements in our bachelor's degree, this website is tested in Chrome, Mozilla and Mobile view.`, 
+							tech: ['HTML', 'CSS', 'JavaScript', 'PHP'],
+							img: [
+									require('@/assets/img/portfolio/accursed/desktop.webp'), 
+									require('@/assets/img/portfolio/accursed/mobile.webp')
+								],
+							link: 'https://accursed.ga/'
+						}
+					)"
+				>
+					<img :src="require('@/assets/img/portfolio/accursed/desktop.webp')" alt="Portfolio Image">
+
+					<div class="item-details">
+						<span>Accursed Website</span>
+					</div>
+				</div>
+			</div>
 		</div>
 
 		<Modal v-if="modalStatus">
@@ -125,6 +197,10 @@ export default {
 	flex-direction: column;
 	justify-content: center;
 
+	@include mobile {
+		justify-content: flex-start;
+	}
+
 	span {
 		text-align: center;
 		font-size: 2vw;
@@ -136,6 +212,13 @@ export default {
 		font-weight: 600;
 		opacity: 0;
 		@include fadein(0.75s, 0.5s); 
+
+		@include mobile {
+			font-size: 18px;
+			width: 70%;
+			padding: 5vw;
+			margin-top: 80px;
+		}
 	}
 }
 
@@ -143,12 +226,19 @@ export default {
 	display: flex;
 	flex-wrap: wrap;
 	overflow-y: auto;
-	width: 100%;
+	overflow-x: hidden;
+	width: 70%;
 	height: 65vh;
 	margin-top: 1vh;
 	pointer-events: all;
 	opacity: 0;
-	@include fadein(0.75s, 1s); 
+	@include fadein(0.75s, 1s);
+
+	@include mobile {
+		height: auto;
+		max-height: 400px;
+		margin: 0 auto 0 auto;
+	}
 
 	&.disappear {
 		pointer-events: none;
@@ -173,6 +263,12 @@ export default {
 		flex: 50%;
 		max-width: 50%;
 		padding: 0 0.15vw;
+
+		@include mobile {
+			max-width: unset;
+			flex: 0 0 auto;
+			width: 100%
+		}
 
 		.portfolio-item {
 			position: relative;
@@ -219,6 +315,10 @@ export default {
 	width: 73vw;
 	display: flex;
 
+	@include mobile {
+		flex-wrap: wrap;
+	}
+
 	.img-container {
 		flex-shrink: 0;
 		width: 40%;
@@ -227,6 +327,12 @@ export default {
 		user-select: none;
 		margin-right: 1vw;
 
+		@include mobile {
+			width: 100%;
+			height: 173px;
+			padding: 0;
+			margin-bottom: 25px;
+		}
 
 		.img-web {
 			width: 100%;
@@ -235,6 +341,11 @@ export default {
 			border-radius: 2px;
 			position: absolute;
 			background: #212121;
+
+			@include mobile {
+				padding: 5px;
+				border: 1px solid #505050;
+			}
 
 			img {
 				width: 100%;
@@ -245,12 +356,19 @@ export default {
 			width: 25%;
 			padding: 0.5vw 0.25vw 0.8vw 0.25vw;
 			border: 0.1vw solid #505050;
-			border-radius: 10px;
+			border-radius: 5px;
 			position: absolute;
 			background: #212121;
 			right: 3vw;
 			bottom: -5vw;
 			min-height: 95px;
+
+			@include mobile {
+				padding: 5px;
+				border: 1px solid #505050;
+				right: 15px;
+				bottom: -10px;
+			}
 
 			img {
 				width: 100%;
@@ -266,6 +384,13 @@ export default {
 		background: #fff;
 		border-radius: 2px;
 
+		@include mobile {
+			width: 100%;
+			flex-shrink: 0;
+			font-size: 14px;
+			padding: 10px;
+		}
+
 		.project-name {
 			width: auto;
 			margin-bottom: 1vw;
@@ -275,6 +400,12 @@ export default {
 			padding: 0.5vw 3vw;
 			border-radius: 2px;
 			text-align: center;
+
+			@include mobile {
+				font-size: 16px;
+				padding: 10px;
+				margin-bottom: 7px;
+			}
 		}
 
 		.project-desc {
@@ -283,6 +414,13 @@ export default {
 			box-shadow: 1px 1px 5px 1px rgba(0,0,0,.1);
 			border-radius: 2px;
 			min-height: 10vw;
+
+			@include mobile {
+				padding: 15px;
+				margin-bottom: 7px;
+				max-height: 110px;
+				overflow: auto;
+			}
 		}
 
 		.project-tech {
@@ -291,6 +429,11 @@ export default {
 			display: flex;
 			flex-wrap: wrap;
 			margin-bottom: 1vw;
+
+			@include mobile {
+				padding: 15px;
+				margin-bottom: 7px;
+			}
 
 			.tech {
 				background: $blue;
@@ -301,6 +444,16 @@ export default {
 
 				&:not(:last-child) {
 					margin-right: 0.75vw;
+				}
+
+				@include mobile {
+					padding: 5px 10px;
+					margin-bottom: 5px;
+					font-size: 12px;
+
+					&:not(:last-child) {
+						margin-right: 5px;
+					}
 				}
 			}
 		}
@@ -324,6 +477,12 @@ export default {
 
 				&:hover {
 					background: darken($blue, 5%);
+				}
+
+				@include mobile {
+					font-size: 12px;
+					padding: 15px 15px;
+					line-height: 0px;
 				}
 			}
 		}

@@ -37,7 +37,7 @@ export default {
 	justify-content: center;
 	align-items: center;
 	pointer-events: all;
-	z-index: 999;
+	z-index: 99999;
 	opacity: 0;
 	@include fadein(0.3s, 0)
 

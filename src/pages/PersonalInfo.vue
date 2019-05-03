@@ -82,9 +82,20 @@ export default {
     height: 100%;
     user-select: none;
 
+    @include mobile {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
     .left{
         width: 35%;
         height: 17.5vw;
+
+        @include mobile {
+            width: 200px;
+            height: 200px;
+        }
 
         .image-container{
             width: 100%;
@@ -108,6 +119,12 @@ export default {
         width: 65%;
         padding-left: 4vw;
         flex-direction: column;
+
+        @include mobile {
+            width: 90%;
+            padding: 0;
+            margin-top: 15px;
+        }
     
         .section{
             color: $black;
@@ -116,27 +133,52 @@ export default {
             width: 100%;
             text-align: left;
             opacity: 0;
+
+            @include mobile {
+                font-size: 28px;
+                text-align: center;
+            }
     
             &.name{
                 font-size: 3.5vw;
                 color: $blue;
                 margin-bottom: 1vw;
                 @include fadeinfromtop(0.75s, 0.75s)
+
+                @include mobile {
+                    font-size: 28px;
+                    margin-bottom: 15px;
+                }
             }
     
             &.has-child{
                 opacity: 1;
+
+                @include mobile {
+                    display: flex;
+                    justify-content: center;
+                }
             }
     
             .label{
                 font-size: 1.5vw;
                 opacity: 0;
+
+                @include mobile {
+                    font-size: 16px;
+                    text-align: center;
+                }
     
                 &.job{
                     margin-left: 0.5vw; 
                     color: $blue;
                     font-size: 2vw;
                     @include fadeinfromtop(0.75s, 0.75s)
+
+                    @include mobile {
+                        font-size: 18px;
+                        margin-left: 7px; 
+                    }
                 }
             }
         }

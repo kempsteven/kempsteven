@@ -4,7 +4,9 @@
             <div class="video-filter"></div>
 
             <div class="video-fallback" v-if="!isVideoLoaded">
-                <img :src="require('@/assets/img/coding.jpg')" alt="Coding Image">
+                <div class="img-container">
+                    <img :src="require('@/assets/img/coding.jpg')" alt="Coding Image">
+                </div>
             </div>
 
             <video loop muted playsinline oncontextmenu="return false;" @canplaythrough="videoHasBuffered()" class='video' ref="video" v-show="isVideoLoaded">
@@ -95,6 +97,10 @@ export default {
     position: fixed;
     overflow: hidden;
     flex-direction: column;
+
+    @include mobile {
+        justify-content: flex-start;
+    }
     
     .video-filter{
         background: rgba(0,0,0,0.1);
@@ -113,6 +119,14 @@ export default {
         padding-right: 0.45vw;
         position: absolute;
         top: -130%;
+
+        @include mobile {
+            height: 300px;
+            width: 300px;
+            padding: 0;
+            top: -250px;
+            padding-right: 25px;
+        }
     }
 
     .video-container{
@@ -131,10 +145,16 @@ export default {
             bottom: 0;
             right: 0;
             left: 0;
-            // left: -700px; for mobile pref
             margin: auto;
             min-height: 50%;
             min-width: 50%;
+
+            @include mobile {
+                top: -9999px;
+                bottom: -9999px;
+                left: -9999px;
+                right: -9850px;
+            }
         }
 
         .video-fallback {
@@ -148,8 +168,22 @@ export default {
             height: 50%;
             width: 50%;
 
-            img {
+            .img-container {
+                position: relative;
                 width: 100%;
+                height: 100%;
+
+                img {
+                    position: absolute;
+                    top: -9999px;
+                    bottom: -9999px;
+                    left: -9999px;
+                    right: -9999px;
+                    margin: auto;
+                    height: 100%;
+                    width: 100%;
+                    min-width: 1920px;
+                }
             }
         }
     }
@@ -165,16 +199,42 @@ export default {
         opacity: 0;
         @include fadeinfromtop(1s, 0);
 
+        @include mobile {
+           font-size: 32px;
+           width: 90%;
+           margin-top: 300px;
+        }
+
         .hr{
             width: 80%;
             height: 0.1vw;
             background: $white;
             margin: 0.75vw;
+
+            @include mobile {
+                height: 1px;
+                margin: 10px 5px;
+            }
         }
 
         .section{
             height: 17%;
             width: 100%;
+
+            @include mobile {
+                height: auto;
+            }
+
+            &.desc{
+                font-size: $big;
+
+                @include mobile {
+                    font-size: 15px;
+                    text-transform: capitalize;
+                    display: flex;
+                    flex-direction: column;
+                }
+            }
 
             .section-btn {
                 padding: 0.2vw 0.5vw;
@@ -188,14 +248,18 @@ export default {
                 outline: none;
                 font-size: $big;
 
+                @include mobile {
+                    font-size: 15px;
+                    padding: 5px;
+                    width: 80%;
+                    max-width: 215px;
+                    margin: 7px 0;
+                }
+
                 &:hover {
                     border: 1px solid $blue;
                     background: $blue;
                 }
-            }
-
-            &.desc{
-                font-size: $big;
             }
         }
 
@@ -206,6 +270,13 @@ export default {
             font-weight: 600;
             font-size: $big;
             user-select: none;
+
+            @include mobile {
+                font-size: 18px;
+                font-weight: 400;
+                padding: 10px 15px;
+                bottom: -80px;
+            }
         }
   
     }

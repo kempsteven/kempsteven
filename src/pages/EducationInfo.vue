@@ -85,7 +85,7 @@ export default {
 										setTimeout( () => {
 											item.innerText = item.innerText.replace(/0/g, innerText[x])
 											res()
-										}, 10)
+										}, 5)
 									})
 								} else if (random(3) === 2) {
 									new Promise( (res) => {
@@ -94,7 +94,7 @@ export default {
 										setTimeout( () => {
 											item.innerText = item.innerText.replace(/1/g, innerText[x])
 											res()
-										}, 10)
+										}, 5)
 									})
 								} else {
 									item.innerText = item.innerText.concat(innerText[x])
@@ -125,6 +125,13 @@ export default {
 		z-index: 1;
 		opacity: 0;
 		@include fadein(0.6s, 1s);
+
+		@include mobile {
+			width: 150px;
+			height: 150px;
+			left: -35px;
+			top: -128px;
+		}
 	}
 
 	.education {
@@ -150,11 +157,25 @@ export default {
 			background: rgba(250,250,250,0.5);
 			@include fadein(0.6s, 1s);
 
+			@include mobile {
+				padding: 10px;
+				border-radius: 2px;
+				margin-bottom: 10px;
+			}
+
 			.education-header {
 				font-size: 1.75vw;
 				padding-bottom: 0.75vw;
 				border-bottom: 0.1vw solid rgba(0,0,0,.1);
 				margin-bottom: 0.75vw;
+
+				@include mobile {
+					padding-bottom: 10px;
+					border-bottom: 1px solid rgba(0,0,0,.1);
+					margin-bottom: 10px;
+					font-size: 15px;
+					font-weight: 600;
+				}
 			}
 
 			.education-item {
@@ -166,6 +187,13 @@ export default {
 				border-radius: 0.1vw;
 				opacity: 0;
 				@include fadeinfromtop(0.3s, 1s);
+
+				@include mobile {
+					font-size: 14px;
+					padding: 10px;
+					margin-bottom: 10px;
+					border-radius: 2px;
+				}
 			}
 		}
 	}

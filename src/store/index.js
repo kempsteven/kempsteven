@@ -8,7 +8,8 @@ export default new Vuex.Store({
 	state:{
 		routeAnim: 'router-anim',
 		isInteracting: false,
-		modalStatus: false
+		modalStatus: false,
+		activeParticle: 'profile'
 	},
 
 	mutations: {
@@ -32,6 +33,10 @@ export default new Vuex.Store({
 			}
 		},
 
+		toggleParticle (state, payload) {
+			state.activeParticle = payload
+		},
+
 		toggleIsInteracting(state) {
 			state.isInteracting = !state.isInteracting
 		},
@@ -44,6 +49,7 @@ export default new Vuex.Store({
 	getters: {
 		getRouteAnim: state => state.routeAnim,
 		getIsInteracting: state => state.isInteracting,
-		getModalStatus: state => state.modalStatus
+		getModalStatus: state => state.modalStatus,
+		getActiveParticle: state => state.activeParticle,
 	},
 })
