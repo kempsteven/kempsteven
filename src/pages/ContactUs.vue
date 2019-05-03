@@ -1,49 +1,30 @@
 <template>
 	<div class="contact">
-<!-- 		<vue-particles
-			ref="particle"
-            color="#ffffff"
-            :particleOpacity="1"
-            :particlesNumber="120"
-            shapeType="circle"
-            :particleSize="5"
-            linesColor="#ffffff"
-            :linesWidth="0.5"
-            :lineLinked="false"
-            :lineOpacity="0.4"
-            :linesDistance="100"
-            :moveSpeed="1"
-            :hoverEffect="false"
-            hoverMode="bubble"
-            :clickEffect="true"
-            clickMode="repulse"
-        /> -->
+		<form class="contact-form" :class="{ 'no-pointer' : isInteracting}">
+			<h2 class="form-header">Contact Us</h2>
 
-        <form class="contact-form" :class="{ 'no-pointer' : isInteracting}">
-        	<h2 class="form-header">Contact Us</h2>
+			<section class="form-section gl-flex">
+				<label class="input-label">Name:</label>
+				<input class="input" type="text" required>
+			</section>
 
-        	<section class="form-section gl-flex">
-        		<label class="input-label">Name:</label>
-        		<input class="input" type="text" required>
-        	</section>
+			<section class="form-section gl-flex">
+				<label class="input-label">Email:</label>
+				<input class="input" type="email" required>
+			</section>
 
-        	<section class="form-section gl-flex">
-        		<label class="input-label">Email:</label>
-        		<input class="input" type="email" required>
-        	</section>
+			<section class="form-section gl-flex">
+				<label class="input-label">Subject:</label>
+				<input class="input" type="text" required>
+			</section>
 
-        	<section class="form-section gl-flex">
-        		<label class="input-label">Subject:</label>
-        		<input class="input" type="text" required>
-        	</section>
+			<section class="form-section gl-flex">
+				<label class="input-label">Message:</label>
+				<textarea class="textarea" maxlength="300"></textarea>
+			</section>
 
-        	<section class="form-section gl-flex">
-        		<label class="input-label">Message:</label>
-        		<textarea class="textarea" maxlength="300"></textarea>
-        	</section>
-
-        	<button class="submit-btn">Send Message</button>
-        </form>
+			<button class="submit-btn">Send Message</button>
+		</form>
 	</div>
 </template>
 <script>
