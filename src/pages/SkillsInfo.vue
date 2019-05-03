@@ -131,8 +131,10 @@ export default {
 			}
 
 			@include mobile {
-				height: 430px;
+				height: 66vh;
 				width: 65%;
+				overflow-y: auto;
+				overflow-x: hidden;
 			}
 
 			.skill-item {

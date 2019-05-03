@@ -93,7 +93,7 @@ export default {
 <style lang="scss" scoped>
 .landing-container{
     width: 100%;
-    height: 100vh;
+    min-height: 100vh;
     position: fixed;
     overflow: hidden;
     flex-direction: column;
@@ -121,10 +121,10 @@ export default {
         top: -130%;
 
         @include mobile {
-            height: 300px;
-            width: 300px;
+            height: 250px;
+            width: 250px;
             padding: 0;
-            top: -250px;
+            top: -200px;
             padding-right: 25px;
         }
     }
@@ -202,7 +202,7 @@ export default {
         @include mobile {
            font-size: 32px;
            width: 90%;
-           margin-top: 300px;
+           margin-top: 240px;
         }
 
         .hr{

@@ -82,6 +82,10 @@ export default {
         }
     },
 
+    beforeCreate () {
+        this.$store.commit('toggleParticle', 'profile')
+    },
+
     computed: {
         ...mapGetters({
             routerAnim: 'getRouteAnim',
@@ -132,7 +136,7 @@ export default {
         z-index: 2;
 
         @include mobile {
-            width: 95%;
+            width: 100%;
         }
     }
 

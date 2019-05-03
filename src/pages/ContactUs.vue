@@ -86,7 +86,7 @@ export default {
 				margin-bottom: 0.85vw;
 
 				@include mobile {
-					margin-bottom: 15px;
+					margin-bottom: 10px;
 				}
 
 				.input-label {
@@ -96,7 +96,7 @@ export default {
 
 					@include mobile {
 						font-size: 15px;
-						margin-bottom: 10px;
+						margin-bottom: 5px;
 					}
 				}
 
@@ -119,7 +119,7 @@ export default {
 					height: 6vw;
 
 					@include mobile {
-						height: 130px;
+						height: 95px;
 					}
 				}
 			}

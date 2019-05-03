@@ -9,7 +9,7 @@ export default new Vuex.Store({
 		routeAnim: 'router-anim',
 		isInteracting: false,
 		modalStatus: false,
-		activeParticle: 'profile'
+		activeParticle: ''
 	},
 
 	mutations: {
