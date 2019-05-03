@@ -50,81 +50,9 @@
 					</div>
 				</div>
 			</div>
-
-			<div class="column">
-				<div 
-					class="portfolio-item" 
-					@click="viewPortfolio(
-						{
-							title: 'Accursed Website', 
-							desc: `A website that contains information about a Horror Game, the Horror game was made by me and my thesis group for our requirements in our bachelor's degree, this website is tested in Chrome, Mozilla and Mobile view.`, 
-							tech: ['HTML', 'CSS', 'JavaScript', 'PHP'],
-							img: [
-									require('@/assets/img/portfolio/accursed/desktop.webp'), 
-									require('@/assets/img/portfolio/accursed/mobile.webp')
-								],
-							link: 'https://accursed.ga/'
-						}
-					)"
-				>
-					<img :src="require('@/assets/img/portfolio/accursed/desktop.webp')" alt="Portfolio Image">
-
-					<div class="item-details">
-						<span>Accursed Website</span>
-					</div>
-				</div>
-			</div>
-
-			<div class="column">
-				<div 
-					class="portfolio-item" 
-					@click="viewPortfolio(
-						{
-							title: 'Accursed Website', 
-							desc: `A website that contains information about a Horror Game, the Horror game was made by me and my thesis group for our requirements in our bachelor's degree, this website is tested in Chrome, Mozilla and Mobile view.`, 
-							tech: ['HTML', 'CSS', 'JavaScript', 'PHP'],
-							img: [
-									require('@/assets/img/portfolio/accursed/desktop.webp'), 
-									require('@/assets/img/portfolio/accursed/mobile.webp')
-								],
-							link: 'https://accursed.ga/'
-						}
-					)"
-				>
-					<img :src="require('@/assets/img/portfolio/accursed/desktop.webp')" alt="Portfolio Image">
-
-					<div class="item-details">
-						<span>Accursed Website</span>
-					</div>
-				</div>
-			</div>
-
-			<div class="column">
-				<div 
-					class="portfolio-item" 
-					@click="viewPortfolio(
-						{
-							title: 'Accursed Website', 
-							desc: `A website that contains information about a Horror Game, the Horror game was made by me and my thesis group for our requirements in our bachelor's degree, this website is tested in Chrome, Mozilla and Mobile view.`, 
-							tech: ['HTML', 'CSS', 'JavaScript', 'PHP'],
-							img: [
-									require('@/assets/img/portfolio/accursed/desktop.webp'), 
-									require('@/assets/img/portfolio/accursed/mobile.webp')
-								],
-							link: 'https://accursed.ga/'
-						}
-					)"
-				>
-					<img :src="require('@/assets/img/portfolio/accursed/desktop.webp')" alt="Portfolio Image">
-
-					<div class="item-details">
-						<span>Accursed Website</span>
-					</div>
-				</div>
-			</div>
 		</div>
 
-		<Modal v-if="modalStatus">
+		<Modal v-if="modalStatus" ref="viewerModal">
 			<div class="portfolio-viewer" slot="modal-body">
 				<div class="img-container">
 					<div class="img-web">
@@ -152,6 +80,7 @@
 					</div>
 
 					<div class="btn-container">
+						<button class="close" @click="closeModal()">Close</button>
 						<a target="_black" :href="selectedPortfolio.link" class="view">View Website</a>
 					</div>
 				</div>
@@ -184,6 +113,10 @@ export default {
 		viewPortfolio (portFolioDetails) {
 			this.selectedPortfolio = portFolioDetails
 			this.$store.commit('setModal', true)
+		},
+
+		closeModal () {
+			this.$refs.viewerModal.closeModalBg()
 		}
 	}
 }
@@ -227,7 +160,7 @@ export default {
 	flex-wrap: wrap;
 	overflow-y: auto;
 	overflow-x: hidden;
-	width: 70%;
+	width: 100%;
 	height: 65vh;
 	margin-top: 1vh;
 	pointer-events: all;
@@ -235,6 +168,7 @@ export default {
 	@include fadein(0.75s, 1s);
 
 	@include mobile {
+		width: 70%;
 		height: auto;
 		max-height: 400px;
 		margin: 0 auto 0 auto;
@@ -461,6 +395,32 @@ export default {
 		.btn-container {
 			display: flex;
 			justify-content: flex-end;
+
+			.close {
+				margin-right: 0.75vw;
+				border: 0.2vw solid white;
+				color: white;
+				padding: 0.75vw 3vw;
+				transition: 0.4s;
+				border-radius: 1px;
+				background: $blue;
+				cursor: pointer;
+				outline: none;
+				transition: 0.3s;
+				line-height: 0.85vw;
+				text-decoration: none;
+				font-size: 1vw;
+
+				&:hover {
+					background: darken($blue, 5%);
+				}
+
+				@include mobile {
+					font-size: 12px;
+					padding: 15px 15px;
+					line-height: 0px;
+				}
+			}
 
 			.view {
 				border: 0.2vw solid white;
