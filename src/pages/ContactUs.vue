@@ -67,7 +67,7 @@ export default {
 			@include mobile {
 				width: 90%;
 				padding: 15px;
-				top: 60px;
+				top: 54px;
 			}
 
 			.form-header {
@@ -86,7 +86,7 @@ export default {
 				margin-bottom: 0.85vw;
 
 				@include mobile {
-					margin-bottom: 10px;
+					margin-bottom: 7px;
 				}
 
 				.input-label {
@@ -119,7 +119,7 @@ export default {
 					height: 6vw;
 
 					@include mobile {
-						height: 95px;
+						height: 78px;
 					}
 				}
 			}

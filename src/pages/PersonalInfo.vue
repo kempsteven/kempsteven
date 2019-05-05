@@ -85,7 +85,9 @@ export default {
     @include mobile {
         display: flex;
         flex-direction: column;
-        align-items: center;
+        justify-content: flex-start;
+        padding-top: 25%;
+        // align-items: center;
     }
 
     .left{

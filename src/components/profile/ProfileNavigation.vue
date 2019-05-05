@@ -227,6 +227,10 @@ export default {
 			pointer-events: none;
 			@include fadeout(0.5s, 0s);
 		}
+
+		@include mobile {
+			bottom: 11%;
+		}
 	}
 }
 
@@ -245,8 +249,8 @@ export default {
 	@include fadeinfrombottom(0.75s, 0.5s);
 
 	@include mobile {
-		right: 3%;
-		bottom: 2%;
+		right: 2%;
+		bottom: 11%;
 	}
 
 	button{
