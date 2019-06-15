@@ -9,7 +9,16 @@
                 </div>
             </div>
 
-            <video loop muted playsinline oncontextmenu="return false;" @canplaythrough="videoHasBuffered()" class='video' ref="video" v-show="isVideoLoaded">
+            <video
+                loop
+                muted
+                playsinline
+                oncontextmenu="return false;"
+                @canplaythrough="videoHasBuffered()"
+                class='video'
+                ref="video"
+                v-show="isVideoLoaded"
+            >
                 <source :src="require('@/assets/video/coding.mp4')" type="video/mp4" />
                 <source :src="require('@/assets/video/coding.webm')" type="video/webm" />
             </video>

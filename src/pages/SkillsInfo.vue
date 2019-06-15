@@ -9,7 +9,7 @@
 						<label class="skill-label">{{ Object.keys(skill)[0] }}</label>
 						<img :src="require(`@/assets/img/skills/${processImgName(skill)}.png`)" alt="Skill Item">
 					</div>
-	
+					{{ dynamicGetter('list') }}
 					<div class="stars-container gl-flex gl-vcenter-item">
 						<font-awesome-icon 
 							class="star-icon" 
@@ -25,20 +25,32 @@
 </template>
 <script>
 import { mapGetters } from 'vuex'
+import * as skillModule from '@/store/skill/app.js'
 export default {
 	data () {
 		return {
 			skills: [
 				{HTML: 5}, {CSS: 5}, {Sass: 4.5}, {Javascript: 4}, {'Vue.js': 4},
-				{'Node.js': 3}, {PHP: 3}, {MySql: 2.5}
-			],
+				{'Node.js': 3}, {PHP: 3}, {MySql: 2.5},
+			]
 		}
 	},
 
 	computed: {
 		...mapGetters({
-			isInteracting: 'getIsInteracting'
+			isInteracting: 'getIsInteracting',
+			stateData: 'skill/getState'
 		})
+	},
+
+	beforeCreate () {
+		if (!this.$store._modulesNamespaceMap['skill/']) {
+			this.$store.registerModule('skill', skillModule.default)
+		}
+	},
+
+	async created () {
+		await this.getSkillList()
 	},
 
 	activated(){
@@ -46,6 +58,14 @@ export default {
 	},
 
 	methods: {
+		dynamicGetter (key) {
+			return this.stateData(key)
+		},
+
+		async getSkillList () {
+			await this.$store.dispatch('skill/getSkillList')
+		},
+
 		processImgName(skill){
 			return Object.keys(skill)[0].toLowerCase().split('.')[0]
 		},
@@ -86,14 +106,14 @@ export default {
 					count++
 				}, star * 100)
 			}
-		}
+		},
 	}
 }
 </script>
 <style lang="scss" scoped>
 .skills-info {
 	width: 100%;
-	height: 100%;
+	min-height: 100%;
 	position: absolute;
 
 	.info-wrapper {

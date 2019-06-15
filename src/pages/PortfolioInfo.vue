@@ -124,7 +124,7 @@ export default {
 <style lang="scss" scoped>
 .portfolio-info {
 	width: 100%;
-	height: 100%;
+	min-height: 100%;
 	position: absolute;
 	display: flex;
 	flex-direction: column;

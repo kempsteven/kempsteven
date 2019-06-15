@@ -46,7 +46,7 @@ export default {
                 profile: {
                     color: '#282828',
                     particleOpacity: 0.7,
-                    particlesNumber: 90,
+                    particlesNumber: 60,
                     particleSize: 0,
                     linesColor: '#282828',
                     lineLinked: true,
@@ -58,7 +58,7 @@ export default {
                 contact: {
                     color: '#ffffff',
                     particleOpacity: 1,
-                    particlesNumber: 120,
+                    particlesNumber: 90,
                     particleSize: 4,
                     linesColor: '#ffffff',
                     lineLinked: false,
@@ -100,7 +100,7 @@ export default {
     .profile-container{
         background: $background;
         width: 100%;
-        height: 100vh;
+        min-height: 100vh;
         position: fixed;
         overflow: hidden;
         flex-direction: column;
