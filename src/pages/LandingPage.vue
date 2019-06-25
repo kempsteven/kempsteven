@@ -3,9 +3,9 @@
         <div class="video-container gl-col-1">
             <div class="video-filter"></div>
 
-            <div class="video-fallback" v-if="!isVideoLoaded">
+            <div class="video-fallback" v-show="!isVideoLoaded">
                 <div class="img-container">
-                    <img :src="require('@/assets/img/coding.jpg')" alt="Coding Image">
+                    <img :src="require('@/assets/img/coding.webp')" alt="Coding Image">
                 </div>
             </div>
 
@@ -67,31 +67,31 @@ export default {
         }
     },
 
-    activated(){
+    activated () {
         this.playVideo()
     },
 
     methods:{
-        playVideo(){
+        playVideo () {
             this.$refs.video.play()
         },
 
-        start(){
+        start () {
             this.$store.commit('changeRouteAnim', 'next')
             this.$router.push({name: 'personal-info'})
         },
 
-        videoHasBuffered(){
+        videoHasBuffered () {
             this.isVideoLoaded = true
             this.$refs.video.play()
         },
 
-        handleAnimation(anim) {
+        handleAnimation (anim) {
             this.anim = anim;
             this.anim.setSpeed(1.2)    
         },
 
-        goToContactUs() {
+        goToContactUs () {
             this.$store.commit('changeRouteAnim', 'default')
             this.$router.push({name: 'contact-us'})
         }

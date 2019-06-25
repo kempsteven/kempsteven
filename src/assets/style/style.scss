@@ -185,3 +185,10 @@ html, body {
 	}
 }
 
+.g-transition-enter-active, .g-transition-leave-active {
+  transition: opacity 0.5s ease;
+}
+.g-transition-enter, .g-transition-leave-to{
+  opacity: 0;
+}
+

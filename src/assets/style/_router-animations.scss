@@ -1,10 +1,10 @@
 .router-anim-enter-active {
-    animation: appear 0.7s;
+    animation: appear 0.3s;
     animation-timing-function:ease-in-out;
 }
 
 .router-anim-leave-active {
-    animation: disappear 0.7s;
+    animation: disappear 0.3s;
     animation-timing-function:ease-in-out;
 }
 

@@ -1,6 +1,6 @@
 <template>
     <div id="profile-container" class="profile-container gl-flex-vhcenter" :class="{ 'contact-us' : $route.name === 'contact-us'}">
-        <!-- <div class="video-filter" :class="{ 'disappear' : isInteracting}" v-show="$route.name !== 'contact-us'"/> -->
+
         <vue-particles
             :key="activeParticle"
             :color="particleOption[activeParticle].color"
@@ -25,7 +25,8 @@
         <ProfileNavigation/>
 
         <div class="profile-wrapper" :class="isInteracting ? 'disappear' : 'appear'">
-            <transition :name="routerAnim === 'next-router-anim' ? 'no-anim' : routerAnim ">
+            <!-- <transition :name="routerAnim === 'next-router-anim' ? 'no-anim' : routerAnim "> -->
+            <transition :name="routerAnim">
                 <keep-alive>
                     <router-view/>
                 </keep-alive>

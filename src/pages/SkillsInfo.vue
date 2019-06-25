@@ -3,37 +3,73 @@
 		<div class="info-wrapper">
 			<span>My Skills Set</span>
 
-			<div class="skill-container gl-flex gl-around-item scroll" :class="{ 'no-pointer' : isInteracting}" ref="skillContainer">
-				<div class="skill-item" v-for="(skill, key) in skills" :key="key">
-					<div class="img-container">
-						<label class="skill-label">{{ Object.keys(skill)[0] }}</label>
-						<img :src="require(`@/assets/img/skills/${processImgName(skill)}.png`)" alt="Skill Item">
-					</div>
-					{{ dynamicGetter('list') }}
-					<div class="stars-container gl-flex gl-vcenter-item">
-						<font-awesome-icon 
-							class="star-icon" 
-							:icon="[star.type, star.icon]" 
-							v-for="(star, key) in starRating(Object.values(skill)[0])"
-							:key="key"
-						/>
+			<transition name="g-transition">
+				<div class="lottie-container" v-if="dynamicGetters('loading')">
+					<lottie class="lottie" :options="defaultOptions" @animCreated="handleAnimation" />
+					
+					<span class="loading-label">
+						Loading...
+					</span>
+				</div>
+
+				<div
+					class="skill-container gl-flex gl-around-item scroll"
+					:class="{ 'no-pointer' : isInteracting}"
+					ref="skillContainer"
+					v-else
+				>
+					<div
+						class="skill-item"
+						v-for="(skill, key) in dynamicGetters('list').list"
+						:key="key"
+					>
+						<div class="img-container">
+							<label class="skill-label">
+								{{ skill.skillName }}
+							</label>
+
+							<img
+								:src="apiUrl + skill.skillImg"
+								alt="Skill Item"
+							>
+						</div>
+
+						<div class="stars-container gl-flex gl-vcenter-item">
+							<font-awesome-icon 
+								class="star-icon" 
+								v-for="(star, key) in starRating(skill.skillLevel)"
+								:icon="[star.type, star.icon]" 
+								:key="key"
+							/>
+						</div>
 					</div>
 				</div>
-			</div>
+			</transition>
 		</div>
 	</div>
 </template>
 <script>
 import { mapGetters } from 'vuex'
 import * as skillModule from '@/store/skill/app.js'
+
+import Lottie from 'vue-lottie';
+import * as animationData from '@/assets/animation/loading.json';
 export default {
 	data () {
 		return {
+			defaultOptions: {animationData: animationData.default},
+
 			skills: [
 				{HTML: 5}, {CSS: 5}, {Sass: 4.5}, {Javascript: 4}, {'Vue.js': 4},
 				{'Node.js': 3}, {PHP: 3}, {MySql: 2.5},
-			]
+			],
+
+			apiUrl: `${process.env.VUE_APP_API_URL}/` 
 		}
+	},
+
+	components: {
+		'lottie': Lottie
 	},
 
 	computed: {
@@ -51,14 +87,11 @@ export default {
 
 	async created () {
 		await this.getSkillList()
-	},
-
-	activated(){
 		this.setStarAnimation()
 	},
 
 	methods: {
-		dynamicGetter (key) {
+		dynamicGetters (key) {
 			return this.stateData(key)
 		},
 
@@ -66,16 +99,16 @@ export default {
 			await this.$store.dispatch('skill/getSkillList')
 		},
 
-		processImgName(skill){
+		processImgName (skill) {
 			return Object.keys(skill)[0].toLowerCase().split('.')[0]
 		},
 
-		starRating(rating) {
-			var parsedRating = parseInt(String(rating).split('.')[0])
-			var hasDecimal = String(rating).split('.').length === 2 ? true : false
-			var starArray = []
+		starRating (rating) {
+			let parsedRating = parseInt(String(rating).split('.')[0])
+			let hasDecimal = String(rating).split('.').length === 2 ? true : false
+			let starArray = []
 
-			for (var rate = 1; rate <= parsedRating; rate++) {
+			for (let rate = 1; rate <= parsedRating; rate++) {
 				starArray.push({type: 'fas', icon: 'star'})
 			}
 
@@ -85,9 +118,9 @@ export default {
 
 			
 			if (starArray.length !== 5) {
-				var length = starArray.length
+				let length = starArray.length
 
-				for (var nostar = 1; nostar <= 5 - length; nostar++) {
+				for (let nostar = 1; nostar <= 5 - length; nostar++) {
 					starArray.push({type: 'far', icon: 'star'})
 				}
 			}
@@ -95,18 +128,24 @@ export default {
 			return starArray
 		},
 
-		setStarAnimation(){
-			var stars = this.$refs.skillContainer.querySelectorAll('svg')
-			var count = 0
+		setStarAnimation () {
+			let stars = this.$refs.skillContainer.querySelectorAll('svg')
+			let count = 0
 
-			for (var star = 0; star <= stars.length - 1; star++) {
+			for (let star = 0; star <= stars.length - 1; star++) {
 				stars[star].classList.remove('disappear')
+
 				setTimeout( ()=>{
 					stars[count].classList.add('appear')
 					count++
 				}, star * 100)
 			}
 		},
+
+		handleAnimation (anim) {
+			this.anim = anim;
+			this.anim.setSpeed(1.7)    
+		}
 	}
 }
 </script>
@@ -139,6 +178,27 @@ export default {
 			}
 		}
 
+		.lottie-container{
+			width: 30%;
+			height: 30%;
+			background: #f2f2f2;
+			padding: 3vw;
+			opacity: 0;
+			margin: 5vw auto 0 auto;
+			@include fadein(0.75s, 0.8s);
+
+			.lottie {
+				height: 50%;
+			}
+
+			.loading-label {
+				display: block;
+				font-size: 1vw;
+				text-align: center;
+				width: 100%;
+			}
+		}
+
 		.skill-container {
 			margin: 0 auto;
 			height: 29vw;
@@ -160,6 +220,7 @@ export default {
 			.skill-item {
 				padding: 1vw;
 				width: 26vw;
+				height: 7vw;
 				display: flex;
 
 				@include mobile {
