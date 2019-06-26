@@ -3,20 +3,20 @@
 		<div class="info-wrapper">
 			<span>My Skills Set</span>
 
-			<transition name="g-transition">
-				<div class="lottie-container" v-if="dynamicGetters('loading')">
-					<lottie class="lottie" :options="defaultOptions" @animCreated="handleAnimation" />
-					
-					<span class="loading-label">
-						Loading...
-					</span>
-				</div>
+			<div class="lottie-container" v-if="dynamicGetters('loading')">
+				<lottie class="lottie" :options="defaultOptions" @animCreated="handleAnimation" />
+				
+				<span class="loading-label">
+					Loading...
+				</span>
+			</div>
 
+			<transition name="g-transition">
 				<div
 					class="skill-container gl-flex gl-around-item scroll"
 					:class="{ 'no-pointer' : isInteracting}"
 					ref="skillContainer"
-					v-else
+					v-if="!dynamicGetters('loading')"
 				>
 					<div
 						class="skill-item"
@@ -29,7 +29,7 @@
 							</label>
 
 							<img
-								:src="apiUrl + skill.skillImg"
+								:src="skill.skillImg.url"
 								alt="Skill Item"
 							>
 						</div>
@@ -226,6 +226,7 @@ export default {
 				@include mobile {
 					width: 100%;
 					padding: 5px;
+					min-height: 60px;
 				}
 
 				label {
@@ -281,7 +282,7 @@ export default {
 						opacity: 0;
 
 						@include mobile {
-							font-size: 18px;
+							font-size: 17px;
 						}
 
 						&.appear {

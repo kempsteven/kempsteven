@@ -22,7 +22,7 @@ html, body {
     }
 
     &::-webkit-scrollbar {  
-        width: 5px;
+        width: 8px;
         height: 5px;
         background-color: #979CAC;
         background: transparent;
@@ -31,7 +31,13 @@ html, body {
     &::-webkit-scrollbar-thumb { 
         border-radius: 10px;
         background-color: #979CAC;
-    }
+	}
+	
+	&.small-scroll {
+		&::-webkit-scrollbar {  
+			width: 6px;
+		}
+	}
 }
 
 /////////// COLUMNS //////////

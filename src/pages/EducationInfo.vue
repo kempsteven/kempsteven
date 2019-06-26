@@ -1,35 +1,78 @@
 <template>
 	<div class="education">
-		<div class="education-container">
-			<div class="lottie-container">
-				<lottie ref="lottie" :options="defaultOptions" @animCreated="handleAnimation"/>
-			</div>
-
-			<span class="education-header">Education</span>
-
-			<span class="education-item">Bachelor of Science in Computer Science</span>
+		<div class="lottie-container" v-if="dynamicGetters('loading')">
+			<Lottie
+				class="lottie"
+				:options="loadingOptions"
+				@animCreated="handleLoadingAnimation"
+			/>
+			
+			<span class="loading-label">
+				Loading...
+			</span>
 		</div>
 
-		<div class="education-container">
-			<span class="education-header">Awards I Got in the University</span>
+		<div class="items-container" v-if="!dynamicGetters('loading')">
+			<div
+				class="education-wrapper"
+				:key="key"
+				v-for="(education, key) in dynamicGetters('list').data"
+			>
+				<div class="education-container">
+					<div class="lottie-container">
+						<Lottie
+							ref="lottie"
+							:options="defaultOptions"
+							@animCreated="handleAnimation"
+						/>
+					</div>
 
-			<div class="education-item">Best Thesis</div>
-			<div class="education-item">Best Programmer</div>
-			<div class="education-item">Dean's Lister</div>
+					<span class="education-header">
+						Education
+					</span>
+
+					<span class="education-item">
+						{{ education.education }}
+					</span>
+				</div>
+
+				<div class="education-container">
+					<span class="education-header">
+						Awards I Got in the University
+					</span>
+
+					<div
+						class="education-item"
+						:key="key"
+						v-for="(award, key) in education.awards.split(',')">
+						{{ award }}
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
 </template>
 <script>
 import Lottie from 'vue-lottie';
+import { mapGetters } from 'vuex'
 import * as animationData from '@/assets/animation/books.json';
+import * as loadingData from '@/assets/animation/loading.json';
+import * as educationModule from '@/store/education/app.js'
 export default {
 	components: {
-		'lottie': Lottie
+		Lottie
 	},
 
 	data () {
 		return {
 			defaultOptions: {animationData: animationData.default},
+			loadingOptions: {animationData: loadingData.default},
+		}
+	},
+
+	beforeCreate () {
+		if (!this.$store._modulesNamespaceMap['education/']) {
+			this.$store.registerModule('education', educationModule.default)
 		}
 	},
 
@@ -47,16 +90,39 @@ export default {
 		}, 1000)
 	},
 
+	async created () {
+		await this.getEducationList()
+	},
+
+	computed: {
+		...mapGetters({
+			stateData: 'education/getState'
+		})
+	},
+
 	methods: {
+		dynamicGetters (key) {
+			return this.stateData(key)
+		},
+
+		async getEducationList () {
+			await this.$store.dispatch('education/getEducationList')
+		},
+
 		playLottieAnim () {
-			this.$refs.lottie.anim.play()
+			if (this.$refs.lottie && this.$refs.lottie.anim) this.$refs.lottie.anim.play()
 		},
 
 		stopLottieAnim () {
-			this.$refs.lottie.anim.stop()
+			if (this.$refs.lottie && this.$refs.lottie.anim) this.$refs.lottie.anim.stop()
 		},
 
 		handleAnimation(anim) {
+			this.anim = anim
+			this.anim.setSpeed(1.2)
+		},
+
+		handleLoadingAnimation (anim) {
 			this.anim = anim
 			this.anim.setSpeed(0.8)
 		},
@@ -138,61 +204,72 @@ export default {
 		width: 100%;
 		min-height: 100%;
 		display: flex;
-		align-items: center;
-		flex-direction: column;
-		justify-content: center;
 
-		.education-container {
-			z-index: 2;
-			position: relative;
-			padding: 0.75vw;
-			box-shadow: 1px 1px 5px 1px rgba(0,0,0,.5);
-			width: 70%;
+		.items-container {
+			width: 100%;
+			min-height: 100%;
 			display: flex;
+		}
+
+		.education-wrapper {
+			width: 100%;
+			display: flex;
+			align-items: center;
 			flex-direction: column;
-			text-align: left;
-			border-radius: 0.1vw;
-			margin-bottom: 2vw;
-			opacity: 0;
-			background: rgba(250,250,250,0.5);
-			@include fadein(0.6s, 1s);
+			justify-content: center;
 
-			@include mobile {
-				padding: 10px;
-				border-radius: 2px;
-				margin-bottom: 10px;
-			}
-
-			.education-header {
-				font-size: 1.75vw;
-				padding-bottom: 0.75vw;
-				border-bottom: 0.1vw solid rgba(0,0,0,.1);
-				margin-bottom: 0.75vw;
-
-				@include mobile {
-					padding-bottom: 10px;
-					border-bottom: 1px solid rgba(0,0,0,.1);
-					margin-bottom: 10px;
-					font-size: 15px;
-					font-weight: 600;
-				}
-			}
-
-			.education-item {
-				font-size: 1vw;
-				background: $blue;
+			.education-container {
+				z-index: 2;
+				position: relative;
 				padding: 0.75vw;
-				color: #fff;
-				margin-bottom: 0.75vw;
+				box-shadow: 1px 1px 5px 1px rgba(0,0,0,.5);
+				width: 70%;
+				display: flex;
+				flex-direction: column;
+				text-align: left;
 				border-radius: 0.1vw;
+				margin-bottom: 2vw;
 				opacity: 0;
-				@include fadeinfromtop(0.3s, 1s);
+				background: rgba(250,250,250,0.5);
+				@include fadein(0.6s, 1s);
 
 				@include mobile {
-					font-size: 14px;
 					padding: 10px;
-					margin-bottom: 10px;
 					border-radius: 2px;
+					margin-bottom: 10px;
+				}
+
+				.education-header {
+					font-size: 1.75vw;
+					padding-bottom: 0.75vw;
+					border-bottom: 0.1vw solid rgba(0,0,0,.1);
+					margin-bottom: 0.75vw;
+
+					@include mobile {
+						padding-bottom: 10px;
+						border-bottom: 1px solid rgba(0,0,0,.1);
+						margin-bottom: 10px;
+						font-size: 15px;
+						font-weight: 600;
+					}
+				}
+
+				.education-item {
+					font-size: 1vw;
+					background: $blue;
+					padding: 0.75vw;
+					color: #fff;
+					margin-bottom: 0.75vw;
+					border-radius: 0.1vw;
+					opacity: 0;
+					@include fadeinfromtop(0.3s, 1s);
+
+					@include mobile {
+						font-size: 14px;
+						padding: 10px;
+						margin-bottom: 10px;
+						border-radius: 2px;
+					}
 				}
 			}
 		}

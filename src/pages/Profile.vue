@@ -47,11 +47,11 @@ export default {
                 profile: {
                     color: '#282828',
                     particleOpacity: 0.7,
-                    particlesNumber: 60,
+                    particlesNumber: 30,
                     particleSize: 0,
                     linesColor: '#282828',
                     lineLinked: true,
-                    linesDistance: 200,
+                    linesDistance: 300,
                     moveSpeed: 3,
                     hoverEffect: false
                 },
