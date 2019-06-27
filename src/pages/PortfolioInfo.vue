@@ -123,7 +123,7 @@ export default {
 		}
 	},
 
-	async activated () {
+	async created () {
 		await this.getPortfolioList()
 	},
 

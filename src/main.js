@@ -7,16 +7,14 @@ import { library } from '@fortawesome/fontawesome-svg-core'
 import { faStar as fasStar, faStarHalfAlt } from '@fortawesome/free-solid-svg-icons'
 import { faStar as farStar } from '@fortawesome/free-regular-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-import testPlugin from './plugin/testPlugin'
+import VueTypedJs from 'vue-typed-js'
 
 library.add(farStar, fasStar, faStarHalfAlt)
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 
 Vue.config.productionTip = false
 Vue.use(VueParticles)
-Vue.use(testPlugin, {
-  job: 'Web Dev'
-})
+Vue.use(VueTypedJs)
 
 new Vue({
   router,

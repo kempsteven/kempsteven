@@ -1,6 +1,6 @@
 <template>
 	<div class="education">
-		<div class="lottie-container" v-if="dynamicGetters('loading')">
+		<div class="loading-container" v-show="dynamicGetters('loading')">
 			<Lottie
 				class="lottie"
 				:options="loadingOptions"
@@ -12,28 +12,35 @@
 			</span>
 		</div>
 
-		<div class="items-container" v-if="!dynamicGetters('loading')">
+		<div class="items-container" v-show="!dynamicGetters('loading')">
+			<div class="lottie-container">
+				<Lottie
+					ref="lottie"
+					:options="defaultOptions"
+					@animCreated="handleAnimation"
+				/>
+			</div>
 			<div
 				class="education-wrapper"
 				:key="key"
 				v-for="(education, key) in dynamicGetters('list').data"
 			>
 				<div class="education-container">
-					<div class="lottie-container">
-						<Lottie
-							ref="lottie"
-							:options="defaultOptions"
-							@animCreated="handleAnimation"
-						/>
-					</div>
-
 					<span class="education-header">
 						Education
 					</span>
 
-					<span class="education-item">
-						{{ education.education }}
-					</span>
+					<vue-typed-js
+						:startDelay="800"
+						:typeSpeed="50"
+						:strings="[
+							textToBinary(education.education, 4),
+							education.education
+						]"
+						class="education-item"
+					>
+						<span class="typing"></span>
+					</vue-typed-js>
 				</div>
 
 				<div class="education-container">
@@ -44,8 +51,18 @@
 					<div
 						class="education-item"
 						:key="key"
-						v-for="(award, key) in education.awards.split(',')">
-						{{ award }}
+						v-for="(award, key) in education.awards.split(',')"
+					>
+						<vue-typed-js
+							:startDelay="800"
+							:typeSpeed="40 * key"
+							:strings="[
+								textToBinary(award, 4 + key),
+								award
+							]"
+						>
+							<span class="typing"></span>
+						</vue-typed-js>
 					</div>
 				</div>
 			</div>
@@ -60,13 +77,14 @@ import * as loadingData from '@/assets/animation/loading.json';
 import * as educationModule from '@/store/education/app.js'
 export default {
 	components: {
-		Lottie
+		Lottie,
 	},
 
 	data () {
 		return {
 			defaultOptions: {animationData: animationData.default},
 			loadingOptions: {animationData: loadingData.default},
+			typeCursor: true
 		}
 	},
 
@@ -86,7 +104,7 @@ export default {
 
 	mounted () {
 		setTimeout( ()=>{
-			this.recurseString()
+			// this.recurseString()
 		}, 1000)
 	},
 
@@ -101,6 +119,22 @@ export default {
 	},
 
 	methods: {
+		textToBinary (text, length) {
+			let binaryOfText = ''
+			let textArr = text.split('')
+			for (var i = 0; i < textArr.length; i++) {
+				/* 
+					return the Unicode of the first character in a string
+					then toString(2) makes binary value from number
+				*/
+				binaryOfText += textArr[i].charCodeAt(0).toString(2) + " "
+
+				if (binaryOfText.split(' ').length === length) break
+			}
+			
+			return binaryOfText
+		},
+
 		dynamicGetters (key) {
 			return this.stateData(key)
 		},
@@ -110,11 +144,11 @@ export default {
 		},
 
 		playLottieAnim () {
-			if (this.$refs.lottie && this.$refs.lottie.anim) this.$refs.lottie.anim.play()
+			this.$refs.lottie.anim.play()
 		},
 
 		stopLottieAnim () {
-			if (this.$refs.lottie && this.$refs.lottie.anim) this.$refs.lottie.anim.stop()
+			this.$refs.lottie.anim.stop()
 		},
 
 		handleAnimation(anim) {
@@ -124,10 +158,10 @@ export default {
 
 		handleLoadingAnimation (anim) {
 			this.anim = anim
-			this.anim.setSpeed(0.8)
+			this.anim.setSpeed(1.7)
 		},
 
-		async recurseString () {
+		async recursetexting () {
 			let random = (max) => {
 				return Math.ceil(Math.random() * Math.floor(max));
 			}
@@ -182,33 +216,56 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-	.lottie-container{
-		height: 12vw;
-		width: 12vw;
-		position: absolute;
-		left: -3vw;
-		top: -10.2vw;
-		z-index: 1;
-		opacity: 0;
-		@include fadein(0.6s, 1s);
 
-		@include mobile {
-			width: 150px;
-			height: 150px;
-			left: -35px;
-			top: -128px;
+
+.education {
+	width: 100%;
+	min-height: 100%;
+	display: flex;
+	align-items: center;
+
+	.loading-container{
+		width: 30%;
+		height: 30%;
+		padding: 3vw;
+		opacity: 0;
+		margin: 0 auto;
+		@include fadein(0.75s, 0.8s);
+
+		.lottie {
+			height: 50%;
+		}
+
+		.loading-label {
+			display: block;
+			font-size: 1vw;
+			text-align: center;
+			width: 100%;
 		}
 	}
 
-	.education {
+	.items-container {
 		width: 100%;
 		min-height: 100%;
 		display: flex;
+		position: relative;
 
-		.items-container {
-			width: 100%;
-			min-height: 100%;
-			display: flex;
+		.lottie-container {
+			height: 12vw;
+			width: 12vw;
+			position: absolute;
+			left: 6.8vw;
+			top: -10.2vw;
+			z-index: 1;
+			opacity: 0;
+			@include fadein(0.6s, 1s);
+
+			@include mobile {
+				width: 150px;
+				height: 150px;
+				left: -35px;
+				top: -128px;
+			}
 		}
 
 		.education-wrapper {
@@ -220,7 +277,6 @@ export default {
 
 			.education-container {
 				z-index: 2;
-				position: relative;
 				padding: 0.75vw;
 				box-shadow: 1px 1px 5px 1px rgba(0,0,0,.5);
 				width: 70%;
@@ -264,6 +320,10 @@ export default {
 					opacity: 0;
 					@include fadeinfromtop(0.3s, 1s);
 
+					.type-writer {
+						display: inline-block;
+					}
+
 					@include mobile {
 						font-size: 14px;
 						padding: 10px;
@@ -274,4 +334,5 @@ export default {
 			}
 		}
 	}
+}
 </style>

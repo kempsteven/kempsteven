@@ -180,7 +180,7 @@ export default {
 
 		.lottie-container{
 			width: 30%;
-			height: 30%;
+			height: 100%;
 			background: #f2f2f2;
 			padding: 3vw;
 			opacity: 0;
