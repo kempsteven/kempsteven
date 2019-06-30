@@ -219,6 +219,21 @@ export default {
 		text-align: center;
 		width: 100%;
 	}
+
+	@include mobile {
+		width: 60%;
+		margin: 0 auto;
+
+		.lottie {
+			height: auto;
+		}
+
+		.loading-label {
+			font-size: 14px;
+			margin-top: 0;
+			padding-top: 0;
+		}
+	}
 }
 
 .portfolio-container {

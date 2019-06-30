@@ -197,6 +197,15 @@ export default {
 				text-align: center;
 				width: 100%;
 			}
+
+			@include mobile {
+				width: 60%;
+				margin: 0 auto;
+
+				.loading-label {
+					font-size: 14px;
+				}
+			}
 		}
 
 		.skill-container {

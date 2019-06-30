@@ -57,7 +57,7 @@
 							:startDelay="800"
 							:typeSpeed="25 * key"
 							:strings="[
-								textToBinary(award, 4 + key),
+								textToBinary(award, 4),
 								award
 							]"
 						>
@@ -83,8 +83,7 @@ export default {
 	data () {
 		return {
 			defaultOptions: {animationData: animationData.default},
-			loadingOptions: {animationData: loadingData.default},
-			typeCursor: true
+			loadingOptions: {animationData: loadingData.default}
 		}
 	},
 
@@ -242,6 +241,19 @@ export default {
 			text-align: center;
 			width: 100%;
 		}
+
+		@include mobile {
+			width: 60%;
+			margin: 0 auto;
+
+			.lottie {
+				height: auto;
+			}
+
+			.loading-label {
+				font-size: 14px;
+			}
+		}
 	}
 
 	.items-container {
@@ -263,7 +275,7 @@ export default {
 			@include mobile {
 				width: 150px;
 				height: 150px;
-				left: -35px;
+				left: 18px;
 				top: -128px;
 			}
 		}
@@ -322,6 +334,10 @@ export default {
 
 					.type-writer {
 						display: inline-block;
+					}
+
+					.typing {
+						display: inline;
 					}
 
 					@include mobile {
