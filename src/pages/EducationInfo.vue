@@ -32,7 +32,7 @@
 
 					<vue-typed-js
 						:startDelay="800"
-						:typeSpeed="50"
+						:typeSpeed="40"
 						:strings="[
 							textToBinary(education.education, 4),
 							education.education
@@ -55,7 +55,7 @@
 					>
 						<vue-typed-js
 							:startDelay="800"
-							:typeSpeed="40 * key"
+							:typeSpeed="25 * key"
 							:strings="[
 								textToBinary(award, 4 + key),
 								award
