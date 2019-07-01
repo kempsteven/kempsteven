@@ -27,31 +27,35 @@
 				<button class="submit-btn">Send Message</button>
 			</form>
 
-			<div class="sending-container" v-if="dynamicGetters('hasSentEmailRequest')" :class="{'active' : dynamicGetters('hasSentEmailRequest') && !dynamicGetters('loading')}">
-				<section class="lottie-container">
-					<Lottie
-						class="lottie"
-						:options="errorOptions"
-						@animCreated="handleAnimation"
-					/>
-				</section>
+<!-- :class="{'active' : dynamicGetters('hasSentEmailRequest') && !dynamicGetters('loading')}" -->
+			<transition name="sent-anim">
+				<div class="sending-container" v-if="dynamicGetters('hasSentEmailRequest')">
+					<section class="lottie-container">
+						<Lottie
+							class="lottie"
+							:key="responseMessage.key"
+							:options="responseMessage.lottieAnim"
+							@animCreated="handleAnimation"
+						/>
+					</section>
 
-				<section class="error-message">
-					<span class="message-title">
-						Sorry!
-					</span>
+					<section class="error-message">
+						<span class="message-title">
+							{{ responseMessage.title }}
+						</span>
 
-					<span class="message-desc">
-						{{ dynamicGetters('messageData').message }}
-					</span>
-				</section>
+						<span class="message-desc">
+							{{ responseMessage.message  }}
+						</span>
+					</section>
 
-				<section class="btn-container">
-					<button class="try-again-btn" @click="trySendingAgain()">
-						Try again
-					</button>
-				</section>
-			</div>
+					<section class="btn-container">
+						<button class="try-again-btn" @click="trySendingAgain()">
+							{{ responseMessage.buttonText }}
+						</button>
+					</section>
+				</div>
+			</transition>
 		</div>
 	</div>
 </template>
@@ -61,6 +65,7 @@ import * as emailModule from '@/store/email/app.js'
 
 import Lottie from 'vue-lottie';
 import * as errorAnimation from '@/assets/animation/error.json';
+import * as emailSent from '@/assets/animation/email-sent.json';
 export default {
 	data () {
 		return {
@@ -71,7 +76,8 @@ export default {
 				message: ''
 			},
 
-			errorOptions: {animationData: errorAnimation.default}
+			errorOptions: {animationData: errorAnimation.default, loop: false},
+			sentOptions: {animationData: emailSent.default, loop: false}
 		}
 	},
 
@@ -83,7 +89,27 @@ export default {
 		...mapGetters({
 			isInteracting: 'getIsInteracting',
 			stateData: 'email/getState'
-		})
+		}),
+
+		responseMessage () {
+			if (this.dynamicGetters('messageData').status === 200) {
+				return {
+					title: 'Success!',
+					message: this.dynamicGetters('messageData').message,
+					buttonText: 'Confirm',
+					lottieAnim: this.sentOptions,
+					key: 0
+				}
+			} else {
+				return {
+					title: 'Error!',
+					message: this.dynamicGetters('messageData').message,
+					buttonText: 'Try Again',
+					lottieAnim: this.errorOptions,
+					key: 1
+				}
+			}
+		}
 	},
 
 	beforeCreate () {
@@ -97,15 +123,16 @@ export default {
 	},
 
 	methods: {
-		sendEmail () {
+		async sendEmail () {
 			let form = new FormData()
 
 			form.append('name', this.email.name)
 			form.append('email', this.email.email)
 			form.append('subject', this.email.subject)
 			form.append('message', this.email.message)
+			await this.$store.dispatch('email/sendEmail', form)
 
-			this.$store.dispatch('email/sendEmail', form)
+			Object.keys(this.email).forEach(item => this.email[item] = '')
 		},
 
 		handleAnimation(anim) {
@@ -235,24 +262,28 @@ export default {
 			.sending-container {
 				position: absolute;
 				top: 0;
-				left: 100%;
+				left: 0%;
 				width: 100%;
 				height: 100%;
 				background: #fff;
 				transition: 0.3s;
+				display: flex;
+				flex-direction: column;
+				padding: 35px;
 
 				&.active {
 					left: 0;
 				}
 
 				.lottie-container {
-					width: 40%;
-					margin: 4vw auto 0 auto;
+					width: 60%;
+					margin: 1vw auto 0 auto;
 				}
 
 				.error-message {
 					display: flex;
 					flex-direction: column;
+					flex: 1 1 auto;
 
 					.message-title {
 						display: block;
@@ -275,10 +306,9 @@ export default {
 				.btn-container {
 					display: flex;
 					justify-content: center;
-					margin-top: 4vw;
 
 					.try-again-btn {
-						width: 50%;
+						width: 80%;
 						border: 2px solid #395068;
 						color: #395068;
 						padding: 0.75vw 1vw;
@@ -298,5 +328,13 @@ export default {
 				}
 			}
 		}
+	}
+
+	.sent-anim-enter-active, .sent-anim-leave-active {
+		transition: all .8s ease-in-out;
+	}
+	.sent-anim-enter, .sent-anim-leave-to {
+		transform: translateX(100%);
+		opacity: 0;
 	}
 </style>
