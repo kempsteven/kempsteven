@@ -1,62 +1,64 @@
 <template>
 	<div class="portfolio-info">
-		<span>My Portfolio</span>
+		<span class="portfolio-header">
+			My Portfolio
+		</span>
 
-		<div class="row" :class="{ 'disappear' : isInteracting }">
-			<div class="column">
-				<div 
-					class="portfolio-item" 
-					@click="viewPortfolio(
-						{
-							title: 'Prominence Website', 
-							desc: 'A website that contains information about a comic, a gallery, and a place to read the comic, it also has an admin side where you can add an image to the gallery, or add edit a chapter for the comic, the comic was made by me and my friends on highschool, this website is tested in Chrome, Mozilla and Mobile view.', 
-							tech: ['HTML', 'CSS', 'JavaScript', 'PHP', 'MySQL'],
-							img: [
-									require('@/assets/img/portfolio/prominence/desktop.webp'), 
-									require('@/assets/img/portfolio/prominence/mobile.webp')
-								],
-							link: 'http://prominence.ga/'
-						}
-					)"
-				>
-					<img :src="require('@/assets/img/portfolio/prominence/desktop.webp')" alt="Portfolio Image">
+		<div class="lottie-container" v-if="loading">
+			<Lottie
+				class="lottie"
+				:options="defaultOptions"
+				@animCreated="handleAnimation"
+			/>
 
-					<div class="item-details">
-						<span>Prominence Website</span>
-					</div>
-				</div>
-			</div>
-
-			<div class="column">
-				<div 
-					class="portfolio-item" 
-					@click="viewPortfolio(
-						{
-							title: 'Accursed Website', 
-							desc: `A website that contains information about a Horror Game, the Horror game was made by me and my thesis group for our requirements in our bachelor's degree, this website is tested in Chrome, Mozilla and Mobile view.`, 
-							tech: ['HTML', 'CSS', 'JavaScript', 'PHP'],
-							img: [
-									require('@/assets/img/portfolio/accursed/desktop.webp'), 
-									require('@/assets/img/portfolio/accursed/mobile.webp')
-								],
-							link: 'https://accursed.ga/'
-						}
-					)"
-				>
-					<img :src="require('@/assets/img/portfolio/accursed/desktop.webp')" alt="Portfolio Image">
-
-					<div class="item-details">
-						<span>Accursed Website</span>
-					</div>
-				</div>
-			</div>
+			<span class="loading-label">
+				Loading...
+			</span>
 		</div>
+
+		<transition name="g-transition">
+			<div
+				class="portfolio-container scroll"
+				:class="{ 'disappear' : isInteracting }"
+				v-if="!loading"
+			>
+				<div
+					class="portfolio-item"
+					v-for="(portfolio, key) in list.list"
+					:key="key"
+					@click="viewPortfolio(
+						{
+							title: portfolio.portfolioTitle,
+							desc: portfolio.portfolioDescription,
+							tech: portfolio.portfolioTechnologies.split(','),
+							img: [
+									portfolio.portfolioDesktopImg.url,
+									portfolio.portfolioMobileImg.url
+								],
+							link: portfolio.portfolioUrl
+						}
+					)"
+				>
+					<img
+						class="item-img"
+						:src="portfolio.portfolioDesktopImg.url"
+						alt="Portfolio Image"
+					>
+
+					<div class="item-details">
+						{{ portfolio.portfolioTitle }}
+					</div>
+				</div>
+			</div>
+		</transition>
 
 		<Modal v-if="modalStatus" ref="viewerModal">
 			<div class="portfolio-viewer" slot="modal-body">
 				<div class="img-container">
 					<div class="img-web">
-						<img :src="selectedPortfolio.img[0]" alt="Portfolio Image">
+						<div class="img-screen">
+							<img :src="selectedPortfolio.img[0]" alt="Portfolio Image">
+						</div>
 					</div>
 
 					<div class="img-mobile">
@@ -69,19 +71,32 @@
 						{{ selectedPortfolio.title }}
 					</div>
 
-					<div class="project-desc">
+					<div class="project-desc scroll small-scroll">
 						{{ selectedPortfolio.desc }}
 					</div>
 
 					<div class="project-tech">
-						<div class="tech" :key="key" v-for="(item, key) in selectedPortfolio.tech">
+						<div
+							class="tech"
+							:key="key"
+							v-for="(item, key) in selectedPortfolio.tech"
+						>
 							{{ item }}
 						</div>
 					</div>
 
 					<div class="btn-container">
-						<button class="close" @click="closeModal()">Close</button>
-						<a target="_black" :href="selectedPortfolio.link" class="view">View Website</a>
+						<button class="close" @click="closeModal()">
+							Close
+						</button>
+
+						<a
+							target="_black"
+							:href="selectedPortfolio.link"
+							class="view"
+						>
+							View Website
+						</a>
 					</div>
 				</div>
 			</div>
@@ -90,23 +105,45 @@
 </template>
 <script>
 import { mapGetters } from 'vuex'
-import Modal from '@/components/global/Modal'
+import * as portfolioModule from '@/store/portfolio/app.js'
+
+import * as animationData from '@/assets/animation/loading.json';
 export default {
 	components: {
-		Modal
+		Modal: () => import('@/components/global/Modal'),
+		Lottie: () => import('vue-lottie')
 	},
 
 	data () {
 		return {
-			selectedPortfolio: {}
+			selectedPortfolio: {},
+			defaultOptions: {animationData: animationData.default},
 		}
+	},
+
+	async created () {
+		await this.getPortfolioList()
 	},
 
 	computed: {
 		...mapGetters({
 			isInteracting: 'getIsInteracting',
-			modalStatus: 'getModalStatus'
+			modalStatus: 'getModalStatus',
+			list: 'portfolio/getList',
+			loading: 'portfolio/getLoading'
 		})
+	},
+
+	beforeCreate () {
+		if (!this.$store._modulesNamespaceMap['portfolio/']) {
+			this.$store.registerModule('portfolio', portfolioModule.default)
+		}
+	},
+
+	deactivated () {
+		if (this.modalStatus) {
+			this.$refs.viewerModal.closeModalBg()
+		}
 	},
 
 	methods: {
@@ -117,6 +154,19 @@ export default {
 
 		closeModal () {
 			this.$refs.viewerModal.closeModalBg()
+		},
+
+		async getPortfolioList () {
+			await this.$store.dispatch('portfolio/getPortfolioList')
+		},
+
+		dynamicGetters (key) {
+			return this.stateData(key)
+		},
+
+		handleAnimation (anim) {
+			this.anim = anim;
+			this.anim.setSpeed(1.7)
 		}
 	}
 }
@@ -134,7 +184,7 @@ export default {
 		justify-content: flex-start;
 	}
 
-	span {
+	.portfolio-header {
 		text-align: center;
 		font-size: 2vw;
 		margin: 0 auto;
@@ -144,7 +194,7 @@ export default {
 		color: $black;
 		font-weight: 600;
 		opacity: 0;
-		@include fadein(0.75s, 0.5s); 
+		@include fadein(0.75s, 0.5s);
 
 		@include mobile {
 			font-size: 18px;
@@ -155,22 +205,59 @@ export default {
 	}
 }
 
-.row {
+.lottie-container{
+	width: 30%;
+	height: 30%;
+	background: #f2f2f2;
+	padding: 3vw;
+	opacity: 0;
+	margin: 5vw auto 0 auto;
+	@include fadein(0.75s, 0.8s);
+
+	.lottie {
+		height: 50%;
+	}
+
+	.loading-label {
+		display: block;
+		font-size: 1vw;
+		text-align: center;
+		width: 100%;
+	}
+
+	@include mobile {
+		width: 60%;
+		margin: 0 auto;
+
+		.lottie {
+			height: auto;
+		}
+
+		.loading-label {
+			font-size: 14px;
+			margin-top: 0;
+			padding-top: 0;
+		}
+	}
+}
+
+.portfolio-container {
 	display: flex;
-	flex-wrap: wrap;
 	overflow-y: auto;
 	overflow-x: hidden;
+	flex-wrap: wrap;
 	width: 100%;
 	height: 65vh;
 	margin-top: 1vh;
 	pointer-events: all;
 	opacity: 0;
+	align-items: flex-start;
 	@include fadein(0.75s, 1s);
 
 	@include mobile {
 		width: 70%;
 		height: auto;
-		max-height: 400px;
+		max-height: 275px;
 		margin: 0 auto 0 auto;
 	}
 
@@ -178,69 +265,54 @@ export default {
 		pointer-events: none;
 	}
 
-	&::-webkit-scrollbar-track {
-		border-radius: 5px;
-		background-color: #cccccc;
-	}
-
-	&::-webkit-scrollbar {
-		width: 5px;
-		background-color: #F5F5F5;
-	}
-
-	&::-webkit-scrollbar-thumb {
-		border-radius: 5px;
-		background-color: #606060;
-	}
-
-	.column {
-		flex: 50%;
+	.portfolio-item {
+		flex: 0 1 49%;
 		max-width: 50%;
-		padding: 0 0.15vw;
+		height: 18vw;
+		position: relative;
+		overflow: hidden;
+		margin-bottom: 0.15vw;
+		opacity: 1;
+		transition: 0.3s;
+		border-radius: 3px;
+		cursor: pointer;
 
 		@include mobile {
 			max-width: unset;
 			flex: 0 0 auto;
-			width: 100%
+			width: 100%;
+			height: 40vw;
+
+			&:not(:last-child) {
+				margin-bottom: 15px;
+			}
 		}
 
-		.portfolio-item {
-			position: relative;
+		&:nth-child(odd) {
+			margin-right: 0.15vw;
+		}
 
-			&:hover {
-				.item-details {
-					opacity: 1;
-				}
-			}
+		&:hover {
+			opacity: 0.9;
+		}
 
-			img {
-				width: 100%;
-				opacity: 0.9;
-				transition: 0.3s;
-			}
+		.item-img {
+			min-width: 100%;
+			height: 100%;
+			opacity: 0.9;
+			transition: 0.3s;
+		}
 
-			.item-details {
-				position: absolute;
-				width: 100%;
-				height: calc(100% - 4px);
-				display: flex;
-				justify-content: center;
-				flex-direction: column;
-				transition: 0.3s;
-				top: 0;
-				left: 0;
-				opacity: 0;
-				background: rgba(28, 28, 28, 0.7);
-				cursor: pointer;
-				padding-top: 0.5vw;
-				user-select: none;
-
-				span {
-					display: block;
-					color: #fff;
-					font-size: 1.2vw;
-				}
-			}
+		.item-details {
+			position: absolute;
+			bottom: 0.7vw;
+			left: 0;
+			right: 0;
+			margin: 0 auto;
+			color: #fff;
+			font-weight: 600;
+			font-size: 1.2vw;
+			text-shadow: 2px 2px 10px rgb(71, 71, 71);
 		}
 	}
 }
@@ -256,8 +328,8 @@ export default {
 	.img-container {
 		flex-shrink: 0;
 		width: 40%;
+		height: 20vw;
 		position: relative;
-		height: 15vw;
 		user-select: none;
 		margin-right: 1vw;
 
@@ -265,43 +337,57 @@ export default {
 			width: 100%;
 			height: 173px;
 			padding: 0;
-			margin-bottom: 25px;
+			margin-bottom: 5px;
 		}
 
 		.img-web {
 			width: 100%;
+			height: 100%;
 			padding: 0.25vw;
 			border: 0.1vw solid #505050;
-			border-radius: 2px;
+			border-radius: 3px;
 			position: absolute;
 			background: #212121;
 
 			@include mobile {
-				padding: 5px;
+				height: 150px;
+				padding: 2px;
 				border: 1px solid #505050;
+				overflow: hidden;
 			}
 
-			img {
+			.img-screen {
 				width: 100%;
+				height: 100%;
+				background: #000000;
+				display: flex;
+				align-items: center;
+
+				img {
+					width: 100%;
+
+					@include mobile {
+						width: 100%;
+					}
+				}
 			}
 		}
 
 		.img-mobile {
 			width: 25%;
-			padding: 0.5vw 0.25vw 0.8vw 0.25vw;
+			padding: 0.25vw;
 			border: 0.1vw solid #505050;
 			border-radius: 5px;
 			position: absolute;
 			background: #212121;
-			right: 3vw;
-			bottom: -5vw;
-			min-height: 95px;
+			right: 1.5vw;
+			bottom: -3.45vw;
 
 			@include mobile {
-				padding: 5px;
+				padding: 2px;
 				border: 1px solid #505050;
 				right: 15px;
-				bottom: -10px;
+				bottom: 10px;
 			}
 
 			img {
@@ -323,6 +409,7 @@ export default {
 			flex-shrink: 0;
 			font-size: 14px;
 			padding: 10px;
+			margin-bottom: 15px;
 		}
 
 		.project-name {
@@ -336,7 +423,7 @@ export default {
 			text-align: center;
 
 			@include mobile {
-				font-size: 16px;
+				font-size: 14px;
 				padding: 10px;
 				margin-bottom: 7px;
 			}
@@ -352,8 +439,9 @@ export default {
 			@include mobile {
 				padding: 15px;
 				margin-bottom: 7px;
-				max-height: 110px;
-				overflow: auto;
+				max-height: 80px;
+				overflow: scroll;
+				font-size: 12px;
 			}
 		}
 

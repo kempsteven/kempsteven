@@ -15,10 +15,10 @@ export const mutations = {
 
 export const actions = {
 
-	async getSkillList ({ commit }) {
+	async getPortfolioList ({ commit }) {
 		await commit('setStateData', { list: {} , loading: true })
 
-		const { data } = await api('get', '/skill/get-skills')
+		const { data } = await api('get', '/portfolio/get-portfolio')
 
 		await commit('setStateData', { list: data, loading: false })
 	}

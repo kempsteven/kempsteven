@@ -3,9 +3,9 @@
         <div class="video-container gl-col-1">
             <div class="video-filter"></div>
 
-            <div class="video-fallback" v-if="!isVideoLoaded">
+            <div class="video-fallback" v-show="!isVideoLoaded">
                 <div class="img-container">
-                    <img :src="require('@/assets/img/coding.jpg')" alt="Coding Image">
+                    <img :src="require('@/assets/img/coding.webp')" alt="Coding Image">
                 </div>
             </div>
 
@@ -26,12 +26,16 @@
 
         <div class="intro-text-container gl-flex-vhcenter">
             <div class="lottie-container">
-                <lottie :options="defaultOptions" @animCreated="handleAnimation"/>
+                <Lottie :options="defaultOptions" @animCreated="handleAnimation"/>
             </div>
 
-            <div class="section gl-flex-vhcenter">Hello, Internet!</div>
+            <div class="section gl-flex-vhcenter">
+                Hello, Internet!
+            </div>
 
-            <div class="section gl-flex-vhcenter">My name is Kemp.</div>
+            <div class="section gl-flex-vhcenter">
+                My name is Kemp.
+            </div>
 
             <div class="hr"></div>
 
@@ -40,7 +44,11 @@
             </div>
 
             <div class="section desc gl-flex-vhcenter">
-                <button class="section-btn" @click="goToContactUs()">Hit me up</button> if you want to start a project!
+                <button class="section-btn" @click="goToContactUs()">
+                    Hit me up
+                </button>
+
+                if you want to start a project!
             </div>
 
             <button id="btn" class="btn gl-button full-width" @click="start()">
@@ -51,13 +59,13 @@
 </template>
 
 <script>
-import Lottie from 'vue-lottie';
+// import Lottie from 'vue-lottie';
 import * as animationData from '@/assets/animation/profile.json';
 export default {
     name: 'LandingPage',
 
     components: {
-        'lottie': Lottie
+        Lottie: () => import('vue-lottie')
     },
 
     data () {
@@ -67,31 +75,31 @@ export default {
         }
     },
 
-    activated(){
+    activated () {
         this.playVideo()
     },
 
     methods:{
-        playVideo(){
+        playVideo () {
             this.$refs.video.play()
         },
 
-        start(){
+        start () {
             this.$store.commit('changeRouteAnim', 'next')
             this.$router.push({name: 'personal-info'})
         },
 
-        videoHasBuffered(){
+        videoHasBuffered () {
             this.isVideoLoaded = true
             this.$refs.video.play()
         },
 
-        handleAnimation(anim) {
+        handleAnimation (anim) {
             this.anim = anim;
             this.anim.setSpeed(1.2)    
         },
 
-        goToContactUs() {
+        goToContactUs () {
             this.$store.commit('changeRouteAnim', 'default')
             this.$router.push({name: 'contact-us'})
         }
@@ -100,7 +108,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.landing-container{
+.landing-container {
     width: 100%;
     min-height: 100vh;
     position: fixed;
@@ -111,7 +119,7 @@ export default {
         justify-content: flex-start;
     }
     
-    .video-filter{
+    .video-filter {
         background: rgba(0,0,0,0.1);
         position: absolute;
         width: 100%;
@@ -119,7 +127,7 @@ export default {
         z-index: 2;
     }
 
-    .lottie-container{
+    .lottie-container {
         z-index: 1;
         overflow: hidden;
         border-radius: 50%;
@@ -138,7 +146,7 @@ export default {
         }
     }
 
-    .video-container{
+    .video-container {
         position: absolute;
         top: -50%;
         left: -50%;
@@ -148,7 +156,7 @@ export default {
         opacity: 0;
         @include fadein(0.3s, 0);
 
-        .video{
+        .video {
             position: absolute;
             top: 0;
             bottom: 0;
@@ -197,7 +205,7 @@ export default {
         }
     }
 
-    .intro-text-container{
+    .intro-text-container {
         width: 50%;
         z-index: 3;
         color: $white;
@@ -214,7 +222,7 @@ export default {
            margin-top: 240px;
         }
 
-        .hr{
+        .hr {
             width: 80%;
             height: 0.1vw;
             background: $white;
@@ -226,7 +234,7 @@ export default {
             }
         }
 
-        .section{
+        .section {
             height: 17%;
             width: 100%;
 
@@ -272,7 +280,7 @@ export default {
             }
         }
 
-        .btn{
+        .btn {
             animation-duration: 1s;
             bottom: -40%;
             position: absolute;

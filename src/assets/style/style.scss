@@ -22,7 +22,7 @@ html, body {
     }
 
     &::-webkit-scrollbar {  
-        width: 5px;
+        width: 8px;
         height: 5px;
         background-color: #979CAC;
         background: transparent;
@@ -31,7 +31,13 @@ html, body {
     &::-webkit-scrollbar-thumb { 
         border-radius: 10px;
         background-color: #979CAC;
-    }
+	}
+	
+	&.small-scroll {
+		&::-webkit-scrollbar {  
+			width: 6px;
+		}
+	}
 }
 
 /////////// COLUMNS //////////
@@ -183,5 +189,12 @@ html, body {
 			transform: rotate(180deg)
 		}
 	}
+}
+
+.g-transition-enter-active, .g-transition-leave-active {
+  transition: 0.5s ease;
+}
+.g-transition-enter, .g-transition-leave-to{
+  opacity: 0;
 }
 
