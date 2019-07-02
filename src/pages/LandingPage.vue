@@ -26,7 +26,7 @@
 
         <div class="intro-text-container gl-flex-vhcenter">
             <div class="lottie-container">
-                <lottie :options="defaultOptions" @animCreated="handleAnimation"/>
+                <Lottie :options="defaultOptions" @animCreated="handleAnimation"/>
             </div>
 
             <div class="section gl-flex-vhcenter">
@@ -59,13 +59,13 @@
 </template>
 
 <script>
-import Lottie from 'vue-lottie';
+// import Lottie from 'vue-lottie';
 import * as animationData from '@/assets/animation/profile.json';
 export default {
     name: 'LandingPage',
 
     components: {
-        'lottie': Lottie
+        Lottie: () => import('vue-lottie')
     },
 
     data () {

@@ -105,15 +105,13 @@
 </template>
 <script>
 import { mapGetters } from 'vuex'
-import Modal from '@/components/global/Modal'
 import * as portfolioModule from '@/store/portfolio/app.js'
 
-import Lottie from 'vue-lottie';
 import * as animationData from '@/assets/animation/loading.json';
 export default {
 	components: {
-		Modal,
-		Lottie
+		Modal: () => import('@/components/global/Modal'),
+		Lottie: () => import('vue-lottie')
 	},
 
 	data () {
@@ -143,7 +141,9 @@ export default {
 	},
 
 	deactivated () {
-		this.$refs.viewerModal.closeModalBg()
+		if (this.modalStatus) {
+			this.$refs.viewerModal.closeModalBg()
+		}
 	},
 
 	methods: {

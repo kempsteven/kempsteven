@@ -70,14 +70,13 @@
 	</div>
 </template>
 <script>
-import Lottie from 'vue-lottie';
 import { mapGetters } from 'vuex'
 import * as animationData from '@/assets/animation/books.json';
 import * as loadingData from '@/assets/animation/loading.json';
 import * as educationModule from '@/store/education/app.js'
 export default {
 	components: {
-		Lottie,
+		Lottie: () => import('vue-lottie')
 	},
 
 	data () {
@@ -134,7 +133,7 @@ export default {
 		},
 
 		playLottieAnim () {
-			this.$refs.lottie.anim.play()
+			if (this.$refs.lottie) this.$refs.lottie.anim.play()
 		},
 
 		stopLottieAnim () {

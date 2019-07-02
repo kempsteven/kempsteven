@@ -63,8 +63,6 @@
 <script>
 import { mapGetters } from 'vuex'
 import * as emailModule from '@/store/email/app.js'
-
-import Lottie from 'vue-lottie';
 import * as errorAnimation from '@/assets/animation/error.json';
 import * as emailSent from '@/assets/animation/email-sent.json';
 export default {
@@ -83,7 +81,7 @@ export default {
 	},
 
 	components: {
-		Lottie
+		Lottie: () => import('vue-lottie')
 	},
 
 	computed: {
