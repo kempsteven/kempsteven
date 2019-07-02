@@ -6,7 +6,7 @@ export const state = {
 }
 
 export const mutations = {
-	setStateData({}, payload) {
+	setStateData(state, payload) {
 		for (let stateKey in payload) {
 			state[stateKey] = payload[stateKey]
 		}
@@ -18,7 +18,7 @@ export const actions = {
 	async getPortfolioList ({ commit }) {
 		await commit('setStateData', { list: {} , loading: true })
 
-		const { data, status } = await api('get', '/portfolio/get-portfolio')
+		const { data } = await api('get', '/portfolio/get-portfolio')
 
 		await commit('setStateData', { list: data, loading: false })
 	}

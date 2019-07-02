@@ -7,7 +7,7 @@ export const state = {
 }
 
 export const mutations = {
-    setStateData({}, payload) {
+    setStateData(state, payload) {
         for (let stateKey in payload) {
             state[stateKey] = payload[stateKey]
         }
@@ -27,7 +27,7 @@ export const actions = {
         )
 
         const { data } = await api('post', '/email/send', payload)
-        console.log(data)
+
         await commit(
             'setStateData',
             {

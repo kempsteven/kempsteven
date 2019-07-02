@@ -10,7 +10,7 @@
 				:options="defaultOptions"
 				@animCreated="handleAnimation"
 			/>
-			
+
 			<span class="loading-label">
 				Loading...
 			</span>
@@ -22,17 +22,17 @@
 				:class="{ 'disappear' : isInteracting }"
 				v-if="!loading"
 			>
-				<div 
+				<div
 					class="portfolio-item"
 					v-for="(portfolio, key) in list.list"
 					:key="key"
 					@click="viewPortfolio(
 						{
-							title: portfolio.portfolioTitle, 
-							desc: portfolio.portfolioDescription, 
+							title: portfolio.portfolioTitle,
+							desc: portfolio.portfolioDescription,
 							tech: portfolio.portfolioTechnologies.split(','),
 							img: [
-									portfolio.portfolioDesktopImg.url, 
+									portfolio.portfolioDesktopImg.url,
 									portfolio.portfolioMobileImg.url
 								],
 							link: portfolio.portfolioUrl
@@ -162,7 +162,7 @@ export default {
 
 		handleAnimation (anim) {
 			this.anim = anim;
-			this.anim.setSpeed(1.7)    
+			this.anim.setSpeed(1.7)
 		}
 	}
 }
@@ -190,7 +190,7 @@ export default {
 		color: $black;
 		font-weight: 600;
 		opacity: 0;
-		@include fadein(0.75s, 0.5s); 
+		@include fadein(0.75s, 0.5s);
 
 		@include mobile {
 			font-size: 18px;
@@ -377,7 +377,7 @@ export default {
 			position: absolute;
 			background: #212121;
 			right: 1.5vw;
-    		bottom: -3.45vw;
+			bottom: -3.45vw;
 
 			@include mobile {
 				padding: 2px;

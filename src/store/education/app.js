@@ -6,7 +6,7 @@ export const state = {
 }
 
 export const mutations = {
-    setStateData({ }, payload) {
+    setStateData(state, payload) {
         for (let stateKey in payload) {
             state[stateKey] = payload[stateKey]
         }
@@ -18,7 +18,7 @@ export const actions = {
     async getEducationList({ commit }) {
         await commit('setStateData', { list: {}, loading: true })
 
-        const { data, status } = await api('get', '/education/get-education')
+        const { data } = await api('get', '/education/get-education')
 
         await commit('setStateData', { list: data, loading: false })
     }
