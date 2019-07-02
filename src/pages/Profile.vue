@@ -1,5 +1,5 @@
 <template>
-    <div id="profile-container" class="profile-container gl-flex-vhcenter" :class="{ 'contact-us' : $route.name === 'contact-us'}">
+    <div class="profile-container gl-flex-vhcenter" :class="{ 'contact-us' : $route.name === 'contact-us'}">
 
         <vue-particles
             :key="activeParticle"
@@ -25,7 +25,6 @@
         <ProfileNavigation/>
 
         <div class="profile-wrapper" :class="isInteracting ? 'disappear' : 'appear'">
-            <!-- <transition :name="routerAnim === 'next-router-anim' ? 'no-anim' : routerAnim "> -->
             <transition :name="routerAnim">
                 <keep-alive>
                     <router-view/>
@@ -37,7 +36,6 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import ProfileNavigation from '@/components/profile/ProfileNavigation'
 export default {
     name: 'Profile',
 
@@ -72,7 +70,7 @@ export default {
     },
 
     components: {
-        ProfileNavigation
+        ProfileNavigation: () => import('@/components/profile/ProfileNavigation')
     },
 
     watch: {
@@ -98,7 +96,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-    .profile-container{
+    .profile-container {
         background: $background;
         width: 100%;
         min-height: 100vh;
@@ -112,7 +110,7 @@ export default {
         }
     }
 
-    .video-filter{
+    .video-filter {
         position: absolute;
         width: 100%;
         height: 100%;
@@ -120,7 +118,7 @@ export default {
         pointer-events: none;
     }
 
-    #particles-js{
+    #particles-js {
         width: 100%;
         height: 100%;
         pointer-events: none;
@@ -130,7 +128,7 @@ export default {
         }
     }
 
-    .profile-wrapper{
+    .profile-wrapper {
         width: 65%;
         height: 100%;
         position: absolute;
@@ -141,13 +139,13 @@ export default {
         }
     }
 
-    .appear{
+    .appear {
         animation: appear 0.5s ease-in-out;
         animation-fill-mode: forwards; 
         pointer-events: none;
     }
 
-    .disappear{
+    .disappear {
         opacity: 1;
         pointer-events: none;
         animation: disappear 0.5s ease-in-out;

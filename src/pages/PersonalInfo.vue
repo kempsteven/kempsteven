@@ -1,37 +1,38 @@
 <template>
 	<div class="personal-container gl-flex-vhcenter">
-		<div class="info-container gl-flex-vhcenter">
+		<div class="left">
+			<div class="image-container gl-flex-vhcenter appear">
+				<img
+					alt="profile picture"
+					:src="require('@/assets/img/picture.webp')"
+					:class="{ 'appear' :imgHasloaded}"
+					@load="imageOnLoad()"
+					v-show="imgHasloaded"
+				>
 
-			<div class="left">
-				<div class="image-container gl-flex-vhcenter appear">
-					<img
-						alt="profile picture"
-						:src="require('@/assets/img/picture.webp')"
-						:class="{ 'appear' :imgHasloaded}"
-						@load="imageOnLoad()"
-						v-show="imgHasloaded"
-					>
-
-					<div class="lottie-container" v-if="!imgHasloaded">
-						<lottie class="lottie" :options="defaultOptions" @animCreated="handleAnimation" />
-					</div>
+				<div class="lottie-container" v-if="!imgHasloaded">
+					<Lottie
+						class="lottie"
+						:options="defaultOptions"
+						@animCreated="handleAnimation"
+					/>
 				</div>
 			</div>
+		</div>
 
-			<div class="right gl-flex">
-				<div class="section appear">Hello, I am </div>
+		<div class="right gl-flex">
+			<div class="section appear">Hello, I am </div>
 
-				<div class="section name">Kemp Steven!</div>
+			<div class="section name">Kemp Steven!</div>
 
-				<div class="section has-child gl-flex">
-					<div class="label appear gl-flex-vhcenter">A</div>
-					<div class="label gl-flex-vhcenter job">Front End Developer,</div>
-				</div>
+			<div class="section has-child gl-flex">
+				<div class="label appear gl-flex-vhcenter">A</div>
+				<div class="label gl-flex-vhcenter job">Front End Developer,</div>
+			</div>
 
-				<div class="section has-child gl-flex">
-					<div class="label appear gl-flex-vhcenter">Based on</div>
-					<div class="label gl-flex-vhcenter job">Manila, Philippines</div>
-				</div>
+			<div class="section has-child gl-flex">
+				<div class="label appear gl-flex-vhcenter">Based on</div>
+				<div class="label gl-flex-vhcenter job">Manila, Philippines</div>
 			</div>
 		</div>
 	</div>
@@ -44,7 +45,7 @@ export default {
 	name: 'PersonalInfo',
 
 	components: {
-		'lottie': Lottie
+		Lottie
 	},
 
 	data () {
@@ -68,16 +69,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.personal-container{
+.personal-container {
 	width: 100%;
 	height: 100%;
 	position: absolute;
-}
-
-.info-container{
-	width: 80%;
-	height: 100%;
-	user-select: none;
+	display: flex;
+	justify-content: center;
 
 	@include mobile {
 		display: flex;
@@ -87,8 +84,8 @@ export default {
 		// align-items: center;
 	}
 
-	.left{
-		width: 35%;
+	.left {
+		width: 28%;
 		height: 17.5vw;
 
 		@include mobile {
@@ -96,7 +93,7 @@ export default {
 			height: 200px;
 		}
 
-		.image-container{
+		.image-container {
 			width: 100%;
 			height: 100%;
 			overflow: hidden;
@@ -106,16 +103,24 @@ export default {
 			opacity: 0;
 			@include fadein(0.75s, 0.8s); 
 
-			img{
+			img {
 				opacity: 0;
 				width: auto;
 				height: 100%;
 			}
+
+			.lottie-container{
+				width: 100%;
+				height: 100%;
+				background: #f2f2f2;
+				padding: 3vw;
+				opacity: 0;
+				@include fadein(0.75s, 0.8s);
+			}
 		}
 	}
 
-	.right{
-		width: 65%;
+	.right {
 		padding-left: 4vw;
 		flex-direction: column;
 
@@ -150,7 +155,7 @@ export default {
 				}
 			}
 	
-			&.has-child{
+			&.has-child {
 				opacity: 1;
 
 				@include mobile {
@@ -159,7 +164,7 @@ export default {
 				}
 			}
 	
-			.label{
+			.label {
 				font-size: 1.5vw;
 				opacity: 0;
 
@@ -168,7 +173,7 @@ export default {
 					text-align: center;
 				}
 	
-				&.job{
+				&.job {
 					margin-left: 0.5vw; 
 					color: $blue;
 					font-size: 2vw;
@@ -182,20 +187,12 @@ export default {
 			}
 		}
 	}
-
-	.lottie-container{
-		width: 100%;
-		height: 100%;
-		background: #f2f2f2;
-		padding: 3vw;
-		opacity: 0;
-		@include fadein(0.75s, 0.8s);
-	}
-
-	.appear{
-		@include fadein(0.75s, 0.8s); 
-	}
 }
+
+.appear {
+	@include fadein(0.75s, 0.8s); 
+}
+// }
 
 
 </style>

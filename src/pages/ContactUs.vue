@@ -2,34 +2,35 @@
 	<div class="contact">
 		<div class="contact-modal" :class="{ 'no-pointer' : isInteracting}">
 			<form class="contact-form" @submit.prevent="sendEmail()">
-				<h2 class="form-header">Contact Us</h2>
+				<fieldset class="field-set" :disabled="loading">
+					<h2 class="form-header">Contact Us</h2>
 
-				<section class="form-section gl-flex">
-					<label class="input-label">Name:</label>
-					<input class="input" type="text" v-model="email.name" required>
-				</section>
+					<section class="form-section gl-flex">
+						<label class="input-label">Name:</label>
+						<input class="input" type="text" v-model="email.name" required>
+					</section>
 
-				<section class="form-section gl-flex">
-					<label class="input-label">Email:</label>
-					<input class="input" type="email" v-model="email.email" required>
-				</section>
+					<section class="form-section gl-flex">
+						<label class="input-label">Email:</label>
+						<input class="input" type="email" v-model="email.email" required>
+					</section>
 
-				<section class="form-section gl-flex">
-					<label class="input-label">Subject:</label>
-					<input class="input" type="text" v-model="email.subject" required>
-				</section>
+					<section class="form-section gl-flex">
+						<label class="input-label">Subject:</label>
+						<input class="input" type="text" v-model="email.subject" required>
+					</section>
 
-				<section class="form-section gl-flex">
-					<label class="input-label">Message:</label>
-					<textarea class="textarea" v-model="email.message" maxlength="300"></textarea>
-				</section>
+					<section class="form-section gl-flex">
+						<label class="input-label">Message:</label>
+						<textarea class="textarea" v-model="email.message" maxlength="300"></textarea>
+					</section>
 
-				<button class="submit-btn">Send Message</button>
+					<button class="submit-btn">Send Message</button>
+				</fieldset>
 			</form>
-
-<!-- :class="{'active' : dynamicGetters('hasSentEmailRequest') && !dynamicGetters('loading')}" -->
+			
 			<transition name="sent-anim">
-				<div class="sending-container" v-if="dynamicGetters('hasSentEmailRequest')">
+				<div class="sending-container" v-if="hasSentEmailRequest">
 					<section class="lottie-container">
 						<Lottie
 							class="lottie"
@@ -88,14 +89,16 @@ export default {
 	computed: {
 		...mapGetters({
 			isInteracting: 'getIsInteracting',
-			stateData: 'email/getState'
+			messageData: 'email/getMessageData',
+			hasSentEmailRequest: 'email/getHasSentEmailRequest',
+			loading: 'email/getLoading'
 		}),
 
 		responseMessage () {
-			if (this.dynamicGetters('messageData').status === 200) {
+			if (this.messageData.status === 200) {
 				return {
 					title: 'Success!',
-					message: this.dynamicGetters('messageData').message,
+					message: this.messageData.message,
 					buttonText: 'Confirm',
 					lottieAnim: this.sentOptions,
 					key: 0
@@ -103,7 +106,7 @@ export default {
 			} else {
 				return {
 					title: 'Error!',
-					message: this.dynamicGetters('messageData').message,
+					message: this.messageData.message,
 					buttonText: 'Try Again',
 					lottieAnim: this.errorOptions,
 					key: 1
@@ -142,11 +145,7 @@ export default {
 
 		trySendingAgain () {
 			this.$store.commit('email/setStateData', { hasSentEmailRequest: false })
-		},
-
-		dynamicGetters (key) {
-			return this.stateData(key)
-		},
+		}
 	}
 }
 </script>
@@ -180,81 +179,90 @@ export default {
 			.contact-form {
 				width: 100%;
 
-				.form-header {
-					margin: 0.5vw 0 1.5vw 0;
-					font-size: $big;
+				.field-set {
+					all: unset;
+					width: 100%;
 
-					@include mobile {
-						margin: 5px 0 15px 0;
-						font-size: 18px;
-					}
-				}
-
-				.form-section {
-					flex-direction: column;
-					align-items: flex-start;
-					margin-bottom: 0.85vw;
-
-					@include mobile {
-						margin-bottom: 7px;
-					}
-
-					.input-label {
-						display: block;
-						margin-bottom: 0.75vw;
-						font-size: $medium;
+					.form-header {
+						margin: 0.5vw 0 1.5vw 0;
+						font-size: $big;
 
 						@include mobile {
-							font-size: 15px;
-							margin-bottom: 5px;
+							margin: 5px 0 15px 0;
+							font-size: 18px;
 						}
 					}
 
-					.input, .textarea {
+					.form-section {
+						flex-direction: column;
+						align-items: flex-start;
+						margin-bottom: 0.85vw;
+
+						@include mobile {
+							margin-bottom: 7px;
+						}
+
+						.input-label {
+							display: block;
+							margin-bottom: 0.75vw;
+							font-size: $medium;
+
+							@include mobile {
+								font-size: 15px;
+								margin-bottom: 5px;
+							}
+						}
+
+						.input, .textarea {
+							padding: 0.5vw 0.65vw;
+							border-radius: 2px;
+							border: 1px solid #2c3e50;
+							outline: none;
+							width: 100%;
+							font-size: $medium;
+
+							@include mobile {
+								font-size: 14px;
+								padding: 5px 10px;
+							}
+						}
+
+						.textarea {
+							resize: none;
+							height: 6vw;
+
+							@include mobile {
+								height: 78px;
+							}
+						}
+					}
+
+					.submit-btn {
+						margin-top: 1vw;
 						padding: 0.5vw 0.65vw;
 						border-radius: 2px;
-						border: 1px solid #2c3e50;
+						border: 0.05vw solid #2c3e50;
 						outline: none;
 						width: 100%;
+						background: none;
+						transition: 0.3s;
 						font-size: $medium;
 
+						&:hover {
+							background: #2c3e50;
+							color: #fff;
+							cursor: pointer;
+						}
+
+						&:disabled {
+							pointer-events: none;
+						}
+
 						@include mobile {
+							padding: 7px 15px;
 							font-size: 14px;
-							padding: 5px 10px;
+							border: 1px solid #2c3e50;
 						}
-					}
-
-					.textarea {
-						resize: none;
-						height: 6vw;
-
-						@include mobile {
-							height: 78px;
-						}
-					}
-				}
-
-				.submit-btn {
-					margin-top: 1vw;
-					padding: 0.5vw 0.65vw;
-					border-radius: 2px;
-					border: 0.05vw solid #2c3e50;
-					outline: none;
-					width: 100%;
-					background: none;
-					transition: 0.3s;
-					font-size: $medium;
-
-					&:hover {
-						background: #2c3e50;
-						color: #fff;
-						cursor: pointer;
-					}
-
-					@include mobile {
-						padding: 7px 15px;
-						font-size: 14px;
-						border: 1px solid #2c3e50;
 					}
 				}
 			}

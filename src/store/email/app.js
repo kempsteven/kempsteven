@@ -41,9 +41,9 @@ export const actions = {
 }
 
 export const getters = {
-    getState: state => stateKey => {
-        return state[stateKey]
-    }
+    getMessageData: state => state.messageData,
+    getHasSentEmailRequest: state => state.hasSentEmailRequest,
+    getLoading: state => state.loading,
 }
 
 export default {

@@ -240,7 +240,7 @@ export default {
 	@include fadeout(0.5s, 0s);
 }
 
-.remove-wrapper{
+.remove-wrapper {
 	position: absolute;
 	z-index: 2;
 	bottom: 6%;
@@ -250,10 +250,10 @@ export default {
 
 	@include mobile {
 		right: 2%;
-		bottom: 11%;
+		bottom: 15%;
 	}
 
-	button{
+	button {
 		width: 100%;
 		height: 100%;
 		border: 1px solid $black;
@@ -266,7 +266,7 @@ export default {
 		transition: 0.3s;
 		outline: none;
 
-		&:hover{
+		&:hover {
 			box-shadow: none;
 		}
 

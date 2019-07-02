@@ -26,9 +26,8 @@ export const actions = {
 }
 
 export const getters = {
-	getState: state => stateKey => {
-		return state[stateKey]
-	}
+	getList: state => state.list,
+	getLoading: state => state.loading
 }
 
 export default {

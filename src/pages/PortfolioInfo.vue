@@ -1,10 +1,10 @@
 <template>
 	<div class="portfolio-info">
-		<span>
+		<span class="portfolio-header">
 			My Portfolio
 		</span>
 
-		<div class="lottie-container" v-if="dynamicGetters('loading')">
+		<div class="lottie-container" v-if="loading">
 			<Lottie
 				class="lottie"
 				:options="defaultOptions"
@@ -20,11 +20,11 @@
 			<div
 				class="portfolio-container scroll"
 				:class="{ 'disappear' : isInteracting }"
-				v-if="!dynamicGetters('loading')"
+				v-if="!loading"
 			>
 				<div 
 					class="portfolio-item"
-					v-for="(portfolio, key) in dynamicGetters('list').list"
+					v-for="(portfolio, key) in list.list"
 					:key="key"
 					@click="viewPortfolio(
 						{
@@ -131,7 +131,8 @@ export default {
 		...mapGetters({
 			isInteracting: 'getIsInteracting',
 			modalStatus: 'getModalStatus',
-			stateData: 'portfolio/getState'
+			list: 'portfolio/getList',
+			loading: 'portfolio/getLoading'
 		})
 	},
 
@@ -179,7 +180,7 @@ export default {
 		justify-content: flex-start;
 	}
 
-	span {
+	.portfolio-header {
 		text-align: center;
 		font-size: 2vw;
 		margin: 0 auto;

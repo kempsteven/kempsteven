@@ -1,10 +1,16 @@
 <template>
 	<div class="skills-info">
 		<div class="info-wrapper">
-			<span>My Skills Set</span>
+			<span class="info-header">
+				My Skills Set
+			</span>
 
-			<div class="lottie-container" v-if="dynamicGetters('loading')">
-				<lottie class="lottie" :options="defaultOptions" @animCreated="handleAnimation" />
+			<div class="lottie-container" v-if="loading">
+				<Lottie
+					class="lottie"
+					:options="defaultOptions"
+					@animCreated="handleAnimation"
+				/>
 				
 				<span class="loading-label">
 					Loading...
@@ -16,11 +22,11 @@
 					class="skill-container gl-flex gl-around-item scroll"
 					:class="{ 'no-pointer' : isInteracting}"
 					ref="skillContainer"
-					v-if="!dynamicGetters('loading')"
+					v-if="!loading"
 				>
 					<div
 						class="skill-item"
-						v-for="(skill, key) in dynamicGetters('list').list"
+						v-for="(skill, key) in list.list"
 						:key="key"
 					>
 						<div class="img-container">
@@ -28,10 +34,7 @@
 								{{ skill.skillName }}
 							</label>
 
-							<img
-								:src="skill.skillImg.url"
-								alt="Skill Item"
-							>
+							<img :src="skill.skillImg.url" alt="Skill Item">
 						</div>
 
 						<div class="stars-container gl-flex gl-vcenter-item">
@@ -69,13 +72,14 @@ export default {
 	},
 
 	components: {
-		'lottie': Lottie
+		Lottie
 	},
 
 	computed: {
 		...mapGetters({
 			isInteracting: 'getIsInteracting',
-			stateData: 'skill/getState'
+			list: 'skill/getList',
+			loading: 'skill/getLoading'
 		})
 	},
 
@@ -91,10 +95,6 @@ export default {
 	},
 
 	methods: {
-		dynamicGetters (key) {
-			return this.stateData(key)
-		},
-
 		async getSkillList () {
 			await this.$store.dispatch('skill/getSkillList')
 		},
@@ -159,7 +159,7 @@ export default {
 		width: 100%;
 		margin-top: 13vh;
 
-		span {
+		.info-header {
 			text-align: center;
 			font-size: 2vw;
 			margin: 0 auto;

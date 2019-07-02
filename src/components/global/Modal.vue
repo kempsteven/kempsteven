@@ -1,5 +1,9 @@
 <template>
-	<div class="modal-bg" :class="{ 'closing' : isClosingModal }" @click.self="closeModalBg()">
+	<div
+		class="modal-bg"
+		:class="{ 'closing' : isClosingModal }"
+		@click.self="closeModalBg()"
+	>
 		<div class="modal">
 			<slot name="modal-body"></slot>
 		</div>
@@ -39,24 +43,21 @@ export default {
 	pointer-events: all;
 	z-index: 99999;
 	opacity: 0;
-	@include fadein(0.3s, 0)
+	@include fadein(0.3s, 0);
 
 	&.closing {
 		opacity: 1;
-		@include fadeout(0.3s, 0.3s)
+		@include fadeout(0.3s, 0.3s);
 
 		.modal {
 			opacity: 1;
-			@include fadeouttotop(0.3s, 0)
+			@include fadeouttotop(0.3s, 0);
 		}
 	}
 
 	.modal {
-		// padding: 0.75vw;
-		// background: #fff;
-		// border-radius: 2px;
 		opacity: 0;
-		@include fadeinfromtop(0.3s, 0.3s)
+		@include fadeinfromtop(0.3s, 0.3s);
 	}
 }
 </style>

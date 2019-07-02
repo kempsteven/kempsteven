@@ -1,6 +1,5 @@
 <template>
     <div class="header-container">
-
         <ul class="list-container" v-if="!isInteracting">
             <li class="list-item">
                 <div 
@@ -12,7 +11,6 @@
                 </div>
             </li>
         </ul>
-
     </div>
 </template>
 
@@ -28,7 +26,7 @@ export default {
     },
 
     methods: {
-        changeRoute() {
+        changeRoute () {
             this.$store.commit('changeRouteAnim', 'default')
 
             if (this.$route.name !== 'contact-us') {

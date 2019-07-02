@@ -1,6 +1,6 @@
 <template>
 	<div class="education">
-		<div class="loading-container" v-show="dynamicGetters('loading')">
+		<div class="loading-container" v-show="loading">
 			<Lottie
 				class="lottie"
 				:options="loadingOptions"
@@ -12,7 +12,7 @@
 			</span>
 		</div>
 
-		<div class="items-container" v-show="!dynamicGetters('loading')">
+		<div class="items-container" v-show="!loading">
 			<div class="lottie-container">
 				<Lottie
 					ref="lottie"
@@ -23,7 +23,7 @@
 			<div
 				class="education-wrapper"
 				:key="key"
-				v-for="(education, key) in dynamicGetters('list').data"
+				v-for="(education, key) in list.data"
 			>
 				<div class="education-container">
 					<span class="education-header">
@@ -32,7 +32,7 @@
 
 					<vue-typed-js
 						:startDelay="800"
-						:typeSpeed="40"
+						:typeSpeed="30"
 						:strings="[
 							textToBinary(education.education, 4),
 							education.education
@@ -101,19 +101,14 @@ export default {
 		this.stopLottieAnim()
 	},
 
-	mounted () {
-		setTimeout( ()=>{
-			// this.recurseString()
-		}, 1000)
-	},
-
 	async created () {
 		await this.getEducationList()
 	},
 
 	computed: {
 		...mapGetters({
-			stateData: 'education/getState'
+			list: 'education/getList',
+			loading: 'education/getLoading'
 		})
 	},
 
@@ -132,10 +127,6 @@ export default {
 			}
 			
 			return binaryOfText
-		},
-
-		dynamicGetters (key) {
-			return this.stateData(key)
 		},
 
 		async getEducationList () {
@@ -158,58 +149,6 @@ export default {
 		handleLoadingAnimation (anim) {
 			this.anim = anim
 			this.anim.setSpeed(1.7)
-		},
-
-		async recursetexting () {
-			let random = (max) => {
-				return Math.ceil(Math.random() * Math.floor(max));
-			}
-
-			document.querySelectorAll('.education-item').forEach( async (item) => {
-				let innerText = item.innerText
-				item.innerText = ''
-
-				for (let x = 0; x <= innerText.length - 1; x++) {
-					new Promise( (resolve) => {
-						setTimeout( ()=>{
-
-							if (innerText[x] === ' ') {
-								item.innerText = item.innerText + '_'
-							} else {
-
-								if (random(3) === 3) {
-									new Promise( (res) => {
-										item.innerText = item.innerText.concat(0)
-
-										setTimeout( () => {
-											item.innerText = item.innerText.replace(/0/g, innerText[x])
-											res()
-										}, 5)
-									})
-								} else if (random(3) === 2) {
-									new Promise( (res) => {
-										item.innerText = item.innerText.concat(1)
-
-										setTimeout( () => {
-											item.innerText = item.innerText.replace(/1/g, innerText[x])
-											res()
-										}, 5)
-									})
-								} else {
-									item.innerText = item.innerText.concat(innerText[x])
-								}
-
-							}
-
-							if (x === innerText.length - 1) {
-								let temp = item.innerText.replace(/_/g, ' ')
-								item.innerText = temp
-							}
-							resolve()
-						}, x * 100)
-					})
-				}
-			})
 		}
 	}
 }
