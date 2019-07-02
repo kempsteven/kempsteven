@@ -142,6 +142,10 @@ export default {
 		}
 	},
 
+	deactivated () {
+		this.$refs.viewerModal.closeModalBg()
+	},
+
 	methods: {
 		viewPortfolio (portFolioDetails) {
 			this.selectedPortfolio = portFolioDetails
