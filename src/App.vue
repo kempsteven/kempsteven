@@ -1,6 +1,6 @@
 <template>
 	<div id="app">
-		<header-div />
+		<HeaderDiv/>
 		<transition :name="routerAnim">
 			<keep-alive>
 				<router-view />
@@ -10,13 +10,13 @@
 </template>
 
 <script>
-import headerDiv from '@/components/global/Header'
+import HeaderDiv from '@/components/global/Header'
 import { mapGetters } from 'vuex'
 export default {
-  	name: 'app',
-
+	name: 'app',
+	
 	components: {
-		'header-div': headerDiv
+		HeaderDiv
 	},
 
 	computed: {
