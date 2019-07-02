@@ -250,7 +250,7 @@ export default {
 
 	@include mobile {
 		right: 2%;
-		bottom: 12.5%;
+		bottom: 11%;
 	}
 
 	button {
