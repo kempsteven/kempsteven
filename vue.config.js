@@ -1,7 +1,6 @@
 const webpack = require('webpack');
 const path = require('path');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 module.exports = {
 	css: {
@@ -15,8 +14,7 @@ module.exports = {
 	configureWebpack: {
 		plugins: [
 			new CleanWebpackPlugin(),
-			new webpack.HashedModuleIdsPlugin(),
-			new BundleAnalyzerPlugin()
+			new webpack.HashedModuleIdsPlugin()
 		],
 
 		optimization: {
