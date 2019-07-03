@@ -153,6 +153,10 @@ export default {
 		min-height: 100%;
 		pointer-events: none;
 
+		@include mobile {
+			min-height: 568px;
+		}
+
 		.contact-modal {
 			background: #fff;
 			padding: 1.3vw;
@@ -295,6 +299,10 @@ export default {
 						display: block;
 						font-size: $header;
 						margin-top: 1vw;
+
+						@include mobile {
+							font-size: 38px;
+						}
 					}
 
 					.message-desc {
@@ -302,10 +310,12 @@ export default {
 						margin: 1.5vw auto 0 auto;
 						display: block;
 						font-size: $big;
-						// border: 1px solid #2c3e50;
-						// padding: 0.75vw 1vw;
 						border-radius: 3px;
 						color: #395068;
+
+						@include mobile {
+							font-size: 16px;
+						}
 					}
 				}
 
@@ -324,6 +334,11 @@ export default {
 						font-size: 1vw;
 						transition: 0.3s;
 						outline: none;
+
+						@include mobile {
+							font-size: 16px;
+							padding: 10px 15px;
+						}
 
 						&:hover {
 							border: 2px solid #759bd8;
