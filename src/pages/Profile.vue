@@ -108,6 +108,10 @@ export default {
         &.contact-us {
             background: #232741;
         }
+
+        @include mobile {
+            overflow: auto;
+        }
     }
 
     .video-filter {
