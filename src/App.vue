@@ -1,12 +1,12 @@
 <template>
-	<div id="app">
+	<main id="app">
 		<HeaderDiv/>
 		<transition :name="routerAnim">
 			<keep-alive>
 				<router-view />
 			</keep-alive>
 		</transition>
-	</div>
+	</main>
 </template>
 
 <script>
