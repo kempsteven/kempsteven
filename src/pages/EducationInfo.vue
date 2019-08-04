@@ -1,16 +1,6 @@
 <template>
 	<div class="education">
-		<div class="loading-container" v-show="loading">
-			<Lottie
-				class="lottie"
-				:options="loadingOptions"
-				@animCreated="handleLoadingAnimation"
-			/>
-			
-			<span class="loading-label">
-				Loading...
-			</span>
-		</div>
+		<Loading class="loading" v-show="loading"/>
 
 		<div class="items-container" v-show="!loading">
 			<div class="lottie-container">
@@ -76,7 +66,7 @@ import * as loadingData from '@/assets/animation/loading.json';
 import * as educationModule from '@/store/education/app.js'
 export default {
 	components: {
-		Lottie: () => import('vue-lottie')
+		Loading: () => import('@/components/global/Loading'),
 	},
 
 	data () {
@@ -159,39 +149,9 @@ export default {
 	width: 100%;
 	min-height: 100%;
 	display: flex;
-	align-items: center;
 
-	.loading-container{
-		width: 30%;
-		height: 30%;
-		padding: 3vw;
-		opacity: 0;
-		margin: 0 auto;
-		@include fadein(0.75s, 0.8s);
-
-		.lottie {
-			height: 50%;
-		}
-
-		.loading-label {
-			display: block;
-			font-size: 1vw;
-			text-align: center;
-			width: 100%;
-		}
-
-		@include mobile {
-			width: 60%;
-			margin: 0 auto;
-
-			.lottie {
-				height: auto;
-			}
-
-			.loading-label {
-				font-size: 14px;
-			}
-		}
+	.loading {
+		margin-top: 15vw;
 	}
 
 	.items-container {

@@ -45,7 +45,7 @@ export default {
                 profile: {
                     color: '#282828',
                     particleOpacity: 0.7,
-                    particlesNumber: 50,
+                    particlesNumber: 47,
                     particleSize: 0,
                     linesColor: '#282828',
                     lineLinked: true,

@@ -5,17 +5,7 @@
 				My Skills Set
 			</span>
 
-			<div class="lottie-container" v-if="loading">
-				<Lottie
-					class="lottie"
-					:options="defaultOptions"
-					@animCreated="handleAnimation"
-				/>
-				
-				<span class="loading-label">
-					Loading...
-				</span>
-			</div>
+			<Loading v-if="loading"/>
 
 			<transition name="g-transition">
 				<div
@@ -54,14 +44,10 @@
 <script>
 import { mapGetters } from 'vuex'
 import * as skillModule from '@/store/skill/app.js'
-
-import Lottie from 'vue-lottie';
-import * as animationData from '@/assets/animation/loading.json';
+import Loading from '@/components/global/Loading.vue'
 export default {
 	data () {
 		return {
-			defaultOptions: {animationData: animationData.default},
-
 			skills: [
 				{HTML: 5}, {CSS: 5}, {Sass: 4.5}, {Javascript: 4}, {'Vue.js': 4},
 				{'Node.js': 3}, {PHP: 3}, {MySql: 2.5},
@@ -69,10 +55,6 @@ export default {
 
 			apiUrl: `${process.env.VUE_APP_API_URL}/` 
 		}
-	},
-
-	components: {
-		Lottie
 	},
 
 	computed: {
@@ -140,12 +122,11 @@ export default {
 					count++
 				}, star * 100)
 			}
-		},
-
-		handleAnimation (anim) {
-			this.anim = anim;
-			this.anim.setSpeed(1.7)    
 		}
+	},
+
+	components: {
+		Loading,
 	}
 }
 </script>

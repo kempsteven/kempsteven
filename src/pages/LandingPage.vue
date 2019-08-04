@@ -3,12 +3,6 @@
         <div class="video-container gl-col-1">
             <div class="video-filter"></div>
 
-            <div class="video-fallback" v-show="!isVideoLoaded">
-                <div class="img-container">
-                    <img :src="require('@/assets/img/coding.webp')" alt="Coding Image">
-                </div>
-            </div>
-
             <video
                 loop
                 muted
@@ -17,7 +11,6 @@
                 @canplaythrough="videoHasBuffered()"
                 class='video'
                 ref="video"
-                v-show="isVideoLoaded"
             >
                 <source :src="require('@/assets/video/coding.mp4')" type="video/mp4" />
                 <source :src="require('@/assets/video/coding.webm')" type="video/webm" />

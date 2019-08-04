@@ -4,17 +4,7 @@
 			My Portfolio
 		</span>
 
-		<div class="lottie-container" v-if="loading">
-			<Lottie
-				class="lottie"
-				:options="defaultOptions"
-				@animCreated="handleAnimation"
-			/>
-
-			<span class="loading-label">
-				Loading...
-			</span>
-		</div>
+		<Loading v-if="loading"/>
 
 		<transition name="g-transition">
 			<div
@@ -107,17 +97,15 @@
 import { mapGetters } from 'vuex'
 import * as portfolioModule from '@/store/portfolio/app.js'
 
-import * as animationData from '@/assets/animation/loading.json';
 export default {
 	components: {
 		Modal: () => import('@/components/global/Modal'),
-		Lottie: () => import('vue-lottie')
+		Loading: () => import('@/components/global/Loading'),
 	},
 
 	data () {
 		return {
 			selectedPortfolio: {},
-			defaultOptions: {animationData: animationData.default},
 		}
 	},
 
@@ -162,11 +150,6 @@ export default {
 
 		dynamicGetters (key) {
 			return this.stateData(key)
-		},
-
-		handleAnimation (anim) {
-			this.anim = anim;
-			this.anim.setSpeed(1.7)
 		}
 	}
 }
@@ -178,10 +161,12 @@ export default {
 	position: absolute;
 	display: flex;
 	flex-direction: column;
-	justify-content: center;
+	// justify-content: center;
+	margin-top: 7vw;
 
 	@include mobile {
 		justify-content: flex-start;
+		margin-top: unset;
 	}
 
 	.portfolio-header {
